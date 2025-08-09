@@ -5,6 +5,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --text: #232426;
+  --cyan: #8DD6FD;
+  --magenta: #F56CCE;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,8 +17,106 @@
   }
 }
 
+@font-face {
+  font-family: 'game_over';
+  src: url('../public/assets/Game-Over.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'zerovelo';
+  src: url('../public/assets/ZeroVelocityBRK.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sporty';
+  src: url('../public/assets/Born2bSportyFS.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Utility classes */
+.font-navbar {
+  font-family: 'game_over', sans-serif;
+  font-size: 100px;
+  line-height: 100px;
+  color:var(--foreground);
+}
+
+.font-main {
+  font-family: 'zerovelo', sans-serif;
+  color: var(--magenta);
+}
+
+.font-sub {
+  font-family: 'sporty', sans-serif;
+  color: var(--cyan);
+  letter-spacing: 7px;
+}
+
+.font-decor {
+  font-family: 'sporty', sans-serif;
+  font-size: 55px;
+}
+
+.nav-link {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-link::before {
+  content: '';
+  font-family: 'sporty', sans-serif;
+  line-height: 100px;
+  left: -1.5em;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+nav .nav-link:hover::before {
+  content: '▶  ';
+  font-size: 30px;
+  color: var(--cyan);
+  opacity: 1;
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  position: relative;
+  z-index: 10;
+  contain: layout;
 }

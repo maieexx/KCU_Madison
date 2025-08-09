@@ -1,67 +1,101 @@
 'use client';
+import Link from 'next/link';
+import Image from 'next/image';
+import './globals.css';
+
 
 export default function Home() {
   return (
-    <div className="flex flex-col">
-      {/* 파란색 제목 배경 섹션 */}
-      <div className="text-white text-left py-12 px-8 flex items-center space-x-8"
-        style={{ backgroundColor: 'rgb(43, 53, 255)' }}
-      >
+    <div className="min-h-screen bg-black text-white relative">
 
-        {/* 로고 이미지 */}
-        <img
-          src="/images/logo_uw.jpeg"
-          alt="KCU Logo"
-          className="object-cover"
-          style={{ width: '300px', height: '300px', marginLeft: '100px' }}
-        />
-        {/* 텍스트 이미지 */}
-        <img
-          src="/images/home_title.jpeg"
-          alt="KCU 2025 Text"
-          className="object-contain"
-          style={{ width: '800px', height: '200px' }}
-        />
-      </div>
-
-      {/* 사진 섹션 */}
-      <div className="relative w-full overflow-hidden my-16 px-4">
-        <div className="flex animate-slide space-x-4">
-          <img src="/images/image1.jpg" alt="Image 1" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-          <img src="/images/image2.jpeg" alt="Image 2" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-          <img src="/images/image3.jpg" alt="Image 3" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-          <img src="/images/image4.jpg" alt="Image 4" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-          <img src="/images/image5.jpeg" alt="Image 5" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-          <img src="/images/image1.jpg" alt="Image 1 Repeat" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-          <img src="/images/image2.jpeg" alt="Image 2 Repeat" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-          <img src="/images/image3.jpg" alt="Image 3 Repeat" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-          <img src="/images/image4.jpg" alt="Image 4 Repeat" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-          <img src="/images/image5.jpeg" alt="Image 5 Repeat" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
+        {/* Moon Symbol */}
+        < div className='absolute top-[20px] left-[100px]'>
+          <p style={{  color: '#FFFC65'  }} className='font-decor'>⏾</p>
         </div>
-      </div>
 
-      <style jsx>{`
-        @keyframes slide {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
+        {/* Left: Title Section & Logo */}
+        <div className="absolute left-[190px] top-[50px]">
+          <h1 style={{ fontSize: '140px'  }} className="font-main">
+            KCU 2025
+          </h1>
+          <p style={{ fontSize: '45px' }} className="font-sub">
+            Korean Undergraduate Computer Science Union
+          </p>
+          <video
+            className="w-[300px] h-auto mt-20 items-center mx-auto"
+            autoPlay
+            loop
+            muted
+          >
+            <source src="/assets/logo_rotating.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
 
-        .animate-slide {
-          display: flex;
-          animation: slide 30s linear infinite;
-          width: calc(10 * 320px); /* 5개의 이미지 반복 포함 */
-        }
+        {/* Star Pattern */}
+        <div className="absolute top-[140px] right-[100px]">
+          <p style={{  color: '#FFFC65'  }} className='font-decor'>☆★☆★☆★</p>
+        </div>
+        <div className="absolute top-[200px] right-[140px]">
+          <p style={{  color: '#FFFC65'  }} className='font-decor'>☆★☆★☆★</p>
+        </div>
 
-        .relative {
-          overflow: hidden;
-        }
+        {/* Right: Navigation Links */}
+        <div className='absolute top-[580px] right-[200px] transform -translate-y-1/2 overflow-hidden'>
+          <nav className="clear-both relative">
+            <ul className="font-navbar space-y-2 list-none p-0 m-0">
+              <li>
+                <Link href="/aboutKCU" className="hover:text-[var(--cyan)] nav-link block">
+                  About KCU
+                </Link>
+              </li>
+              <li>
+                <Link href="/projects" className="hover:text-[var(--cyan)] nav-link block">
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link href="/community" className="hover:text-[var(--cyan)] nav-link block">
+                  Community
+                </Link>
+              </li>
+            <li>
+                <Link href="/signup" className="hover:text-[var(--cyan)] nav-link block">
+                  Sign Up
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
 
-        .space-x-4 > * + * {
-          margin-left: 2rem;
-        }
-      `}</style>
+        {/* Start */}
+        <div className="absolute bottom-[200px] left-[720px] transform -translate-x-1/2 text-center">
+          <p style={{  fontSize: '45px', color: '#F56CCE'  }} className='font-decor blink'>ⓅⓇⒺⓈⓈ ⓉⓄ ⓈⓉⒶⓇⓉ ▶ ▶ </p>
+        </div>
+
+        {/* Power Symbol */}
+        < div className='absolute bottom-[40px] right-[80px]'>
+          <Link href="/admin">
+            <p style={{  color: '#21FF58'  }} className='font-decor'>⏻</p>
+          </Link>
+        </div>
+
+
+        {/* 사진 섹션
+        <div className="relative w-full overflow-hidden my-16 px-4">
+          <div className="flex animate-slide space-x-4">
+            <img src="/assets/image1.jpg" alt="Image 1" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
+            <img src="/assets/image2.jpeg" alt="Image 2" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
+            <img src="/assets/image3.jpg" alt="Image 3" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
+            <img src="/assets/image4.jpg" alt="Image 4" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
+            <img src="/assets/image5.jpeg" alt="Image 5" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
+            <img src="/assets/image1.jpg" alt="Image 1 Repeat" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
+            <img src="/assets/image2.jpeg" alt="Image 2 Repeat" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
+            <img src="/assets/image3.jpg" alt="Image 3 Repeat" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
+            <img src="/assets/image4.jpg" alt="Image 4 Repeat" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
+            <img src="/assets/image5.jpeg" alt="Image 5 Repeat" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
+          </div>
+        </div> */}
     </div>
   );
 }
-
-
