@@ -16,7 +16,7 @@ const ItemSchema = new mongoose.Schema({
     demoVideo: {
         type: String,
         required: true,
-        option: nullable,
+        default: null,
     },
     projectName: {
         type: String,
@@ -29,7 +29,7 @@ const ItemSchema = new mongoose.Schema({
     github_link: {
         type: String,
         required: true,
-        option: nullable,
+        default: null,
     },
 });
 

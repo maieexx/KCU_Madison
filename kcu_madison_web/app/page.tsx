@@ -45,22 +45,22 @@ export default function Home() {
           <nav className="clear-both relative">
             <ul className="font-navbar space-y-2 list-none p-0 m-0">
               <li>
-                <Link href="/aboutKCU" className="hover:text-[var(--cyan)] nav-link block">
+                <Link href="/aboutKCU" className="hover:text-[var(--hover-blue)] nav-link block">
                   About KCU
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="hover:text-[var(--cyan)] nav-link block">
+                <Link href="/projects" className="hover:text-[var(--hover-blue)] nav-link block">
                   Projects
                 </Link>
               </li>
               <li>
-                <Link href="/community" className="hover:text-[var(--cyan)] nav-link block">
+                <Link href="/community" className="hover:text-[var(--hover-blue)] nav-link block">
                   Community
                 </Link>
               </li>
             <li>
-                <Link href="/signup" className="hover:text-[var(--cyan)] nav-link block">
+                <Link href="/signup" className="hover:text-[var(--hover-blue)] nav-link block">
                   Sign Up
                 </Link>
               </li>
@@ -75,7 +75,7 @@ export default function Home() {
 
         {/* Power Symbol */}
         < div className='absolute bottom-[40px] right-[80px]'>
-          <Link href="/admin">
+          <Link href="/auth">
             <p style={{  color: '#21FF58'  }} className='font-decor'>⏻</p>
           </Link>
         </div>
