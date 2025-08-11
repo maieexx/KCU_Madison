@@ -25,7 +25,7 @@ projects, and prepare for internships and research opportunities.`;
 {/* Right Navigation List */}
 const NAVIGATION_LINKS = [
   { href: '/', label: '⏎' },
-  { href: '/boardMembers', label: 'Board Members' },
+  { href: '/aboutKCU/boardMembers', label: 'Board Members' },
   { href: '/aboutKCU/logo', label: 'Logo' },
   { href: '/aboutKCU/history', label: 'History' },
   { href: '/aboutKCU/contactUs', label: 'Contact Us' },
