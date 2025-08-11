@@ -9,6 +9,8 @@
   --hover-blue: #8DD6FD;
   --magenta: #F56CCE;
   --cyan: #00FFFF;
+  --neongreen: #21FF58;
+  --hover-orange: #F24D00;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,21 +22,35 @@
 
 @font-face {
   font-family: 'game_over';
-  src: url('../public/assets/Game-Over.woff2') format('woff2');
+  src: url('../public/assets/fonts/Game-Over.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'zerovelo';
-  src: url('../public/assets/ZeroVelocityBRK.woff2') format('woff2');
+  src: url('../public/assets/fonts/ZeroVelocityBRK.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'sporty';
-  src: url('../public/assets/Born2bSportyFS.woff2') format('woff2');
+  src: url('../public/assets/fonts/Born2bSportyFS.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'bayon';
+  src: url('../public/assets/fonts/Bayon-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'hepta';
+  src: url('../public/assets/fonts/HeptaSlab-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
@@ -70,6 +86,17 @@ body {
   font-size: 60px;
 }
 
+.font-title {
+  font-family: 'bayon', sans-serif;
+  font-size: 100px;
+}
+
+.font-body {
+  font-family: 'hepta', sans-serif;
+  font-size: 40px;
+  color: var(--foreground);
+}
+
 .white-rectangle {
   width: 750px;
   height: 350px;
@@ -80,6 +107,24 @@ body {
   width: 100px;
   height: 40px;
   border: 3px solid var(--cyan);
+}
+
+.green-rectangle {
+  width: 1180px;
+  height: 600px;
+  border: 3px solid var(--neongreen);
+}
+
+.green-square {
+  width: 130px;
+  height: 130px;
+  border: 3px solid var(--neongreen);
+}
+
+.white-line {
+  width: 2px;
+  height: 100%;
+  background-color: var(--foreground);
 }
 
 .enter-button {
@@ -94,21 +139,41 @@ body {
 .nav-link {
   position: relative;
   display: inline-block;
+  text-align: right;
 }
 
 .nav-link::before {
   content: '';
   font-family: 'sporty', sans-serif;
-  line-height: 100px;
+  font-size: 45px;
   left: -1.5em;
   opacity: 0;
   transition: opacity 0.2s ease;
 }
 
-nav .nav-link:hover::before {
+.nav-link:hover::before {
   content: '▶  ';
-  font-size: 30px;
-  color: var(--hover-blue);
+  opacity: 1;
+}
+
+.page-nav {
+  position: relative;
+  display: inline-block;
+  text-align: right;
+}
+
+.page-nav::before {
+  content: '';
+  font-family: 'sporty', sans-serif;
+  font-size: 25px;
+  line-height: 45px;
+  left: -2em;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.page-nav:hover::before {
+  content: '▶  ';
   opacity: 1;
 }
 

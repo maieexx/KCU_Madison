@@ -11,6 +11,8 @@ module.exports = {
         main: ['game_over', 'sans-serif'],
         center: ['zerovelo', 'sans-serif'],
         sub: ['sporty', 'sans-serif'],
+        title: ['bayon', 'sans-serif'],
+        body: ['hepta', 'sans-serif'],
       },
     },
   },
