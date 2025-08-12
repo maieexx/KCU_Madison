@@ -16,7 +16,7 @@ export default function contactUs() {
   return (
     <main className="min-h-screen bg-black text-white relative">
 
-    {/* Title Section */}
+      {/* Title Section */}
       <h1 className="font-title absolute top-[70px] left-[100px]" style={{ color: '#F24D00' }}>
         Contact Us
       </h1>

@@ -11,6 +11,9 @@
   --cyan: #00FFFF;
   --neongreen: #21FF58;
   --hover-orange: #F24D00;
+  --yellow: #FFD400;
+  --pink: #FF3A96;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -109,6 +112,12 @@ body {
   border: 3px solid var(--cyan);
 }
 
+.pink-rectangle {
+  width: 1180px;
+  height: 450px;
+  border: 3px solid var(--pink);
+}
+
 .green-rectangle {
   width: 1180px;
   height: 600px;
@@ -187,6 +196,19 @@ body {
   }
   100% {
     opacity: 1;
+  }
+}
+
+.blink-yellow {
+  animation: blink-yellow 1s step-end infinite;
+  color: var(--yellow);
+}
+@keyframes blink-yellow {
+    0%, 100% {
+    color: white;
+  }
+  50% {
+    color: var(--yellow);
   }
 }
 
