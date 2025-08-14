@@ -1,5 +1,5 @@
-import connectMongo from "../../../pages/client";
-import test_db from "../../../pages/dbQuery";
+import connectMongo from "../../../lib/db";
+import test_db from "../../../lib/projectModel";
 
 export async function GET(){
   try {

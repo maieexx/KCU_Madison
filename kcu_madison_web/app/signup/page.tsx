@@ -4,7 +4,7 @@ import '../globals.css';
 
 {/*
   IMPORTANT:
-  To update the sign-up form link, please edit line 46!
+  To update the sign-up form link, please go to line 38!
 */}
 
 
@@ -31,10 +31,18 @@ export default function signUpPage() {
         <p style={{ fontSize: '85px', color: 'white', whiteSpace: 'pre-line' }} className="font-decor mt-[10px] ml-[80px]">
           {`Sorry!!
           We are not accepting
-          new members at this moment.`}
+          new members at this time.`}
         </p>
 
-        {/* Sign-Up Page: When the Sign-Up Form has been made */}
+
+        {/*
+          Sign-Up Page: Not Ready 섹션 주석 처리 하시고
+          Sign-Up Page: When the Sign-Up Form is ready 아래 내용 주석 해제하시고
+          내부 google doc 링크만 복붙하시면 됩니다!!
+        */}
+
+
+        {/* Sign-Up Page: When the Sign-Up Form is ready */}
         {/* <div className="font-decor mt-[10px] text-center" style={{ fontSize: '80px', color: 'white' }}>
           <p>Click here to join the KCU!!</p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '200px' }}>
@@ -43,7 +51,6 @@ export default function signUpPage() {
           </div>
         </div> */}
 
-        {/* 내부 google doc 링크만 복붙하시면 됩니다!! */}
         {/* <a
           href="https://docs.google.com/forms/d/1qsmoWASdvBehrFeqIYWHMvF7brHCSpX6apoWsVoPcx8/edit"
           target="_blank"
