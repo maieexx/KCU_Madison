@@ -28,7 +28,7 @@ export default function signUpPage() {
                             Follow the link and . .
                         </span>
                         <span>
-                            don't forget to
+                            don&apos;t forget to
                         </span>
                         <span style={{ color: '#FFD400', fontSize: '85px' }}>  ☆ WIN ☆ </span>
                     </div>
