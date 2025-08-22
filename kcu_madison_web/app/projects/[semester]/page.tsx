@@ -1,12 +1,15 @@
 // app/projects/[semester]/page.tsx
 import Link from 'next/link';
 
-type Project = { id: string; title: string; slug?: string };
+type Project = { 
+    id: string;
+    title: string;
+    slug?: string;
+    presentationThumb?: string;
+};
 
 function fromSlug(slug: string) {
-  // reverse of toSlug: "2024-spring" -> "2024 spring" (or adjust to your exact stored format)
   const spaced = slug.replace(/-/g, ' ');
-  // Capitalize words like "spring" -> "Spring"
   return spaced.replace(/\b[a-z]/g, (m) => m.toUpperCase());
 }
 
@@ -54,17 +57,31 @@ export default async function SemesterPage({
       {projects.length === 0 ? (
         <p className="text-gray-300">No projects found for this semester.</p>
       ) : (
-        <ul className="space-y-4">
-          {projects.map((p) => (
-            <li key={p.id}>
-              <Link
-                href={`/projects/${encodeURIComponent(semester)}/${encodeURIComponent(p.slug ?? p.id)}`}
-                className="hover:underline"
-              >
-                {p.title}
-              </Link>
-            </li>
-          ))}
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((p) => {
+            const thumb = p.presentationThumb || "/thumb-fallback-ppt.png"; // 👈 default fallback
+            return (
+              <li key={p.id} className="relative group rounded-xl overflow-hidden shadow-lg">
+                <Link
+                  href={`/projects/${encodeURIComponent(semester)}/${encodeURIComponent(p.slug ?? p.id)}`}
+                  className="block"
+                >
+                  <div className="relative h-48 w-full">
+                    <img
+                      src={thumb}
+                      alt={`${p.title} presentation`}
+                      className="absolute inset-0 h-full w-full object-cover transition-transform group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-3 bg-zinc-900">
+                    <h2 className="text-lg font-semibold group-hover:text-[var(--cyan)] transition">
+                      {p.title}
+                    </h2>
+                  </div>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       )}
     </main>
