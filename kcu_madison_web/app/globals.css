@@ -249,6 +249,28 @@ body {
   opacity: 1;
 }
 
+.star-link {
+  position: relative;
+  text-decoration: none;
+}
+
+.star-link::before {
+  content: '';
+  font-family: 'sporty', sans-serif;
+  margin-right: 2px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  text-decoration: none;
+}
+
+.star-link:hover::before {
+  content: '☆';
+  font-size: 60px;
+  opacity: 1;
+}
+
+
+
 ul {
   list-style: none;
   padding: 0;
