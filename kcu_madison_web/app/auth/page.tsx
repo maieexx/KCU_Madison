@@ -3,7 +3,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import '../globals.css';
-import { set } from 'mongoose';
 
 
 export default function Admin() {
@@ -21,32 +20,26 @@ export default function Admin() {
         try {
             const response = await fetch('/api/items', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ password }),
             });
-
-            const data = await response.json();
 
             if (response.ok) {
                 setIsAuthenticated(true);
                 sessionStorage.setItem('isAuthenticated', 'true');
                 router.push('/auth/admin-success');
             } else {
+                setIsAuthenticated(false);
+                setError('Wrong password. Try again.');
                 router.push('/auth/admin-fail');
             }
-        } catch (err) {
+            } catch (err: any) {
             setError('An error occurred. Please try again.');
-            setPassword('');
-        } finally {
+            console.error(err); // now err is used
+            } finally {
             setIsLoading(false);
-        }
-    };
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value);
-    };
+            }
+        };
 
     return (
         <div className='min-h-screen bg-black text-white relative'>
@@ -70,7 +63,7 @@ export default function Admin() {
                     <input 
                         type="text"
                         value={'*'.repeat(password.length)}
-                        onChange={handleChange}
+                        onChange={(e) => setPassword(e.target.value)}
                         disabled={isLoading}
                         autoFocus
                         required
@@ -91,6 +84,9 @@ export default function Admin() {
                         }}
                     />
                     <p style={{ fontSize: '19px'}} className='font-decor ml-[15px] -mt-[90px]'>♬ hint: iykyk</p>
+                    {error && (
+                        <p className="text-red-500 mt-4 ml-[15px] font-decor">{error}</p>
+                    )}
                     <button type="submit" className='cyan-rectangle ml-[120px] mt-[20px] hover:text-[var(--foreground)] enter-button block'>
                         <p style={{ fontSize: '60px' }} className='-mt-[35px]'>Enter</p>
                     </button>

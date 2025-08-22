@@ -47,12 +47,6 @@ const INCORRECT_LOGOS = [
   },
 ];
 
-const COLOR_CODES = [
-  { hex: '#c5050c', bg: 'bg-[#c5050c]' },
-  { hex: '#000000', bg: 'bg-black' },
-  { hex: '#ffffff', bg: 'bg-white' },
-];
-
 {/* Right Navigation List */}
 const NAVIGATION_LINKS = [
   { href: '/', label: '⏎' },
@@ -102,7 +96,7 @@ export default function LogoPage() {
             className="absolute left-[120px] top-[480px] border-[3px] flex items-center"
             style={{ borderColor: '#FC0000', width: '930px', height: '230px' }}
         >
-            {INCORRECT_LOGOS.map((logo, index) => (
+            {INCORRECT_LOGOS.map((logo) => (
                 <div key={logo.src} className="flex flex-col items-center">
                     <Image
                         src={logo.src}
