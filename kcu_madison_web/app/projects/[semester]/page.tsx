@@ -1,4 +1,4 @@
-// app/projects/[semester]/page.tsx
+// app/projects/[semester]/page.js
 import Image from "next/image";
 import Link from "next/link";
 import connectMongo from "@/lib/db";
@@ -6,20 +6,21 @@ import Project from "@/lib/projectModel";
 import { toSlug } from "@/lib/slug";
 
 type Props = {
-  params: Promise<{ semester: string }>;
+  params: { semester: string };
 };
 
-export default async function SemesterPage({ params }: Props) {
+export default async function SemesterPage({ params }: Props) {  
   const resolvedParams = await params;
+
   await connectMongo();
 
   const allProjects = await Project.find()
     .select("_id title presentation semester isWinner")
     .lean();
 
-  const projects = allProjects.filter((p: any) => toSlug(p.semester) === resolvedParams.semester);
+  const projects = allProjects.filter(p => toSlug(p.semester) === resolvedParams.semester);
 
-  const getPresentationId = (presentation: string) => {
+  const getPresentationId = (presentation: string | undefined) => {
     if (!presentation) return null;
     const match = presentation.match(/\/d\/([a-zA-Z0-9_-]+)/) || presentation.match(/^([a-zA-Z0-9_-]+)$/);
     return match ? match[1] : null;
@@ -27,33 +28,34 @@ export default async function SemesterPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-black text-white p-8">
-      <h1 className="font-title text-[#8F4EFF]">PROJECTS</h1>
-      <h2 className="mt-2 text-2xl font-extrabold text-[#00E5FF]">
-        [ {resolvedParams.semester.replace("-", " ").toUpperCase()} ]
-      </h2>
+        {/* Title Section */}
+        <div className="absolute top-[70px] left-[100px]">
+            <h1 style={{ color: '#8F4EFF' }} className='font-title' >PROJECTS</h1>
+        </div>
+        {/* Selected Semester */}
+        <p style={{ color: '#00FFFF', fontSize: '50px' }} className="font-decor absolute left-[130px] top-[230px]">
+            [ {resolvedParams.semester.replace("-", " ").toUpperCase()} ]
+        </p>
 
-      <section className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="top-[200px] grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {projects.length ? (
-          projects.map((p: any) => {
+          projects.map(p => {
             const presentationId = getPresentationId(p.presentation);
+            if (!presentationId) return null; // presentation 없으면 렌더링 제외
+
             return (
               <Link
-                key={p._id.toString()}
+                key={p._id as string}
                 href={`/projects/${resolvedParams.semester}/${p._id}`}
-                className="border border-cyan-500/40 rounded-2xl p-4 hover:border-cyan-300 transition"
               >
-                <div className="aspect-video relative mb-3">
+                <div className="relative mb-3 w-full max-w-sm h-40 sm:h-48 lg:h-56">
                   <Image
-                    src={
-                      presentationId
-                        ? `/api/slides/first-thumb?pid=${presentationId}`
-                        : "https://via.placeholder.com/200"
-                    }
+                    src={`/api/slides/first-thumb?pid=${presentationId}`}
                     alt={`${p.title} thumbnail`}
                     fill
                     className="object-cover rounded-xl"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    unoptimized // API 썸네일은 최적화 없이
+                    unoptimized // API 썸네일 최적화 없이
                   />
                 </div>
                 <div className="text-lg font-semibold flex items-center gap-2">
@@ -66,7 +68,20 @@ export default async function SemesterPage({ params }: Props) {
         ) : (
           <div className="text-zinc-400">No projects for this semester yet.</div>
         )}
-      </section>
+      </div>
+      {/* Right Navigation Section */}
+      <div className='white-line absolute right-[330px]'/>
+      <nav className="absolute right-[50px] top-[200px] -translate-y-[180px] overflow-hidden">
+          <ul className="font-decor text-right" style={{ fontSize: 35 }}>
+              <li>
+              <Link href="/" className="hover:text-[var(--cyan)] nav-link block">
+                  ⏎
+              </Link>
+              </li>
+          </ul>
+      </nav>
+
+
     </main>
   );
 }
