@@ -1,15 +1,34 @@
-import './globals.css';
-import Footer from './components/footer/page';
+// app/layout.tsx
+import "./globals.css";
+import type { Metadata } from "next";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const metadata: Metadata = {
+  title: "Your App",
+  description: "Description here",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html className="h-full">
-      <body className="flex flex-col min-h-screen">
-        {/* 메인 섹션 */}
-        <main className="flex-grow">{children}</main>
+    <html lang="en">
+      <body>
+        {/* Accessibility containers to prevent acknowledgement_modal.js error */}
+        <div
+          id="hl-aria-live-message-container"
+          aria-live="polite"
+          className="visually-hidden"
+        ></div>
+        <div
+          id="hl-aria-live-alert-container"
+          role="alert"
+          aria-live="assertive"
+          className="visually-hidden"
+        ></div>
 
-        {/* 푸터 섹션 */}
-        <Footer />
+        {children}
       </body>
     </html>
   );

@@ -1,89 +1,72 @@
 // app/projects/[semester]/page.tsx
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
+import connectMongo from "@/lib/db";
+import Project from "@/lib/projectModel";
+import { toSlug } from "@/lib/slug";
 
-type Project = { 
-    id: string;
-    title: string;
-    slug?: string;
-    presentationThumb?: string;
+type Props = {
+  params: Promise<{ semester: string }>;
 };
 
-function fromSlug(slug: string) {
-  const spaced = slug.replace(/-/g, ' ');
-  return spaced.replace(/\b[a-z]/g, (m) => m.toUpperCase());
-}
+export default async function SemesterPage({ params }: Props) {
+  const resolvedParams = await params;
+  await connectMongo();
 
-async function getProjectsFor(semesterName: string) {
-  // Use NEXT_PUBLIC_API_BASE if you set it, otherwise fallback to localhost:3000
-  const base = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:3000';
+  const allProjects = await Project.find()
+    .select("_id title presentation semester isWinner")
+    .lean();
 
-  try {
-    const res = await fetch(
-      `${base}/api/projects?semester=${encodeURIComponent(semesterName)}`,
-      { cache: 'no-store' } // ensures SSR always fetches fresh data
-    );
+  const projects = allProjects.filter((p: any) => toSlug(p.semester) === resolvedParams.semester);
 
-    if (!res.ok) {
-      console.error('Failed to fetch projects:', res.status, res.statusText);
-      return [];
-    }
-
-    const data = await res.json();
-    return data?.projects ?? data ?? [];
-  } catch (err) {
-    console.error('Error fetching projects:', err);
-    return [];
-  }
-}
-
-
-export default async function SemesterPage({
-  params: { semester },
-}: {
-  params: { semester: string };
-}) {
-  const humanName = fromSlug(decodeURIComponent(semester));
-  const projects: Project[] = await getProjectsFor(humanName);
+  const getPresentationId = (presentation: string) => {
+    if (!presentation) return null;
+    const match = presentation.match(/\/d\/([a-zA-Z0-9_-]+)/) || presentation.match(/^([a-zA-Z0-9_-]+)$/);
+    return match ? match[1] : null;
+  };
 
   return (
-    <main className="min-h-screen bg-black text-white p-10">
-      <div className="mb-6 flex items-center justify-between">
-        <h1 className="font-title text-4xl" style={{ color: '#8F4EFF' }}>
-          {humanName} Projects
-        </h1>
-        <Link href="/projects" className="hover:underline">← All semesters</Link>
-      </div>
+    <main className="min-h-screen bg-black text-white p-8">
+      <h1 className="font-title text-[#8F4EFF]">PROJECTS</h1>
+      <h2 className="mt-2 text-2xl font-extrabold text-[#00E5FF]">
+        [ {resolvedParams.semester.replace("-", " ").toUpperCase()} ]
+      </h2>
 
-      {projects.length === 0 ? (
-        <p className="text-gray-300">No projects found for this semester.</p>
-      ) : (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((p) => {
-            const thumb = p.presentationThumb || "/thumb-fallback-ppt.png"; // 👈 default fallback
+      <section className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {projects.length ? (
+          projects.map((p: any) => {
+            const presentationId = getPresentationId(p.presentation);
             return (
-              <li key={p.id} className="relative group rounded-xl overflow-hidden shadow-lg">
-                <Link
-                  href={`/projects/${encodeURIComponent(semester)}/${encodeURIComponent(p.slug ?? p.id)}`}
-                  className="block"
-                >
-                  <div className="relative h-48 w-full">
-                    <img
-                      src={thumb}
-                      alt={`${p.title} presentation`}
-                      className="absolute inset-0 h-full w-full object-cover transition-transform group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-3 bg-zinc-900">
-                    <h2 className="text-lg font-semibold group-hover:text-[var(--cyan)] transition">
-                      {p.title}
-                    </h2>
-                  </div>
-                </Link>
-              </li>
+              <Link
+                key={p._id.toString()}
+                href={`/projects/${resolvedParams.semester}/${p._id}`}
+                className="border border-cyan-500/40 rounded-2xl p-4 hover:border-cyan-300 transition"
+              >
+                <div className="aspect-video relative mb-3">
+                  <Image
+                    src={
+                      presentationId
+                        ? `/api/slides/first-thumb?pid=${presentationId}`
+                        : "https://via.placeholder.com/200"
+                    }
+                    alt={`${p.title} thumbnail`}
+                    fill
+                    className="object-cover rounded-xl"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    unoptimized // API 썸네일은 최적화 없이
+                  />
+                </div>
+                <div className="text-lg font-semibold flex items-center gap-2">
+                  {p.title}
+                  {p.isWinner && <span className="text-cyan-300 text-sm">★</span>}
+                </div>
+              </Link>
             );
-          })}
-        </ul>
-      )}
+          })
+        ) : (
+          <div className="text-zinc-400">No projects for this semester yet.</div>
+        )}
+      </section>
     </main>
   );
 }

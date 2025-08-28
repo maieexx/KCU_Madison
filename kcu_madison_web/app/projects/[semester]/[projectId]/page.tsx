@@ -1,64 +1,88 @@
-import { Project } from '../../../types/projects';
+// app/projects/[semester]/[projectId]/page.tsx
+import Image from "next/image";
+import Link from "next/link";
+import connectMongo from "@/lib/db.js";
+import ProjectModel from "@/lib/projectModel.js";
+import type { Project as ProjectType } from "../../../models/projects";
+
+type Params = { semester: string; projectId: string };
 
 export default async function IndividualPage({
   params,
 }: {
-  params: { semester: string; projectId: string };
+  params: Promise<Params>;
 }) {
-  const { semester, projectId } = params;
+  // Next 15: params is a promise
+  const { semester, projectId } = await params;
 
-  // Fetch the project from your API (use Vercel base URL or environment variable)
-  const base = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:5001';
-  const res = await fetch(`${base}/api/projects/${projectId}`, { cache: 'no-store' });
+  // Connect and fetch single document
+  await connectMongo();
 
-  if (!res.ok) {
-    return <p className="text-red-500">Failed to load project.</p>;
+  // Use .lean() and tell TS the shape returned is ProjectType | null
+  const doc = (await ProjectModel.findById(projectId).lean().exec()) as
+    | (ProjectType & { _id: any })
+    | null;
+
+  if (!doc) {
+    return (
+      <main className="min-h-screen bg-black text-white p-10">
+        <h1 className="font-title text-3xl">Project not found</h1>
+        <Link href={`/projects/${encodeURIComponent(semester)}`} className="underline mt-4 inline-block">
+          ← Back to {semester.replace("-", " ")}
+        </Link>
+      </main>
+    );
   }
 
-  const project: Project = await res.json();
+  // Now TS knows `doc` is a single ProjectType — safe to access `presentation`
+  const thumbSrc = doc.presentationThumb
+    ? doc.presentationThumb
+    : doc.presentation
+    ? `/api/slides/first-thumb?url=${encodeURIComponent(doc.presentation)}`
+    : "/thumb-fallback.svg";
 
   return (
-    <div className="projects-specific p-10 bg-black text-white min-h-screen">
-      <h1 className="font-title text-4xl mb-6" style={{ color: '#8F4EFF' }}>
-        PROJECTS [{semester.replace('-', ' ')}]
+    <main className="projects-specific p-10 bg-black text-white min-h-screen">
+      <h1 className="font-title text-4xl mb-6" style={{ color: "#8F4EFF" }}>
+        PROJECTS [{semester.replace("-", " ")}]
       </h1>
 
-      <div className="project-details space-y-4">
+      <article className="space-y-6">
         <h2 className="text-2xl font-bold">
-          {project.title} {project.isWinner ? '⭐ Semester Winner!' : ''}
+          {doc.title} {doc.isWinner ? "⭐ Semester Winner!" : ""}
         </h2>
 
-        {/* Presentation thumbnail */}
-        <div className="w-full max-w-md">
-          <img
-            src={project.presentation || '/thumb-fallback-ppt.png'}
-            alt="Presentation"
-            className="w-full h-auto object-cover rounded-md shadow-lg"
+        <div className="w-full max-w-3xl aspect-video relative">
+          <Image
+            src={thumbSrc}
+            alt={`${doc.title} presentation`}
+            fill
+            className="object-cover rounded-xl shadow-lg"
+            sizes="(min-width:1024px) 60vw, 100vw"
           />
         </div>
 
-        <p>{project.description}</p>
+        {doc.description && <p className="text-lg">{doc.description}</p>}
 
-        <p>
-          <strong>Used Languages:</strong> {project.languages.join(', ')}
-        </p>
+        {Array.isArray(doc.languages) && (
+          <p>
+            <strong>Used Languages:</strong> {doc.languages.join(", ")}
+          </p>
+        )}
 
-        <p>
-          <strong>GitHub:</strong>{' '}
-          {project.github ? (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline hover:text-cyan-400"
-            >
-              {project.github}
+        {doc.github && (
+          <p>
+            <strong>GitHub:</strong>{" "}
+            <a href={doc.github} target="_blank" rel="noopener noreferrer" className="underline hover:text-cyan-400">
+              {doc.github}
             </a>
-          ) : (
-            'Not available'
-          )}
-        </p>
-      </div>
-    </div>
+          </p>
+        )}
+
+        <Link href={`/projects/${encodeURIComponent(semester)}`} className="underline">
+          ← Back to {semester.replace("-", " ")}
+        </Link>
+      </article>
+    </main>
   );
 }

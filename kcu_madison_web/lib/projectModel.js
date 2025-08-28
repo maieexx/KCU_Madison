@@ -9,10 +9,13 @@ const projectSchema = new mongoose.Schema({
   teamName: { type: String, required: true },
   teamMembers: { type: [String], required: true },
   presentation: { type: String, required: true },
+  presentationThumb: { type: String, default: null },
   title: { type: String, required: true },
   description: { type: String, required: true },
   languages: { type: [String], required: true },
   github: { type: String, default: null }
-});
+},
+{ timestamps: true  }
+);
 
-export default mongoose.models.Project || mongoose.model("Project", projectSchema);
+export default mongoose.models?.Project || mongoose.model("Project", projectSchema);

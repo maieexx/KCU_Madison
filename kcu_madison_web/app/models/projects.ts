@@ -5,6 +5,7 @@ export interface Project {
   teamName: string;
   teamMembers: string[];
   presentation: string;
+  presentationThumb?: string;
   title: string;
   description: string;
   languages: string[];
