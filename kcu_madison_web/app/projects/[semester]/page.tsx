@@ -18,6 +18,16 @@ export default async function SemesterPage({ params }: Props) {
     .select("_id title presentation semester isWinner")
     .lean();
 
+    // Extract unique semesters for the right nav
+    const semesters = Array.from(
+        new Set(allProjects.map((p) => p.semester))
+    ).sort((a, b) => {
+        const [yearA, termA] = a.split(" ");
+        const [yearB, termB] = b.split(" ");
+        if (yearA !== yearB) return Number(yearA) - Number(yearB);
+        return termA === "SP" ? -1 : 1; // SP comes before FA
+    });
+
   const projects = allProjects.filter(p => toSlug(p.semester) === resolvedParams.semester);
 
   const getPresentationId = (presentation: string | undefined) => {
@@ -33,55 +43,68 @@ export default async function SemesterPage({ params }: Props) {
             <h1 style={{ color: '#8F4EFF' }} className='font-title' >PROJECTS</h1>
         </div>
         {/* Selected Semester */}
-        <p style={{ color: '#00FFFF', fontSize: '50px' }} className="font-decor absolute left-[130px] top-[230px]">
+        <p className="absolute left-[130px] top-[230px] font-decor text-[#00FFFF] text-5xl">
             [ {resolvedParams.semester.replace("-", " ").toUpperCase()} ]
         </p>
 
-      <div className="top-[200px] grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.length ? (
-          projects.map(p => {
-            const presentationId = getPresentationId(p.presentation);
-            if (!presentationId) return null; // presentation 없으면 렌더링 제외
+        {/* List of Projects */}
+        <div className="absolute top-[350px] left-[180px] grid gap-[80px] sm:grid-cols-2 lg:grid-cols-4">
+            {projects.length ? (
+            projects.map(p => {
+                const presentationId = getPresentationId(p.presentation);
+                if (!presentationId) return null;
 
-            return (
-              <Link
-                key={p._id as string}
-                href={`/projects/${resolvedParams.semester}/${p._id}`}
-              >
-                <div className="relative mb-3 w-full max-w-sm h-40 sm:h-48 lg:h-56">
-                  <Image
-                    src={`/api/slides/first-thumb?pid=${presentationId}`}
-                    alt={`${p.title} thumbnail`}
-                    fill
-                    className="object-cover rounded-xl"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    unoptimized // API 썸네일 최적화 없이
-                  />
-                </div>
-                <div className="text-lg font-semibold flex items-center gap-2">
-                  {p.title}
-                  {p.isWinner && <span className="text-cyan-300 text-sm">★</span>}
-                </div>
-              </Link>
-            );
-          })
-        ) : (
-          <div className="text-zinc-400">No projects for this semester yet.</div>
-        )}
-      </div>
-      {/* Right Navigation Section */}
-      <div className='white-line absolute right-[330px]'/>
-      <nav className="absolute right-[50px] top-[200px] -translate-y-[180px] overflow-hidden">
-          <ul className="font-decor text-right" style={{ fontSize: 35 }}>
-              <li>
-              <Link href="/" className="hover:text-[var(--cyan)] nav-link block">
-                  ⏎
-              </Link>
-              </li>
-          </ul>
-      </nav>
+                return (
+                    <Link
+                        key={p._id as string}
+                        href={`/projects/${resolvedParams.semester}/${p._id}`}
+                        className="block w-full"
+                    >
+                        <div className="relative w-[15rem] h-36 sm:h-40 lg:h-44 mb-2 border-4 border-white flex justify-center items-center p-1 hover:border-[#00FFFF] transition-colors">
+                        <Image
+                            src={`/api/slides/first-thumb?pid=${presentationId}`}
+                            alt={`${p.title} thumbnail`}
+                            width={240}
+                            height={144}
+                            className="object-contain"
+                            unoptimized
+                        />
+                        </div>
+                        <div className="font-pt flex items-center gap-2 text-white">
+                        {p.title}
+                        </div>
+                    </Link>
+                );
+            })
+            ) : (
+            <div className="text-zinc-400">No projects for this semester yet.</div>
+            )}
+        </div>
 
+        {/* Right Navigation Section */}
 
+        <div className='absolute white-line absolute right-[330px] top-0 bottom-0'/>
+        <nav className="absolute right-[50px] top-[30px]">
+            <ul className="font-decor text-right" style={{ fontSize: '35px' }}>
+                <li className='mb-[20px]'>
+                    <Link href="/" className="hover:text-[var(--cyan)] page-nav block">
+                        ⏎
+                    </Link>
+                </li>
+                {semesters
+                .filter(sem => toSlug(sem) !== resolvedParams.semester)
+                .map((sem, idx) => (
+                    <li key={sem} className={idx === 0 ? '' : 'mt-[20px]'}>
+                    <Link
+                        href={`/projects/${toSlug(sem)}`}
+                        className="hover:text-[#00FFFF] page-nav block"
+                    >
+                        {sem}
+                    </Link>
+                    </li>
+                ))}
+            </ul>
+        </nav>
     </main>
   );
 }

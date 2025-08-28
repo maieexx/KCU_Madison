@@ -67,7 +67,7 @@ export default function signUpPage() {
       {/* Right Navigation Section */}
       <div className='white-line absolute right-[330px]'/>
         <nav className="absolute right-[50px] top-[200px] -translate-y-1/2 overflow-hidden">
-          <ul className="font-decor text-right" style={{ fontSize: 35 }}>
+          <ul className="font-decor text-right" style={{ fontSize: '35px' }}>
             {NAVIGATION_LINKS.map(({ href, label }, idx) => (
               <li key={href} className={idx === 0 ? '' : 'mt-[20px]'}>
                 <Link href={href} className="hover:text-[var(--yellow)] page-nav block">

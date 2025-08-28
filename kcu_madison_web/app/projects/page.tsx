@@ -88,7 +88,7 @@ export default function ProjectsPage() {
       <nav className="absolute right-[50px] top-[200px] -translate-y-[180px] overflow-hidden">
         <ul className="font-decor text-right" style={{ fontSize: 35 }}>
             <li>
-              <Link href="/" className="hover:text-[var(--cyan)] nav-link block">
+              <Link href="/" className="hover:text-[var(--cyan)] page-nav block">
                 ⏎
               </Link>
             </li>

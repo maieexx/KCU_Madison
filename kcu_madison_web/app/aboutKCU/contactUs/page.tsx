@@ -35,7 +35,7 @@ export default function contactUs() {
 
     {/* Right Navigation Section */}
     <div className='white-line absolute right-[330px]'/>
-      <nav className="absolute right-[50px] top-[200px] -translate-y-1/2 overflow-hidden">
+      <nav className="absolute right-[50px] top-[30px]">
         <ul className="font-decor text-right" style={{ fontSize: 35 }}>
           {NAVIGATION_LINKS.map(({ href, label }, idx) => (
             <li key={href} className={idx === 0 ? '' : 'mt-[20px]'}>

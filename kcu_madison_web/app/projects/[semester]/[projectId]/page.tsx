@@ -49,7 +49,7 @@ export default async function IndividualPage({
 
       <article className="space-y-6">
         <h2 className="text-2xl font-bold">
-          {doc.title} {doc.isWinner ? "⭐ Semester Winner!" : ""}
+            {p.isWinner && <span className="text-cyan-300 text-sm">★</span>}
         </h2>
 
         <div className="w-full max-w-3xl aspect-video relative">

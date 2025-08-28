@@ -60,19 +60,17 @@ export default function AboutKCU() {
 
         {/* Right Navigation Section */}
         <div className='white-line absolute right-[330px]'/>
-        <div className='absolute right-[50px] top-[200px] transform -translate-y-1/2 overflow-hidden'>
-            <nav className="clear-both relative">
-                <ul style={{ fontSize: '35px' }} className="font-decor text-right">
-                    {NAVIGATION_LINKS.map(({ href, label }, idx) => (
-                        <li key={href} className={idx === 0 ? '' : 'mt-[20px]'}>
-                            <Link href={href} className="hover:text-[var(--hover-orange)] page-nav block">
-                                {label}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </nav>
-        </div>
+        <nav className="absolute right-[50px] top-[30px]">
+            <ul style={{ fontSize: '35px' }} className="font-decor text-right">
+                {NAVIGATION_LINKS.map(({ href, label }, idx) => (
+                    <li key={href} className={idx === 0 ? '' : 'mt-[20px]'}>
+                        <Link href={href} className="hover:text-[var(--hover-orange)] page-nav block">
+                            {label}
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+          </nav>
     </div>
   );
 }

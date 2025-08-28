@@ -58,6 +58,12 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'blackHan';
+  src: url('../public/assets/fonts/BlackHanSans-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
   color: var(--foreground);
@@ -98,6 +104,11 @@ body {
   font-family: 'hepta', sans-serif;
   font-size: 40px;
   color: var(--foreground);
+}
+
+.font-pt {
+  font-family: 'blackHan', sans-serif;
+  font-size: 18px;
 }
 
 .white-rectangle {

@@ -13,6 +13,7 @@ export default {
         sub: ['sporty', 'sans-serif'],
         title: ['bayon', 'sans-serif'],
         body: ['hepta', 'sans-serif'],
+        presentation: ['blackHan', 'sans-serif']
       },
     },
   },
