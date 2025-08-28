@@ -7,7 +7,10 @@ const nextConfig: NextConfig = {
     localPatterns: [
       {
         // Match your API route for generated thumbnails
-        pathname: "/api/slides/first-thumb",
+        pathname: "/api/slides/first-thumb"
+      },
+      { 
+        pathname: '/assets/**'
       },
     ],
   },
