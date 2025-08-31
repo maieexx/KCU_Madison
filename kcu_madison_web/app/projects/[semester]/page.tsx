@@ -83,7 +83,7 @@ export default async function SemesterPage({ params }: Props) {
           </li>
           {semesters.filter(sem => toSlug(sem) !== toSlug(semester)).map((sem, idx) => (
             <li key={sem} className={idx === 0 ? '' : 'mt-[20px]'}>
-              <Link href={`/projects/${toSlug(sem)}`} className="hover:text-[#00FFFF] page-nav block">{sem}</Link>
+              <Link href={`/projects/${toSlug(sem)}`} className="hover:text-[#8F4EFF] page-nav block">{sem}</Link>
             </li>
           ))}
         </ul>

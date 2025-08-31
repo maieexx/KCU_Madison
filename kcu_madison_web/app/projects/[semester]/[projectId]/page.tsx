@@ -120,7 +120,7 @@ export default async function ProjectPage({ params }: Props) {
       <nav className="absolute right-[50px] top-[30px]">
         <ul className="font-decor text-right" style={{ fontSize: '35px' }}>
           <li className="mb-[20px]">
-            <Link href={`/projects/${semester}`} className="hover:text-[var(--cyan)] page-nav block">
+            <Link href={`/projects/${semester}`} className="hover:text-[#8F4EFF] page-nav block">
               ⏎
             </Link>
           </li>
@@ -202,7 +202,7 @@ function renderNotFound(semester: string) {
       <nav className="absolute right-[50px] top-[30px]">
         <ul className="font-decor text-right" style={{ fontSize: '35px' }}>
           <li className="mb-[20px]">
-            <Link href={`/projects/${semester}`} className="hover:text-[var(--cyan)] page-nav block">
+            <Link href={`/projects/${semester}`} className="hover:text-[#8F4EFF] page-nav block">
               ⏎
             </Link>
           </li>
