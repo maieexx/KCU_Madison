@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, models, model, Types } from "mongoose";
+import { Schema, Document, models, model, Types } from "mongoose";
 
 export interface IProject extends Document {
   _id: Types.ObjectId;

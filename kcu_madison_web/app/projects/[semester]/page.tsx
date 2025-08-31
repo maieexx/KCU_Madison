@@ -18,22 +18,21 @@ export default async function SemesterPage({ params }: Props) {
     .select("_id title presentation presentationThumb semester isWinner")
     .lean()) as unknown as IProject[];
 
-  // Debug: Log semester and projects
-  console.log(`Semester parameter: ${semester}`);
-  console.log(`All projects: ${JSON.stringify(allProjects.map(p => ({ _id: p._id.toString(), semester: p.semester, title: p.title })))}`);
+    // Extract unique semesters for right nav
+    const semesters = Array.from(new Set(allProjects.map((p) => p.semester)))
+    .sort((a, b) => {
+        const [yearA, termA] = a.split(" ");
+        const [yearB] = b.split(" ");
 
-  // Extract unique semesters for right nav
-  const semesters = Array.from(new Set(allProjects.map((p) => p.semester))).sort((a, b) => {
-    const [yearA, termA] = a.split(" ");
-    const [yearB, termB] = b.split(" ");
-    if (yearA !== yearB) return Number(yearA) - Number(yearB);
-    return termA === "SP" ? -1 : 1;
-  });
+        // Compare years first
+        if (yearA !== yearB) return Number(yearA) - Number(yearB);
+
+        // If years are the same, prioritize Spring (SP)
+        return termA === "SP" ? -1 : 1;
+    });
+
 
   const projects = allProjects.filter((p) => toSlug(p.semester) === toSlug(semester));
-
-  // Debug: Log filtered projects
-  console.log(`Filtered projects for semester ${semester}: ${JSON.stringify(projects.map(p => ({ _id: p._id.toString(), title: p.title })))}`);
 
   const getPresentationId = (presentation: string) => {
     const match = presentation.match(/\/d\/([a-zA-Z0-9_-]+)/) || presentation.match(/^([a-zA-Z0-9_-]+)$/);
