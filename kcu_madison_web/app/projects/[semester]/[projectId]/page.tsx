@@ -125,7 +125,6 @@ export default async function ProjectPage({ params }: Props) {
           </li>
         </ul>
       </nav>
-      <div className="absolute white-line right-[330px] top-0 bottom-0" />
 
       {/* Project Details Section */}
       <div className="absolute top-[350px] left-[180px] flex gap-12">

@@ -19,8 +19,12 @@ export default function AdminPage() {
                 <p style={{ fontSize: '25px' }} className="font-decor">◆ System Control.Auth</p>
                 <p style={{ fontSize: '60px' }} className="font-navbar mt-[70px] ml-[250px]">Hello, Administrator.</p>
                 <Link href='/auth/add-project' style={{ fontSize: '50px', color: 'white' }} className='font-navbar mt-[50px] ml-[280px] auth-link block'>
-                    &lt; Add a new project
+                    &lt; Add project
                 </Link>
+                <Link href='/auth/edit-project' style={{ fontSize: '50px', color: 'white' }} className='font-navbar mt-[10px] ml-[280px] auth-link block'>
+                    &lt; Edit project
+                </Link>
+
             </div>
         </div>
         
