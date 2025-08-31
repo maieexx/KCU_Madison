@@ -10,9 +10,16 @@ export default function Community() {
           Community
       </h1>
 
+      {/* Main Section */}
+      <div className="font-decor absolute left-[220px] top-[300px]" style={{ fontSize: '60px'}}>
+        Comming Soon!
+      </div>
+      <div className="font-decor absolute left-[600px] top-[300px]" style={{ fontSize: '60px', color: 'var(--magenta)' }}>
+      ⌘⌘
+      </div>
+
       {/* Right Navigation Section */}
-      <div className='white-line absolute right-[330px]'/>
-      <nav className="absolute right-[50px] top-[200px] -translate-y-[180px] overflow-hidden">
+      <nav className="absolute right-[50px] top-[30px]">
         <ul className="font-decor text-right" style={{ fontSize: 35 }}>
             <li>
               <Link href="/" className="hover:text-[#17B74C] page-nav block">
