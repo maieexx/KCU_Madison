@@ -67,7 +67,7 @@ export default function LogoPage() {
                 alt={logo.alt}
                 className={logo.className}
               />
-              <p style={{ fontSize:'25px' }} className={`font-decor text-center text-[#21FF58] ${logo.labelClassName}`}>
+              <p style={{ fontSize:'25px' }} className={`font-decor text-center text-[var(--neongreen)] ${logo.labelClassName}`}>
                 {logo.label}
               </p>
             </div>
@@ -76,7 +76,7 @@ export default function LogoPage() {
       </div>
 
       {/* Incorrect Use of Logo Section */}
-      <div className="absolute left-[120px] top-[480px] border-[3px] flex items-center" style={{ borderColor: '#FC0000', width: '930px', height: '230px' }}>
+      <div className="absolute left-[120px] top-[480px] border-[3px] flex items-center" style={{ borderColor: '#D10000', width: '930px', height: '230px' }}>
         {INCORRECT_LOGOS.map((logo) => (
           <div key={logo.src} className="flex flex-col items-center">
             <Image
@@ -87,14 +87,14 @@ export default function LogoPage() {
               className={logo.className}
             />
             {logo.hasLabel && (
-              <p style={{ fontSize:'25px' }} className={`font-decor text-[#FC0000] ml-[60px] ${logo.labelClassName}`}>
+              <p style={{ fontSize:'25px' }} className={`font-decor text-[#D10000] ml-[60px] ${logo.labelClassName}`}>
                 {logo.label}
               </p>
             )}
           </div>
         ))}
         {/* Label */}
-        <p className="font-decor -mb-[170px] -ml-[850px]" style={{ fontSize: '25px', color: '#FC0000'}}>
+        <p className="font-decor -mb-[170px] -ml-[850px]" style={{ fontSize: '25px', color: '#D10000'}}>
           ☒ do not change the color of the border
         </p>
       </div>

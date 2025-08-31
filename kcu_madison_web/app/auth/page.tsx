@@ -50,7 +50,7 @@ export default function Admin() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white relative">
+    <div className="min-h-screen relative">
       {/* Exit Symbol */}
       <div className="absolute top-[20px] left-[100px]">
         <Link href="/" style={{ color: '#F56CCE' }} className="font-decor">
@@ -81,10 +81,10 @@ export default function Admin() {
             style={{
               fontFamily: 'sporty',
               fontSize: '30px',
-              color: 'white',
+              color: 'var(--foreground)',
               backgroundColor: 'transparent',
               border: 'none',
-              borderBottom: '10px dashed white',
+              borderBottom: '10px dashed var(--foreground)',
               outline: 'none',
               letterSpacing: '10px',
               width: '350px',
@@ -99,7 +99,7 @@ export default function Admin() {
           </p>
           <button
             type="submit"
-            className="cyan-rectangle ml-[120px] mt-[20px] hover:text-[var(--foreground)] enter-button block"
+            className="cyan-rectangle ml-[120px] mt-[20px] hover:[var(--cyan)] enter-button block"
           >
             <p style={{ fontSize: '60px' }} className="-mt-[35px]">
               Enter

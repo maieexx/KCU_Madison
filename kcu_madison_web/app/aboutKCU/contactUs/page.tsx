@@ -22,7 +22,7 @@ export default function contactUs() {
       </h1>
 
       {/* Centered Contact Info */}
-      <section style={{ color: '#21FF58', fontSize: '50px', letterSpacing: '5px' }} className="font-decor text-left space-y-4 absolute left-[220px] top-[300px]">
+      <section style={{ color: 'var(--neongreen)', fontSize: '50px', letterSpacing: '5px' }} className="font-decor text-left space-y-4 absolute left-[220px] top-[300px]">
         <p>· E-mail: kcumadison.org@gmail.com</p>
         <p>· IG: @kcu_madison</p>
         <div>

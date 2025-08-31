@@ -179,59 +179,44 @@ export default function AdminAddProject() {
 
   const handleLogout = () => {
     sessionStorage.removeItem('isAuthenticated');
-    router.push('/auth');
+    router.push('/');
   };
 
   // Loading state
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <div className="text-2xl font-decor">Loading...</div>
-      </div>
-    );
-  }
-
-  // Not authenticated
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-xl font-decor mb-4">Access Denied</p>
-          <Link href="/auth" className="text-[#00FFFF] hover:underline">Go to Login</Link>
-        </div>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-[60px] font-decor">Loading...</div>
       </div>
     );
   }
 
   return (
-    <main className="min-h-screen bg-black text-white relative">
+    <main className="min-h-screen relative">
       {/* Exit Symbol */}
-      <div className="absolute top-[20px] left-[100px]">
-        <Link href="/projects" style={{ color: '#F56CCE' }} className="font-decor">
-          ☒
-        </Link>
-      </div>
+        <div className="absolute top-[20px] left-[100px]">
+            <button
+                onClick={handleLogout}
+                style={{ color: '#F56CCE' }}
+                className="font-decor text-[30px]"
+            >
+                ☒
+            </button>
+        </div>
 
-        {/* Logout and Navigation */}
+        {/* Navigation */}
         <div className="absolute top-[40px] right-[50px] flex gap-4">
         <Link
             href="/auth/edit-project"
-            style={{ fontSize: '25px' }}
-            className="px-1 py-1 text-white border-2 border-white font-decor text-center hover:text-[--yellow] hover:border-[--yellow]"
+            style={{ fontSize: '25px', color: 'var(--foreground)' }}
+            className="px-1 py-1 border-2 font-decor text-center hover:text-[--yellow] hover:border-[--yellow]"
         >
             Edit Projects
         </Link>
-        <button
-            onClick={handleLogout}
-            style={{ fontSize: '25px' }}
-            className="px-2 py-2 bg-red-600 text-white hover:bg-red-700 transition-colors font-decor"
-        >
-            Logout
-        </button>
         </div>
 
 
-    {/* Large White Box Container */}
+    {/* Large Box Container */}
     <div className="absolute w-[1000px] h-[500px] left-[350px] right-[250px] top-[250px] bottom-[150px] text-black p-8 overflow-y-auto border-4 border-[--neongreen]">        
         {/* Header inside the box */}
         <div className="border-b-2 border-gray-300 pb-4 mb-6">
@@ -255,48 +240,43 @@ export default function AdminAddProject() {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-2 gap-2">
-          {/* Title */}
+          {/* Project Title */}
           <div className="lg:col-span-2">
-            <label style={{ fontSize: '35px' }} className="block text-white font-decor mb-2">Project Title *</label>
+            <label style={{ fontSize: '30px', color: 'var(--text)' }} className="block font-decor mb-2">Project Title *</label>
             <input
               type="text"
               name="title"
               value={formData.title}
               onChange={handleInputChange}
-              className="w-[800px] h-[50px] px-4 py-2 border-2 border-gray-300 rounded text-black focus:border-[#8F4EFF] focus:outline-none font-pt"
-              style={{ fontSize: '20px', color: '#8F4EFF' }}
+              className="w-full h-[50px] px-4 py-2 bg-transparent border-2 border-[var(--foreground)] focus:border-[var(--neongreen)] focus:outline-none font-body"
+              style={{ fontSize: '15px', color: 'var(--text)' }}
               required
             />
           </div>
 
           {/* Team Name */}
           <div>
-            <label style={{ fontSize: '35px' }} className="block text-white font-decor mb-2">Team Name *</label>
+            <label style={{ fontSize: '30px', color: 'var(--text)' }} className="block font-decor mb-2">Team Name *</label>
             <input
               type="text"
               name="teamName"
               value={formData.teamName}
               onChange={handleInputChange}
-              className="w-[400px] h-[50px] px-4 py-2 border-2 border-gray-300 rounded text-black focus:border-[#8F4EFF] focus:outline-none font-pt"
-              style={{ fontSize: '20px', color: '#8F4EFF' }}
+              className="w-[400px] h-[50px] px-4 py-2 bg-transparent border-2 border-[var(--foreground)] focus:border-[var(--neongreen)] focus:outline-none font-body"
+              style={{ fontSize: '15px', color: 'var(--text)' }}
               required
             />
           </div>
 
-            <style jsx>{`
-                select option {
-                    font-size: 20px; /* smaller font for all options */
-                }
-            `}</style>
           {/* Semester */}
           <div>
-            <label style={{ fontSize: '35px' }} className="block text-white font-decor mb-2">Semester *</label>
+            <label style={{ fontSize: '30px', color: 'var(--text)' }} className="block text-white font-decor mb-2">Semester *</label>
             <select
               name="semester"
               value={formData.semester}
               onChange={handleInputChange}
-              style={{ fontSize: '20px', color: '#8F4EFF' }}
-              className="w-[400px] h-[50px] px-4 py-2 border-2 border-gray-300 rounded text-black focus:border-[#8F4EFF] focus:outline-none font-pt"
+              style={{ fontSize: '15px', color: 'var(--text)' }}
+              className="w-[300px] h-[50px] px-4 py-2 bg-transparent border-2 border-[var(--foreground)] focus:border-[var(--neongreen)] focus:outline-none font-body"
               required
             >
               <option value="">Select Semester</option>
@@ -314,8 +294,8 @@ export default function AdminAddProject() {
             {/* Team Members */}
             <div className="lg:col-span-1">
             <label
-                style={{ fontSize: '35px' }}
-                className="block text-white font-decor mb-2"
+                style={{ fontSize: '30px', color: 'var(--text)' }}
+                className="block font-decor mb-2"
             >
                 Team Members *
             </label>
@@ -325,14 +305,14 @@ export default function AdminAddProject() {
                 value={teamMemberInput}
                 onChange={(e) => setTeamMemberInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTeamMember())}
-                className="px-2 py-1 border-2 border-gray-300 rounded text-black focus:border-[#8F4EFF] focus:outline-none font-pt"
-                style={{ fontSize: '18px', width: '300px', height: '50px', color: '#8F4EFF' }}
-                placeholder="Enter team member name"
+                className="px-2 py-1 bg-transparent border-2 border-[var(--foreground)] focus:border-[var(--neongreen)] focus:outline-none font-body"
+                style={{ fontSize: '15px', width: '300px', height: '50px', color: 'var(--text)' }}
+                placeholder="single name at a time"
                 />
                 <button
                 type="button"
                 onClick={addTeamMember}
-                className="h-[50px] px-3 py-1 bg-[#8F4EFF] text-white rounded hover:bg-purple-600 transition-colors font-pt text-center"
+                className="h-[50px] px-3 py-1 bg-transparent text-[var(--neongreen)] hover:bg-[var(--neongreen)] hover:text-[var(--background)] transition-colors font-pt"
                 style={{ fontSize: '15px', height: '50px' }}
                 >
                 Add
@@ -342,15 +322,15 @@ export default function AdminAddProject() {
                 {formData.teamMembers.map((member, index) => (
                 <span
                   key={index}
-                  className="h-[50px] bg-gray-200 px-3 py-1 rounded-full flex items-center gap-2 font-navbar"
-                  style={{ fontSize: '50px', color: '#8F4EFF' }}
+                  className="h-[50px] bg-transparent px-3 py-1 flex items-center gap-2 font-body"
+                  style={{ fontSize: '15px', color: 'var(--neongreen)' }}
                 >
                   {member}
                   <button
                     type="button"
                     onClick={() => removeTeamMember(index)}
                     className="text-red-600 hover:text-red-800 font-bold"
-                    style={{ fontSize: '50px' }}
+                    style={{ fontSize: '20px' }}
                   >
                     ×
                   </button>
@@ -362,36 +342,36 @@ export default function AdminAddProject() {
 
           {/* Description */}
           <div className="lg:col-span-2">
-            <label style={{ fontSize: '35px' }} className="block text-white font-decor mb-2">Description *</label>
+            <label style={{ fontSize: '30px', color: 'var(--text)' }} className="block font-decor mb-2">Description *</label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleInputChange}
               rows={3}
-              className="w-[400px] h-[150px] px-2 border-2 border-gray-300 rounded text-black focus:border-[#8F4EFF] focus:outline-none resize-vertical font-pt"
-              style={{ fontSize: '23px', color: '#8F4EFF' }}
+              className="w-full h-[150px] px-3 py-3 bg-transparent border-2 border-[var(--foreground)] focus:border-[var(--neongreen)] focus:outline-none font-body"
+              style={{ fontSize: '15px', color: 'var(--text)' }}
               required
             />
           </div>
 
           {/* Languages */}
           <div className="lg:col-span-2">
-            <label style={{ fontSize: '35px' }} className="block text-white font-decor mb-2">Programming Languages *</label>
+            <label style={{ fontSize: '30px', color: 'var(--text)' }} className="block font-decor mb-2">Programming Languages *</label>
             <div className="flex gap-2 mb-2">
               <input
                 type="text"
                 value={languageInput}
                 onChange={(e) => setLanguageInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addLanguage())}
-                className="w-[400px] h-[50px] px-4 py-2 border-2 border-gray-300 rounded text-black focus:border-[#8F4EFF] focus:outline-none font-pt"
-                style={{ fontSize: '18px', color: '#8F4EFF' }}
-                placeholder="Enter programming language"
+                className="w-[300px] h-[50px] px-3 py-1 bg-transparent border-2 border-[var(--foreground)] focus:border-[var(--neongreen)] focus:outline-none font-body"
+                style={{ fontSize: '15px', color: 'var(--text)' }}
+                placeholder="Used language and tools"
               />
               <button
                 style={{ fontSize: '15px' }}
                 type="button"
                 onClick={addLanguage}
-                className="h-[50px] px-4 py-2 bg-[#8F4EFF] text-white rounded hover:bg-purple-600 transition-colors font-pt"
+                className="h-[50px] px-3 py-1 bg-transparent text-[var(--neongreen)] hover:bg-[var(--neongreen)] hover:text-[var(--background)] transition-colors font-pt"
               >
                 Add
               </button>
@@ -400,15 +380,15 @@ export default function AdminAddProject() {
               {formData.languages.map((language, index) => (
                 <span
                   key={index}
-                  className="h-[50px] bg-gray-200 px-3 py-1 rounded-full flex items-center gap-2 font-navbar"
-                  style={{ fontSize: '50px', color: '#8F4EFF' }}
+                  className="h-[50px] bg-transparent px-3 py-1 flex items-center gap-2 font-body"
+                  style={{ fontSize: '15px', color: 'var(--neongreen)' }}
                 >
                   {language}
                   <button
                     type="button"
                     onClick={() => removeLanguage(index)}
                     className="text-red-600 hover:text-red-800 font-bold"
-                    style={{ fontSize: '50px' }}
+                    style={{ fontSize: '20px' }}
                   >
                     ×
                   </button>
@@ -419,43 +399,43 @@ export default function AdminAddProject() {
 
           {/* GitHub */}
           <div>
-            <label style={{ fontSize: '35px' }} className="block text-white font-decor mb-2">GitHub Repository</label>
+            <label style={{ fontSize: '30px', color: 'var(--text)' }} className="block font-decor mb-2">GitHub Repository</label>
             <input
               type="url"
               name="github"
               value={formData.github}
               onChange={handleInputChange}
-              className="h-[50px] w-[450px] px-4 py-2 border-2 border-gray-300 rounded text-black focus:border-[#8F4EFF] focus:outline-none font-pt"
+              className="h-[50px] w-[450px] px-3 py-1  bg-transparent border-2 border-[var(--foreground)] focus:border-[var(--neongreen)] focus:outline-none font-body"
               placeholder="https://github.com/username/repo"
-              style={{ fontSize: '18px', color: '#8F4EFF' }}
+              style={{ fontSize: '15px', color: 'var(--text)' }}
             />
           </div>
 
           {/* Presentation */}
           <div>
-            <label style={{ fontSize: '35px' }} className="block text-white font-decor mb-2">Presentation Link</label>
+            <label style={{ fontSize: '30px', color: 'var(--text)' }} className="block font-decor mb-2">Presentation Link</label>
             <input
               type="url"
               name="presentation"
               value={formData.presentation}
               onChange={handleInputChange}
-              className="h-[50px] w-[450px] px-4 py-2 border-2 border-gray-300 rounded text-black focus:border-[#8F4EFF] focus:outline-none font-pt"
-              placeholder="Google Slides or other presentation URL"
-              style={{ fontSize: '18px', color: '#8F4EFF' }}
+              className="h-[50px] w-[450px] px-3 py-1 bg-transparent border-2 border-[var(--foreground)] focus:border-[var(--neongreen)] focus:outline-none font-body"
+              placeholder="Only Google Slides"
+              style={{ fontSize: '15px', color: 'var(--text)' }}
             />
           </div>
 
           {/* Presentation Thumbnail */}
           <div className="lg:col-span-2">
-            <label style={{ fontSize: '35px' }} className="block text-white font-decor mb-2">Presentation Thumbnail URL</label>
+            <label style={{ fontSize: '30px', color: 'var(--text)' }} className="block font-decor mb-2">Presentation Thumbnail URL</label>
             <input
               type="url"
               name="presentationThumb"
               value={formData.presentationThumb}
               onChange={handleInputChange}
-              className="h-[50px] w-[450px] px-4 py-2 border-2 border-gray-300 rounded text-black focus:border-[#8F4EFF] focus:outline-none font-pt"
+              className="h-[50px] w-[450px] px-3 py-1 bg-transparent border-2 border-[var(--foreground)] focus:border-[var(--neongreen)] focus:outline-none font-body"
               placeholder="Optional: Direct URL to thumbnail image"
-              style={{ fontSize: '18px', color: '#8F4EFF' }}
+              style={{ fontSize: '15px', color: 'var(--text)' }}
             />
           </div>
 
@@ -469,7 +449,7 @@ export default function AdminAddProject() {
               onChange={handleInputChange}
               className="mr-3 w-5 h-5 text-[#8F4EFF] border-gray-300 rounded focus:ring-[#8F4EFF]"
             />
-            <label style={{ fontSize: '35px' }} htmlFor="isWinner" className="text-white font-decor">
+            <label style={{ fontSize: '30px', color: 'var(--text)' }} htmlFor="isWinner" className="font-decor">
               Mark as Winner
             </label>
           </div>
@@ -480,7 +460,7 @@ export default function AdminAddProject() {
                 style={{ fontSize: '35px' }}
                 type="button"
                 onClick={() => setShowPreview(!showPreview)}
-                className="flex-1 px-6 py-3 text-white rounded font-decor hover:text-[--neongreen] transition-colors"
+                className="flex-1 px-6 py-3 text-[var(--text)] font-decor hover:text-[--neongreen] transition-colors"
             >
                 {showPreview ? "Hide Preview" : "Show Preview"}
             </button>
@@ -488,7 +468,7 @@ export default function AdminAddProject() {
                 style={{ fontSize: '35px' }}
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-1 px-6 py-3 text-white rounded font-decor hover:text-[--neongreen] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 px-6 py-3 text-[var(--text)] font-decor hover:text-[--neongreen] transition-colors"
             >
                 {isSubmitting ? "Creating Project..." : "Create Project"}
             </button>
@@ -498,20 +478,20 @@ export default function AdminAddProject() {
 
         {/* Preview Section */}
         {showPreview && formData.title && (
-          <div className="mt-8 p-6 rounded border-l-4 border-[#8F4EFF]">
-            <h3 className="text-xl font-bold text-[#8F4EFF] mb-4 font-decor">PREVIEW</h3>
-            <div className="space-y-1 font-navbar text-black">
-              <h4 style={{fontSize: '35px'}} className="font-pt">{formData.title}</h4>
+          <div className="mt-6 p-4 rounded border-l-4 border-[var(--neongreen)]">
+            <h3 className="text-l font-bold text-[var(--neongreen)] mb-1 font-decor leading-tight">PREVIEW</h3>
+            <div className="font-navbar text-black leading-tight">
+              <h4 style={{fontSize: '15px'}} className="font-body">{formData.title}</h4>
               {formData.isWinner && (
-                <span style={{fontSize: '20px'}} className="h-[50px] w-[100px] flex items-center justify-center bg-[#00FFFF] text-black font-pt rounded">Winner</span>
+                <span style={{fontSize: '15px'}} className="h-[50px] w-[80px] flex items-center justify-center bg-[#00FFFF] text-black font-pt rounded">Winner</span>
               )}
-              <p style={{fontSize: '35px'}} className="font-pt"><strong>Team:</strong> {formData.teamName}</p>
-              <p style={{fontSize: '35px'}} className="font-pt"><strong>Members:</strong> {formData.teamMembers.join(", ") || "None added"}</p>
-              <p style={{fontSize: '35px'}} className="font-pt"><strong>Description:</strong> {formData.description || "No description"}</p>
-              <p style={{fontSize: '35px'}} className="font-pt"><strong>Languages:</strong> {formData.languages.join(", ") || "None added"}</p>
-              <p style={{fontSize: '35px'}} className="font-pt"><strong>Semester:</strong> {formData.semester || "Not selected"}</p>
-              {formData.github && <p style={{fontSize: '35px'}} className="font-pt"><strong>GitHub:</strong> {formData.github}</p>}
-              {formData.presentation && <p style={{fontSize: '35px'}} className="font-pt"><strong>Presentation:</strong> {formData.presentation}</p>}
+              <p style={{fontSize: '15px'}} className="font-body"><strong>Team:</strong> {formData.teamName}</p>
+              <p style={{fontSize: '15px'}} className="font-body leading-tight"><strong>Members:</strong> {formData.teamMembers.join(", ") || "None added"}</p>
+              <p style={{fontSize: '15px'}} className="font-body"><strong>Description:</strong> {formData.description || "No description"}</p>
+              <p style={{fontSize: '15px'}} className="font-body leading-tight"><strong>Languages:</strong> {formData.languages.join(", ") || "None added"}</p>
+              <p style={{fontSize: '15px'}} className="font-body"><strong>Semester:</strong> {formData.semester || "Not selected"}</p>
+              {formData.github && <p style={{fontSize: '15px'}} className="font-body leading-tight"><strong>GitHub:</strong> {formData.github}</p>}
+              {formData.presentation && <p style={{fontSize: '15px'}} className="font-body"><strong>Presentation:</strong> {formData.presentation}</p>}
             </div>
           </div>
         )}

@@ -5,11 +5,11 @@
 :root {
   --background: #090C14;
   --foreground: #F3F5DC;
-  --text: #232426;
+  --text: #F3F5DC;
   --hover-blue: #8DD6FD;
   --magenta: #F56CCE;
   --cyan: #00FFFF;
-  --neongreen: #21FF58;
+  --neongreen: #00D134;
   --hover-orange: #F24D00;
   --yellow: #FFD400;
   --pink: #FF3A96;
@@ -20,6 +20,7 @@
   :root {
     --background: #090C14;
     --foreground: #F3F5DC;
+    --text: #F3F5DC;
   }
 }
 
@@ -152,8 +153,8 @@ body {
 }
 
 .enter-button:hover {
-    background-color: #0000ff;
-    border-color: #007A7A;
+    background-color: #0084ff;
+    border-color: var(--cyan);
 }
 
 .nav-link {

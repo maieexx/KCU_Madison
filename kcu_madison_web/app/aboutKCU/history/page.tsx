@@ -24,7 +24,7 @@ export default function History() {
             </div>
 
             {/* Main Section */}
-            <div style={{ color: '#21FF58' }} className="font-decor absolute left-[200px] top-[400px] flex items-center space-x-5">
+            <div style={{ color: 'var(--neongreen)' }} className="font-decor absolute left-[200px] top-[400px] flex items-center space-x-5">
                 <div className="text-center">
                     <div>ǁ</div>
                 </div>
