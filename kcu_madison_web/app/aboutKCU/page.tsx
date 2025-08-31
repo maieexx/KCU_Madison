@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import '../globals.css';
-
+import Footer from '../components/footer/page';
 
 {/* About KCU Text */}
 const ABOUT_TEXT = `The Korean Undergraduate Computer Science Union
@@ -71,6 +71,8 @@ export default function AboutKCU() {
                 ))}
             </ul>
           </nav>
+        {/* Footer */}
+        <Footer />
     </div>
   );
 }

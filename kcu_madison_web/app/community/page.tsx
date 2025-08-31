@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import '../globals.css';
+import Footer from '../components/footer/page';
 
 export default function Community() {
   return (
@@ -28,6 +29,9 @@ export default function Community() {
             </li>
         </ul>
       </nav>
+      
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }

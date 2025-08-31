@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import '../../globals.css';
-
+import Footer from '../../components/footer/page';
 
 
 {/* Right Navigation List */}
@@ -73,16 +73,6 @@ export default function History() {
             </div>
 
 
-
-
-
-
-
-
-
-
-
-
         {/* Right Navigation Section */}
         <div className='white-line absolute right-[330px]'/>
         <nav className="absolute right-[50px] top-[30px]">
@@ -96,6 +86,9 @@ export default function History() {
                 ))}
             </ul>
         </nav>
-        </div>
+
+        {/* Footer */}
+        <Footer />
+    </div>
     );
 }

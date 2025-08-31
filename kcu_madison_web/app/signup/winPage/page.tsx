@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import '../../globals.css';
+import Footer from '@/app/components/footer/page';
 
 {/* Right Navigation List */}
 const NAVIGATION_LINKS = [
@@ -61,6 +62,9 @@ export default function signUpPage() {
                     ))}
                 </ul>
             </nav>
+            
+            {/* Footer */}
+            <Footer />
         </main>
     );
 }

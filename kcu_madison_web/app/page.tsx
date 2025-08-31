@@ -82,23 +82,6 @@ export default function Home() {
 
         {/* Footer */}
         <Footer />
-
-
-        {/* 사진 섹션
-        <div className="relative w-full overflow-hidden my-16 px-4">
-          <div className="flex animate-slide space-x-4">
-            <img src="/assets/image1.jpg" alt="Image 1" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-            <img src="/assets/image2.jpeg" alt="Image 2" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-            <img src="/assets/image3.jpg" alt="Image 3" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-            <img src="/assets/image4.jpg" alt="Image 4" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-            <img src="/assets/image5.jpeg" alt="Image 5" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-            <img src="/assets/image1.jpg" alt="Image 1 Repeat" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-            <img src="/assets/image2.jpeg" alt="Image 2 Repeat" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-            <img src="/assets/image3.jpg" alt="Image 3 Repeat" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-            <img src="/assets/image4.jpg" alt="Image 4 Repeat" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-            <img src="/assets/image5.jpeg" alt="Image 5 Repeat" className="w-[320px] h-[192px] object-cover flex-shrink-0" />
-          </div>
-        </div> */}
     </div>
   );
 }

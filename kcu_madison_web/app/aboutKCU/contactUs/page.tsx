@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import '../../globals.css';
-
+import Footer from '../../components/footer/page';
 
 {/* Right Navigation List */}
 const NAVIGATION_LINKS = [
@@ -35,17 +35,20 @@ export default function contactUs() {
 
     {/* Right Navigation Section */}
     <div className='white-line absolute right-[330px]'/>
-      <nav className="absolute right-[50px] top-[30px]">
-        <ul className="font-decor text-right" style={{ fontSize: 35 }}>
-          {NAVIGATION_LINKS.map(({ href, label }, idx) => (
-            <li key={href} className={idx === 0 ? '' : 'mt-[20px]'}>
-              <Link href={href} className="hover:text-[var(--hover-orange)] page-nav block">
-                {label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
+    <nav className="absolute right-[50px] top-[30px]">
+      <ul className="font-decor text-right" style={{ fontSize: 35 }}>
+        {NAVIGATION_LINKS.map(({ href, label }, idx) => (
+          <li key={href} className={idx === 0 ? '' : 'mt-[20px]'}>
+            <Link href={href} className="hover:text-[var(--hover-orange)] page-nav block">
+              {label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    
+    {/* Footer */}
+    <Footer />
     </main>
   );
 }

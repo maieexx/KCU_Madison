@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import '../globals.css';
+import Footer from '../components/footer/page';
 
 
 type SemesterLike = string | { name: string };
@@ -95,7 +96,8 @@ export default function ProjectsPage() {
         </ul>
       </nav>
 
-
+      {/* Footer */}
+      <Footer />
     </main>
 
   );

@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import '../../globals.css';
+import Footer from '../../components/footer/page';
 
 const CORRECT_LOGOS = [
   {
@@ -131,6 +132,8 @@ export default function LogoPage() {
         </ul>
       </nav>
 
+    {/* Footer */}
+    <Footer />
     </div>
   );
 }

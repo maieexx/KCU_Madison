@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import '../../globals.css';
+import Footer from '../../components/footer/page';
 
 {/* Board Members List */}
 const MEMBERS_TOP = [
@@ -66,17 +67,21 @@ export default function BoardMembers() {
         
     {/* Right Navigation Section */}
     <div className='white-line absolute right-[330px]'/>
-      <nav className="absolute right-[50px] top-[30px]">
-          <ul style={{ fontSize: '35px' }} className="font-decor text-right">
-              {NAVIGATION_LINKS.map(({ href, label }, idx) => (
-                  <li key={href} className={idx === 0 ? '' : 'mt-[20px]'}>
-                      <Link href={href} className="hover:text-[var(--hover-orange)] page-nav block">
-                          {label}
-                      </Link>
-                  </li>
-              ))}
-          </ul>
-      </nav>
-    </div>
+    <nav className="absolute right-[50px] top-[30px]">
+        <ul style={{ fontSize: '35px' }} className="font-decor text-right">
+            {NAVIGATION_LINKS.map(({ href, label }, idx) => (
+                <li key={href} className={idx === 0 ? '' : 'mt-[20px]'}>
+                    <Link href={href} className="hover:text-[var(--hover-orange)] page-nav block">
+                        {label}
+                    </Link>
+                </li>
+            ))}
+        </ul>
+    </nav>
+
+    {/* Footer */}
+    <Footer />
+  </div>
+
   );
 }

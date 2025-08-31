@@ -4,6 +4,7 @@ import connectMongo from "@/lib/db";
 import Project, { IProject } from "@/lib/projectModel";
 import { toSlug } from "@/lib/slug";
 import mongoose from "mongoose";
+import Footer from "@/app/components/footer/page";
 
 export const dynamic = 'force-dynamic';
 
@@ -181,6 +182,9 @@ export default async function ProjectPage({ params }: Props) {
         </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }
@@ -205,6 +209,8 @@ function renderNotFound(semester: string) {
         </ul>
       </nav>
       <div className="absolute white-line right-[330px] top-0 bottom-0" />
+    {/* Footer */}
+    <Footer />
     </main>
   );
 }

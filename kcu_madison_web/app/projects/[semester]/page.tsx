@@ -3,6 +3,7 @@ import Link from "next/link";
 import connectMongo from "@/lib/db";
 import Project, { IProject } from "@/lib/projectModel";
 import { toSlug } from "@/lib/slug";
+import Footer from "@/app/components/footer/page";
 
 type Props = {
   params: Promise<{ semester: string }>;
@@ -87,6 +88,9 @@ export default async function SemesterPage({ params }: Props) {
           ))}
         </ul>
       </nav>
+
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }
