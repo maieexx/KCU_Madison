@@ -72,8 +72,8 @@ export default function Admin() {
             Type the password.
           </p>
           <input
-            type="text"
-            value={'*'.repeat(password.length)}
+            type="password"
+            value={password}
             onChange={handleChange}
             disabled={isLoading}
             autoFocus

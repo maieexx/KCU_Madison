@@ -46,7 +46,7 @@ export default function ProjectsPage() {
 
 
   return (
-    <main className="min-h-screen bg-black text-white relative">
+    <main className="min-h-screen relative">
       {/* Title Section */}
       <h1 className="font-title absolute top-[70px] left-[100px]" style={{ color: '#8F4EFF' }}>
           Projects
@@ -64,7 +64,7 @@ export default function ProjectsPage() {
         style={{fontSize: '60px'}}
         className="font-decor absolute top-[400px] left-[270px] flex flex-wrap gap-20"
       >
-        {loading && <span style={{ fontSize: 28, color: '#C2C2C2' }}>Loading…</span>}
+        {loading && <span style={{ fontSize: 50, color: '#C2C2C2' }}>Loading…</span>}
         {!loading && semesters.length === 0 && (
           <span style={{ fontSize: 28, color: '#C2C2C2' }}>No semesters found.</span>
         )}
@@ -85,7 +85,7 @@ export default function ProjectsPage() {
       </div>
 
       {/* Right Navigation Section */}
-      <nav className="absolute right-[50px] top-[200px] -translate-y-[180px] overflow-hidden">
+      <nav className="absolute right-[50px] top-[30px]">
         <ul className="font-decor text-right" style={{ fontSize: 35 }}>
             <li>
               <Link href="/" className="hover:text-[var(--cyan)] page-nav block">

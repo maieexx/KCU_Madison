@@ -16,7 +16,7 @@ const NAVIGATION_LINKS = [
 
 export default function signUpPage() {
   return (
-    <main className="min-h-screen bg-black text-white relative">
+    <main className="min-h-screen relative">
       
       {/* Title Section */}
       <h1 className="font-title absolute top-[70px] left-[100px]" style={{ color: '#FFD400' }}>
@@ -66,7 +66,7 @@ export default function signUpPage() {
 
       {/* Right Navigation Section */}
       <div className='white-line absolute right-[330px]'/>
-        <nav className="absolute right-[50px] top-[200px] -translate-y-1/2 overflow-hidden">
+      <nav className="absolute right-[50px] top-[30px]">
           <ul className="font-decor text-right" style={{ fontSize: '35px' }}>
             {NAVIGATION_LINKS.map(({ href, label }, idx) => (
               <li key={href} className={idx === 0 ? '' : 'mt-[20px]'}>

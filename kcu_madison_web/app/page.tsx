@@ -1,11 +1,12 @@
 'use client';
 import Link from 'next/link';
 import './globals.css';
+import Footer from './components/footer/page';
 
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white relative">
+    <div className="min-h-screen bg-black relative">
 
         {/* Moon Symbol */}
         < div className='absolute top-[20px] left-[100px]'>
@@ -78,6 +79,9 @@ export default function Home() {
             <p style={{  color: '#21FF58'  }} className='font-decor'>⏻</p>
           </Link>
         </div>
+
+        {/* Footer */}
+        <Footer />
 
 
         {/* 사진 섹션

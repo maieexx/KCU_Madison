@@ -107,7 +107,7 @@ export default async function ProjectPage({ params }: Props) {
   const presentationId = getPresentationId(project.presentation);
 
   return (
-    <main className="min-h-screen bg-black text-white p-8">
+    <main className="min-h-screen p-8">
       {/* Title Section */}
       <div className="absolute top-[70px] left-[100px]">
         <h1 style={{ color: '#8F4EFF' }} className="font-title">PROJECTS</h1>
@@ -127,54 +127,58 @@ export default async function ProjectPage({ params }: Props) {
       </nav>
 
       {/* Project Details Section */}
-      <div className="absolute top-[350px] left-[180px] flex gap-12">
-        {/* Slides Thumbnail */}
-        <div className="flex flex-col gap-4">
-          {presentationId ? (
-            <Link
-              href={`https://docs.google.com/presentation/d/${presentationId}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="relative w-[30rem] h-[18rem] border-4 border-white flex justify-center items-center p-1 hover:border-[#00FFFF] transition-colors">
-                <Image
-                  src={project.presentationThumb || `/api/slides/first-thumb?pid=${presentationId}`}
-                  alt={`${project.title} thumbnail`}
-                  width={480}
-                  height={288}
-                  className="object-contain"
-                  unoptimized
-                />
-              </div>
-            </Link>
-          ) : (
-            <div className="text-zinc-400">No presentation available</div>
-          )}
-        </div>
-
-        {/* Project Information */}
-        <div className="max-w-[30rem] font-pt text-white">
-          <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
-          {project.isWinner && (
-            <span className="inline-block bg-[#00FFFF] text-black px-2 py-1 mb-4 rounded">Winner</span>
-          )}
-          <p className="mb-2"><strong>Team:</strong> {project.teamName}</p>
-          <p className="mb-2"><strong>Members:</strong> {project.teamMembers.join(", ")}</p>
-          <p className="mb-2"><strong>Description:</strong> {project.description}</p>
-          <p className="mb-2"><strong>Languages:</strong> {project.languages.join(", ")}</p>
-          {project.github && (
-            <p className="mb-2">
-              <strong>GitHub:</strong>{" "}
-              <Link
-                href={project.github}
+      <div className="absolute top-[350px] left-[250px]">
+        <div className=" flex gap-12 border-2 border-[--cyan] p-2">
+            <div className="flex gap-12 border-2 border-[--cyan] p-6">
+            {/* Slides Thumbnail */}
+            <div className="flex flex-col gap-4">
+            {presentationId ? (
+                <Link
+                href={`https://docs.google.com/presentation/d/${presentationId}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#00FFFF] hover:underline"
-              >
-                View on GitHub
-              </Link>
-            </p>
-          )}
+                >
+                <div className="relative w-[30rem] h-[18rem] border-4 border-white flex justify-center items-center p-1 hover:border-[--cyan] transition-colors">
+                    <Image
+                    src={project.presentationThumb || `/api/slides/first-thumb?pid=${presentationId}`}
+                    alt={`${project.title} thumbnail`}
+                    width={480}
+                    height={288}
+                    className="object-contain"
+                    unoptimized
+                    />
+                </div>
+                </Link>
+            ) : (
+                <div className="text-zinc-400">No presentation available</div>
+            )}
+            </div>
+
+            {/* Project Information */}
+            <div className="max-w-[30rem] font-pt text-white">
+            <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
+            {project.isWinner && (
+                <span className="inline-block bg-[#00FFFF] text-black px-2 py-1 mb-4 rounded">Semester Winner!</span>
+            )}
+            <p className="mb-2"><strong>Team:</strong> {project.teamName}</p>
+            <p className="mb-2"><strong>Members:</strong> {project.teamMembers.join(", ")}</p>
+            <p className="mb-2"><strong>Description:</strong> {project.description}</p>
+            <p className="mb-2"><strong>Languages:</strong> {project.languages.join(", ")}</p>
+            {project.github && (
+                <p className="mb-2">
+                <strong>GitHub:</strong>{" "}
+                <Link
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#00FFFF] hover:underline"
+                >
+                    View on GitHub
+                </Link>
+                </p>
+            )}
+            </div>
+        </div>
         </div>
       </div>
     </main>
@@ -184,7 +188,7 @@ export default async function ProjectPage({ params }: Props) {
 // Helper function to render not found page
 function renderNotFound(semester: string) {
   return (
-    <main className="min-h-screen bg-black text-white p-8">
+    <main className="min-h-screen p-8">
       <div className="absolute top-[70px] left-[100px]">
         <h1 style={{ color: '#8F4EFF' }} className="font-title">PROJECTS</h1>
       </div>

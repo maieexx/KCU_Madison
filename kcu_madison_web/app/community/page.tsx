@@ -4,7 +4,7 @@ import '../globals.css';
 
 export default function Community() {
   return (
-    <main className="min-h-screen bg-black text-white relative">
+    <main className="min-h-screen relative">
       {/* Title Section */}
       <h1 className="font-title absolute top-[70px] left-[100px]" style={{ color: '#17B74C' }}>
           Community
@@ -15,7 +15,7 @@ export default function Community() {
       <nav className="absolute right-[50px] top-[200px] -translate-y-[180px] overflow-hidden">
         <ul className="font-decor text-right" style={{ fontSize: 35 }}>
             <li>
-              <Link href="/" className="hover:text-[#17B74C] nav-link block">
+              <Link href="/" className="hover:text-[#17B74C] page-nav block">
                 ⏎
               </Link>
             </li>

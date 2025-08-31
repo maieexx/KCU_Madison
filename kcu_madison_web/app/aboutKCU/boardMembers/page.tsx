@@ -28,7 +28,7 @@ const NAVIGATION_LINKS = [
 
 export default function BoardMembers() {
   return (
-    <div className="min-h-screen bg-black text-white relative">
+    <div className="min-h-screen relative">
         
     {/* Title Section */}
     <div className="absolute top-[70px] left-[100px]">

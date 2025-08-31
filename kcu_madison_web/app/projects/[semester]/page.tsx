@@ -41,7 +41,7 @@ export default async function SemesterPage({ params }: Props) {
   };
 
   return (
-    <main className="min-h-screen bg-black text-white p-8">
+    <main className="min-h-screen p-8">
       <div className="absolute top-[70px] left-[100px]">
         <h1 style={{ color: '#8F4EFF' }} className="font-title">PROJECTS</h1>
       </div>

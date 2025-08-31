@@ -14,7 +14,7 @@ const NAVIGATION_LINKS = [
 
 export default function contactUs() {
   return (
-    <main className="min-h-screen bg-black text-white relative">
+    <main className="min-h-screen relative">
 
       {/* Title Section */}
       <h1 className="font-title absolute top-[70px] left-[100px]" style={{ color: '#F24D00' }}>
