@@ -191,6 +191,11 @@ export default function AdminAddProject() {
     );
   }
 
+
+  if (!isAuthenticated) {
+    return null; // or a fallback message
+  }
+
   return (
     <main className="min-h-screen relative">
       {/* Exit Symbol */}
