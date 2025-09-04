@@ -32,24 +32,51 @@ export default function BoardMembers() {
       {/* Title Section */}
       <div className="absolute top-4 left-4 md:top-[70px] md:left-[100px] z-10">
         <h1 
-          style={{ color: '#F24D00' }}
-          className="font-title text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-[100px]"
+          style={{ 
+            color: '#F24D00',
+            fontSize: 'clamp(2rem, 5vw, 6.25rem)' // 32px → 100px
+          }}
+          className="font-title"
         >
           Board Members
         </h1>
       </div>
 
       {/* Main Content Section */}
-      <div className="px-1 sm:px-2 md:px-4 lg:px-[190px] pt-6 sm:pt-8 md:pt-10 lg:pt-[220px] pb-32 md:pb-48 lg:pb-[275px] flex justify-start">        
+      <div 
+        className="flex justify-start"
+        style={{
+          paddingTop: 'clamp(1.5rem, 12vw, 14rem)',  // 24px → 220px
+          paddingLeft: 'clamp(0.25rem, 10vw, 12rem)', // 4px → 190px
+          paddingRight: 'clamp(0.25rem, 5vw, 12rem)',
+          paddingBottom: 'clamp(8rem, 20vw, 17rem)', // 128px → 275px
+        }}
+      >        
         {/* Members Container */}
-        <div className="w-full flex flex-col items-start space-y-4 md:space-y-6 lg:space-y-16">
+        <div 
+          className="w-full flex flex-col items-start"
+          style={{ 
+            gap: 'clamp(1rem, 4vw, 4rem)',
+            marginTop: 'clamp(4rem, 8vw, 10rem)'
+          }} // vertical spacing
+        >
           
           {/* Top Row */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 md:gap-4 lg:gap-20">
+          <div 
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5"
+            style={{ gap: 'clamp(0.5rem, 5vw, 5rem)' }} // grid gap
+          >
             {MEMBERS_TOP.map(({ title }, idx) => (
               <div key={idx} className="flex flex-col items-center">
                 <div className="green-square" />
-                <p className="font-title mt-2 text-[var(--neongreen)] text-center whitespace-pre-line text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl leading-tight">
+                <p 
+                  className="font-title text-center whitespace-pre-line text-[var(--neongreen)]"
+                  style={{
+                    fontSize: 'clamp(0.75rem, 2vw, 1.25rem)', // 12px → 20px
+                    marginTop: 'clamp(0.25rem, 1vw, 0.5rem)', // smooth spacing
+                    lineHeight: 1.2
+                  }}
+                >
                   {title}
                 </p>
               </div>
@@ -57,11 +84,24 @@ export default function BoardMembers() {
           </div>
 
           {/* Bottom Row */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-20 ml-0 sm:ml-4 md:ml-12 lg:ml-24">
+          <div 
+            className="grid grid-cols-2 md:grid-cols-4"
+            style={{ 
+              gap: 'clamp(0.5rem, 5vw, 5rem)', 
+              marginLeft: 'clamp(0rem, 6vw, 6rem)' 
+            }}
+          >
             {MEMBERS_BOTTOM.map(({ title }, idx) => (
               <div key={idx} className="flex flex-col items-center">
                 <div className="green-square" />
-                <p className="font-title mt-2 text-[var(--neongreen)] text-center whitespace-pre-line text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl leading-tight">
+                <p 
+                  className="font-title text-center whitespace-pre-line text-[var(--neongreen)]"
+                  style={{
+                    fontSize: 'clamp(0.75rem, 2vw, 1.25rem)',
+                    marginTop: 'clamp(0.25rem, 1vw, 0.5rem)',
+                    lineHeight: 1.2
+                  }}
+                >
                   {title}
                 </p>
               </div>
@@ -90,8 +130,16 @@ export default function BoardMembers() {
       </div>
 
       {/* Mobile Navigation */}
-      <nav className="2xl:hidden fixed bottom-0 left-0 right-0 bg-[var(--background)] border-t-2 border-[var(--foreground)] p-4 z-20">
-        <ul className="flex justify-around items-center font-decor text-sm md:text-base">
+      <nav 
+        className="2xl:hidden fixed bottom-0 left-0 right-0 bg-[var(--background)] border-t-2 border-[var(--foreground)] z-20"
+        style={{
+          padding: 'clamp(12px, 2vh, 16px)'
+        }}
+      >
+        <ul 
+          className="flex justify-around items-center font-decor"
+          style={{ fontSize: 'clamp(14px, 3vw, 18px)' }}
+        >
           {NAVIGATION_LINKS.map(({ href, label, mobileLabel }) => (
             <li key={href}>
               <Link 

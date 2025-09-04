@@ -78,8 +78,8 @@ export default function Home() {
             }} className="font-decor">☆★☆★☆★</p>
           </div>
           <div className="absolute z-10" style={{
-            top: 'clamp(180px, 20vh, 190px)',
-            right: 'clamp(120px, 20vw, 140px)'
+            top: 'clamp(150px, 20vh, 190px)',
+            right: 'clamp(50px, 22vw, 140px)'
           }}>
             <p style={{ 
               color: '#FFFC65',
@@ -141,7 +141,7 @@ export default function Home() {
       {/* Start Button */}
       <div className="absolute text-center z-10" style={{
         bottom: 'clamp(64px, 16vh, 200px)',
-        left: 'clamp(250px, 45vw, 700px)',
+        left: 'clamp(150px, 45vw, 700px)',
         transform: 'translateX(-50%)'
       }}>
         <p style={{ 

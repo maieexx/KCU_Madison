@@ -43,16 +43,25 @@ export default function LogoPage() {
       {/* Title Section */}
       <div className="absolute top-4 left-4 md:top-[70px] md:left-[100px] z-10">
         <h1 
-          style={{ color: '#F24D00' }}
-          className="font-title text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-[100px]"
+          className="font-title"
+          style={{ 
+            color: '#F24D00',
+            fontSize: 'clamp(2.5rem, 5vw, 6.25rem)' // 40px → 100px
+          }}
         >
           Logo
         </h1>
       </div>
 
       {/* Main Content Section */}
-      <div className="px-2 sm:px-4 md:px-8 lg:px-[120px] pt-12 sm:pt-16 md:pt-20 lg:pt-[190px] pb-32 md:pb-64 lg:pb-32 flex flex-col justify-start space-y-8 lg:space-y-12">
-        
+      <div
+        className="flex flex-col justify-start"
+        style={{
+          padding: 'clamp(20px, 5vh, 50px) clamp(16px, 5vw, 120px)',
+          gap: 'clamp(24px, 5vw, 48px)',
+          marginTop: 'clamp(60px, 30vh, 180px)', // base spacing
+        }}
+      >        
         {/* Correct Use Section with Color Code */}
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-start">
           
