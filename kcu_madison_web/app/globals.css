@@ -2,26 +2,153 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+  @apply w-full h-full m-0 p-0 font-sans bg-[var(--background)] text-[var(--text)];
+  -webkit-text-size-adjust: 100%;
+}
+
+img, video {
+  @apply max-w-full h-auto block;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-2xl font-bold transition-all;
+  }
+  .btn-primary {
+    @apply btn bg-[var(--neongreen)] text-background px-4 md:px-6 lg:px-8 py-2 md:py-3 hover:opacity-90;
+  }
+  .btn-secondary {
+    @apply btn bg-[var(--hover-blue)] text-background px-4 md:px-6 lg:px-8 py-2 md:py-3 hover:opacity-90;
+  }
+  .btn-outline {
+    @apply btn border-2 border-[var(--foreground)] text-[var(--foreground)] px-4 md:px-6 lg:px-8 py-2 md:py-3 hover:bg-[var(--foreground)] hover:text-background;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-gray-300 bg-background px-3 md:px-4 py-2 md:py-3 text-foreground placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[var(--hover-blue)];
+  }
+
+  .side-nav {
+    @apply absolute right-4 top-10 hidden lg:block font-sub text-right space-y-2 md:space-y-4;
+  }
+
+  .side-nav ul {
+    @apply list-none m-0 p-0;
+  }
+
+  .side-nav li {
+    @apply transition-colors;
+  }
+
+  .side-nav a {
+    @apply text-lg md:text-xl lg:text-2xl transition-colors;
+    --nav-hover-color: var(--hover-orange); /* default */
+  }
+  
+  .side-nav a:hover {
+    color: var(--nav-hover-color);
+  }
+
+  /* Global Page Navigation Component */
+  .page-navigation {
+    @apply hidden 2xl:block; /* Only show on 2xl screens (1536px+) */
+  }
+
+  .page-navigation .white-line {
+    @apply absolute top-0;
+    right: 20%;
+  }
+
+  .page-navigation nav {
+    @apply absolute top-[30px];
+    right: 2%;
+  }
+
+  .page-navigation ul {
+    @apply font-decor text-right text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-[35px] space-y-2 md:space-y-3 lg:space-y-4 xl:space-y-[20px] list-none m-0 p-0;
+  }
+
+  .page-navigation li {
+    @apply transition-colors;
+  }
+
+  /* Responsive navigation positioning */
+  @media (min-width: 640px) {
+    .page-navigation .white-line { right: 20%; }
+    .page-navigation nav { right: 3%; }
+  }
+
+  @media (min-width: 768px) {
+    .page-navigation .white-line { right: 22%; }
+    .page-navigation nav { right: 3.3%; }
+  }
+
+  @media (min-width: 1024px) {
+    .page-navigation .white-line { right: 25%; }
+    .page-navigation nav { right: 3.75%; } 
+  }
+
+  @media (min-width: 1200px) {
+    .page-navigation .white-line { right: 20%; }
+    .page-navigation nav { right: 3%; }
+  }
+
+  @media (min-width: 1280px) {
+    .page-navigation .white-line { right: 20%; }
+    .page-navigation nav { right: 3%; }
+  }
+}
+
+/* Base mobile styles */
+body {
+  @apply text-sm leading-relaxed;
+}
+
+.container {
+  @apply px-4;
+}
+
+/* Tablets */
+@media (min-width: 768px) {
+  body {
+    @apply text-base;
+  }
+  .container {
+    @apply px-6;
+  }
+}
+
+/* Desktops */
+@media (min-width: 1024px) {
+  body {
+    @apply text-lg;
+  }
+  .container {
+    @apply px-8 max-w-screen-xl mx-auto;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1280px) {
+  .container {
+    @apply max-w-screen-2xl;
+  }
+}
+
 :root {
   --background: #090C14;
   --foreground: #F3F5DC;
   --text: #F3F5DC;
   --hover-blue: #8DD6FD;
   --magenta: #F56CCE;
+  --purple: #8F4EFF;
   --cyan: #00FFFF;
+  --green: #17B74C;
   --neongreen: #00D134;
   --hover-orange: #F24D00;
   --yellow: #FFD400;
   --pink: #FF3A96;
-
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #090C14;
-    --foreground: #F3F5DC;
-    --text: #F3F5DC;
-  }
 }
 
 @font-face {
@@ -29,6 +156,7 @@
   src: url('../public/assets/fonts/Game-Over.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -36,6 +164,7 @@
   src: url('../public/assets/fonts/ZeroVelocityBRK.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -43,6 +172,7 @@
   src: url('../public/assets/fonts/Born2bSportyFS.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -50,6 +180,7 @@
   src: url('../public/assets/fonts/Bayon-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -57,6 +188,7 @@
   src: url('../public/assets/fonts/HeptaSlab-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -64,6 +196,7 @@
   src: url('../public/assets/fonts/BlackHanSans-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 body {
@@ -72,90 +205,163 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Utility classes */
+/* Responsive Utility Classes */
 .font-navbar {
   font-family: 'game_over', sans-serif;
-  font-size: 100px;
-  line-height: 100px;
-  color:var(--foreground);
+  @apply text-4xl md:text-6xl lg:text-7xl xl:text-8xl;
+  line-height: 1;
+  color: var(--foreground);
 }
 
 .font-main {
   font-family: 'zerovelo', sans-serif;
   color: var(--magenta);
+  @apply text-2xl md:text-4xl lg:text-5xl;
 }
 
 .font-sub {
   font-family: 'sporty', sans-serif;
   color: var(--hover-blue);
-  letter-spacing: 7px;
+  @apply text-sm md:text-base lg:text-lg;
+  letter-spacing: 0.1em;
+}
+
+@media (min-width: 768px) {
+  .font-sub {
+    letter-spacing: 0.15em;
+  }
+}
+
+@media (min-width: 1024px) {
+  .font-sub {
+    letter-spacing: 0.2em;
+  }
 }
 
 .font-decor {
   font-family: 'sporty', sans-serif;
-  font-size: 60px;
+  @apply text-2xl md:text-4xl lg:text-5xl xl:text-[60px];
 }
 
 .font-title {
   font-family: 'bayon', sans-serif;
-  font-size: 100px;
+  @apply text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-[100px];
 }
 
 .font-body {
   font-family: 'hepta', sans-serif;
-  font-size: 40px;
+  @apply text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-[40px];
   color: var(--foreground);
 }
 
 .font-pt {
   font-family: 'blackHan', sans-serif;
-  font-size: 18px;
+  @apply text-sm md:text-base lg:text-lg;
 }
 
+/* Responsive Rectangle Classes */
 .white-rectangle {
-  width: 750px;
-  height: 350px;
-  border: 3px solid var(--foreground);
+  @apply w-full max-w-sm md:max-w-md lg:max-w-2xl xl:w-[750px];
+  @apply h-48 md:h-64 lg:h-80 xl:h-[350px];
+  border: 2px solid var(--foreground);
+}
+
+@media (min-width: 1024px) {
+  .white-rectangle {
+    border-width: 3px;
+  }
 }
 
 .cyan-rectangle {
-  width: 100px;
-  height: 40px;
-  border: 3px solid var(--cyan);
+  @apply w-16 h-8 md:w-20 md:h-10 lg:w-24 lg:h-12 xl:w-[100px] xl:h-[40px];
+  border: 2px solid var(--cyan);
+}
+
+@media (min-width: 1024px) {
+  .cyan-rectangle {
+    border-width: 3px;
+  }
 }
 
 .pink-rectangle {
-  width: 1180px;
-  height: 450px;
-  border: 3px solid var(--pink);
+  @apply w-full max-w-4xl lg:max-w-5xl xl:w-[1180px];
+  @apply h-64 md:h-80 lg:h-96 xl:h-[450px];
+  border: 2px solid var(--pink);
+}
+
+@media (min-width: 1024px) {
+  .pink-rectangle {
+    border-width: 3px;
+  }
 }
 
 .green-rectangle {
-  width: 1180px;
-  height: 600px;
-  border: 3px solid var(--neongreen);
+  @apply w-full border-2 border-[var(--neongreen)];
+  max-width: 100%;
+  min-height: 300px;
+}
+
+@media (min-width: 640px) {
+  .green-rectangle {
+    max-width: 90%;
+    min-height: 350px;
+  }
+}
+
+@media (min-width: 768px) {
+  .green-rectangle {
+    max-width: 85%;
+    min-height: 600px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .green-rectangle {
+    max-width: 1100px;
+    min-height: 600px;
+    border-width: 3px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .green-rectangle {
+    max-width: 1150px;
+    height: 600px;
+    min-height: 600px;
+  }
 }
 
 .green-square {
-  width: 130px;
-  height: 130px;
-  border: 3px solid var(--neongreen);
+  @apply w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-[130px] xl:h-[130px];
+  border: 2px solid var(--neongreen);
+}
+
+@media (min-width: 1024px) {
+  .green-square {
+    border-width: 3px;
+  }
 }
 
 .white-line {
-  width: 2px;
-  height: 100%;
-  background-color: var(--foreground);
+  @apply w-0.5 lg:w-[2px] h-full bg-[var(--foreground)];
 }
 
+/* Interactive Elements */
 .enter-button {
-    transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .enter-button:hover {
-    background-color: #0084ff;
-    border-color: var(--cyan);
+  background-color: #0084ff;
+  border-color: var(--cyan);
 }
+
+/* Navigation Hover Color Classes */
+.nav-default { --nav-hover-color: var(--hover-orange); }
+.nav-blue { --nav-hover-color: var(--hover-blue); }
+.nav-purple { --nav-hover-color: var(--purple); }
+.nav-green { --nav-hover-color: var(--green); }
+.nav-yellow { --nav-hover-color: var(--yellow); }
 
 .nav-link {
   position: relative;
@@ -166,8 +372,11 @@ body {
 .nav-link::before {
   content: '';
   font-family: 'sporty', sans-serif;
-  font-size: 45px;
+  @apply text-2xl md:text-3xl lg:text-4xl xl:text-[45px];
+  position: absolute;
   left: -1.5em;
+  top: 50%;
+  transform: translateY(-50%);
   opacity: 0;
   transition: opacity 0.2s ease;
 }
@@ -177,27 +386,43 @@ body {
   opacity: 1;
 }
 
+.nav-link:hover {
+  color: var(--nav-hover-color);
+}
+
+/* Apply default orange only if no nav color class is specified */
+nav:not([class*="nav-"]) .nav-link {
+  --nav-hover-color: var(--hover-orange);
+}
+
 .page-nav {
   position: relative;
   display: inline-block;
   text-align: right;
+  --nav-hover-color: var(--hover-orange); /* default */
 }
 
 .page-nav::before {
   content: '';
   font-family: 'sporty', sans-serif;
-  font-size: 25px;
-  line-height: 45px;
+  @apply text-lg md:text-xl lg:text-2xl xl:text-[25px];
+  line-height: 1.8;
+  position: absolute;
   left: -2em;
   opacity: 0;
   transition: opacity 0.2s ease;
 }
 
 .page-nav:hover::before {
-  content: '▶  ';
+  content: '▶ ';
   opacity: 1;
 }
 
+.page-nav:hover {
+  color: var(--nav-hover-color);
+}
+
+/* Animations */
 .blink {
   animation: blink 1s step-end infinite;
 }
@@ -215,8 +440,9 @@ body {
   animation: blink-yellow 1s step-end infinite;
   color: var(--yellow);
 }
+
 @keyframes blink-yellow {
-    0%, 100% {
+  0%, 100% {
     color: white;
   }
   50% {
@@ -234,17 +460,15 @@ body {
     background-color: #FF2121;
   }
 }
+
 .blink-warning {
   animation: warningBlink 2s infinite;
-  padding-left: 10px;
-  margin-top: -40px;
-  margin-bottom: -40px;
-  display: inline-block;
+  @apply pl-2 md:pl-4 -mt-6 md:-mt-8 lg:-mt-10 -mb-6 md:-mb-8 lg:-mb-10 inline-block;
 }
 
 .auth-link {
   position: relative;
-  line-height: 30px;
+  @apply leading-6 md:leading-8;
 }
 
 .auth-link::after {
@@ -256,9 +480,7 @@ body {
 }
 
 .auth-link:hover::after {
-  content: ' >';
-  font-size: 50px;
-  opacity: 1;
+  @apply text-3xl md:text-4xl lg:text-5xl xl:text-[50px];
 }
 
 .star-link {
@@ -277,12 +499,11 @@ body {
 
 .star-link:hover::before {
   content: '☆';
-  font-size: 60px;
+  @apply text-3xl md:text-4xl lg:text-5xl xl:text-[60px];
   opacity: 1;
 }
 
-
-
+/* Base list styles */
 ul {
   list-style: none;
   padding: 0;
@@ -299,4 +520,69 @@ nav {
   position: relative;
   z-index: 10;
   contain: layout;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 767px) {
+  .font-navbar {
+    line-height: 0.9;
+  }
+  
+  .font-title {
+    line-height: 0.9;
+  }
+  
+  /* Ensure mobile navigation is accessible */
+  .mobile-nav {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .font-body {
+    line-height: 1.6;
+  }
+}
+
+/* Desktop optimizations */
+@media (min-width: 1024px) {
+  .font-body {
+    line-height: 1.8;
+  }
+  
+  /* Override responsive rectangles with fixed desktop sizes if needed */
+  .pink-rectangle {
+    max-width: none;
+    width: 1180px;
+    height: 450px;
+  }
+  
+  .white-rectangle {
+    max-width: none;
+    width: 750px;
+    height: 350px;
+  }
+}
+
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .enter-button,
+  .nav-link::before,
+  .page-nav::before,
+  .auth-link::after,
+  .star-link::before {
+    transition: none;
+  }
+  
+  .blink,
+  .blink-yellow,
+  .blink-warning {
+    animation: none;
+  }
 }

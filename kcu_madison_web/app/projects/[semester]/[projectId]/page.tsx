@@ -4,7 +4,6 @@ import connectMongo from "@/lib/db";
 import Project, { IProject } from "@/lib/projectModel";
 import { toSlug } from "@/lib/slug";
 import mongoose from "mongoose";
-import Footer from "@/app/components/footer/page";
 
 export const dynamic = 'force-dynamic';
 
@@ -108,83 +107,114 @@ export default async function ProjectPage({ params }: Props) {
   const presentationId = getPresentationId(project.presentation);
 
   return (
-    <main className="min-h-screen p-8">
+    <main className="min-h-screen relative overflow-x-hidden">
       {/* Title Section */}
-      <div className="absolute top-[70px] left-[100px]">
-        <h1 style={{ color: '#8F4EFF' }} className="font-title">PROJECTS</h1>
+      <div className="absolute top-4 left-4 md:top-[70px] md:left-[100px] z-10">
+        <h1 style={{ color: 'var(--purple)' }} className="font-title">PROJECTS</h1>
       </div>
-      {/* Semester and Navigation */}
-      <p className="absolute left-[130px] top-[230px] font-decor text-[#00FFFF] text-5xl">
+
+      {/* Semester Badge */}
+      <p className="absolute top-16 left-4 md:left-[130px] md:top-[230px] font-decor text-xl md:text-3xl lg:text-4xl xl:text-5xl z-10" style={{ color: 'var(--cyan)' }}>
         [ {project.semester.replace("-", " ").toUpperCase()} ]
       </p>
-      <nav className="absolute right-[50px] top-[30px]">
-        <ul className="font-decor text-right" style={{ fontSize: '35px' }}>
-          <li className="mb-[20px]">
-            <Link href={`/projects/${semester}`} className="hover:text-[#8F4EFF] page-nav block">
-              ⏎
-            </Link>
-          </li>
-        </ul>
-      </nav>
 
-      {/* Project Details Section */}
-      <div className="absolute top-[350px] left-[250px]">
-        <div className=" flex gap-12 border-2 border-[--cyan] p-2">
-            <div className="flex gap-12 border-2 border-[--cyan] p-6">
-            {/* Slides Thumbnail */}
-            <div className="flex flex-col gap-4">
-            {presentationId ? (
-                <Link
-                href={`https://docs.google.com/presentation/d/${presentationId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                >
-                <div className="relative w-[30rem] h-[18rem] border-4 border-white flex justify-center items-center p-1 hover:border-[--cyan] transition-colors">
-                    <Image
-                    src={project.presentationThumb || `/api/slides/first-thumb?pid=${presentationId}`}
-                    alt={`${project.title} thumbnail`}
-                    width={480}
-                    height={288}
-                    className="object-contain"
-                    unoptimized
-                    />
-                </div>
-                </Link>
-            ) : (
-                <div className="text-zinc-400">No presentation available</div>
-            )}
-            </div>
-
-            {/* Project Information */}
-            <div className="max-w-[30rem] font-pt text-white">
-            <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
-            {project.isWinner && (
-                <span className="inline-block bg-[#00FFFF] text-black px-2 py-1 mb-4 rounded">Semester Winner!</span>
-            )}
-            <p className="mb-2"><strong>Team:</strong> {project.teamName}</p>
-            <p className="mb-2"><strong>Members:</strong> {project.teamMembers.join(", ")}</p>
-            <p className="mb-2"><strong>Description:</strong> {project.description}</p>
-            <p className="mb-2"><strong>Languages:</strong> {project.languages.join(", ")}</p>
-            {project.github && (
-                <p className="mb-2">
-                <strong>GitHub:</strong>{" "}
-                <Link
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#00FFFF] hover:underline"
-                >
-                    View on GitHub
-                </Link>
-                </p>
-            )}
-            </div>
-        </div>
-        </div>
+      {/* Desktop Navigation */}
+      <div className="page-navigation">
+        <nav>
+          <ul>
+            <li>
+              <Link 
+                href={`/projects/${semester}`} 
+                className="page-nav block"
+                style={{ '--nav-hover-color': 'var(--purple)' } as React.CSSProperties}
+              >
+                ⏎
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </div>
 
-      {/* Footer */}
-      <Footer />
+      {/* Main Content Container */}
+      <div className="px-4 sm:px-8 md:px-12 pt-[200px] sm:pt-[250px] sm:pb-[50px] md:pt-[300px] md:pb-[100px] lg:pt-[350px] lg:pb-[100px] xl:pt-[400px] xl:pb-[160px] pb-[250px]">
+        
+        {/* Project Details Section */}
+        <div className="w-full max-w-7xl mx-auto">
+          <div className=" flex gap-12 border-2 border-[--cyan] p-2">
+            <div className="flex gap-12 border-2 border-[--cyan] sm:p-4 md:p-4 lg:p-5 xl:p-6">
+
+            {/* Slides Thumbnail - Mobile */}
+            <div className="w-full flex justify-center">
+              {presentationId ? (
+                <Link
+                  href={`https://docs.google.com/presentation/d/${presentationId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full max-w-md"
+                >
+                  <div className="relative w-full aspect-[5/3] border-4 border-white flex justify-center items-center p-1 hover:border-[var(--cyan)] transition-colors">
+                    <Image
+                      src={project.presentationThumb || `/api/slides/first-thumb?pid=${presentationId}`}
+                      alt={`${project.title} thumbnail`}
+                      width={400}
+                      height={240}
+                      className="object-contain w-full h-full"
+                      unoptimized
+                    />
+                  </div>
+                </Link>
+              ) : (
+                <div className="text-zinc-400 font-pt text-center">No presentation available</div>
+              )}
+            </div>
+
+            {/* Project Information - Mobile */}
+            <div className="px-4">
+              <h2 className="font-pt text-2xl sm:text-3xl md:text-4xl mb-4" style={{ color: 'var(--foreground)' }}>
+                {project.title}
+              </h2>
+              {project.isWinner && (
+                <span className="inline-block bg-[var(--cyan)] text-[var(--background)] px-3 py-1 mb-4 rounded font-pt text-sm">
+                  Semester Winner!
+                </span>
+              )}
+              <div className="space-y-3 font-pt text-sm md:text-base" style={{ color: 'var(--foreground)' }}>
+                <p><strong>Team:</strong> {project.teamName}</p>
+                <p><strong>Members:</strong> {project.teamMembers.join(", ")}</p>
+                <p><strong>Description:</strong> {project.description}</p>
+                <p><strong>Languages:</strong> {project.languages.join(", ")}</p>
+                {project.github && (
+                  <p>
+                    <strong>GitHub:</strong>{" "}
+                    <Link
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
+                      style={{ color: 'var(--cyan)' }}
+                    >
+                      View on GitHub
+                    </Link>
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      {/* Mobile Navigation */}
+      <nav className="2xl:hidden fixed bottom-0 left-0 right-0 bg-[var(--background)] border-t-2 border-[var(--foreground)] p-4 z-20 mobile-nav">
+        <div className="flex justify-center">
+          <Link 
+            href={`/projects/${semester}`}
+            className="nav-link font-sub px-4 py-2"
+          >
+            Back to {semester.replace("-", " ")}
+          </Link>
+        </div>
+      </nav>
     </main>
   );
 }
@@ -192,25 +222,49 @@ export default async function ProjectPage({ params }: Props) {
 // Helper function to render not found page
 function renderNotFound(semester: string) {
   return (
-    <main className="min-h-screen p-8">
-      <div className="absolute top-[70px] left-[100px]">
-        <h1 style={{ color: '#8F4EFF' }} className="font-title">PROJECTS</h1>
+    <main className="min-h-screen relative overflow-x-hidden">
+      {/* Title Section */}
+      <div className="absolute top-4 left-4 md:top-[70px] md:left-[100px] z-10">
+        <h1 className="font-title" style={{ color: 'var(--purple)' }}>
+          PROJECTS
+        </h1>
       </div>
-      <p className="absolute left-[130px] top-[230px] font-decor text-[#00FFFF] text-5xl">
+
+      {/* Error Message */}
+      <p className="absolute top-16 left-4 md:left-[130px] md:top-[230px] font-decor text-xl md:text-3xl lg:text-4xl xl:text-5xl z-10" style={{ color: 'var(--cyan)' }}>
         Project Not Found
       </p>
-      <nav className="absolute right-[50px] top-[30px]">
-        <ul className="font-decor text-right" style={{ fontSize: '35px' }}>
-          <li className="mb-[20px]">
-            <Link href={`/projects/${semester}`} className="hover:text-[#8F4EFF] page-nav block">
-              ⏎
-            </Link>
-          </li>
-        </ul>
+
+      {/* Desktop Navigation */}
+      <div className="page-navigation">
+        <div className="white-line" />
+        <nav>
+          <ul>
+            <li>
+              <Link 
+                href={`/projects/${semester}`} 
+                className="page-nav block"
+                style={{ '--nav-hover-color': 'var(--purple)' } as React.CSSProperties}
+              >
+                ⏎
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      {/* Mobile Navigation */}
+      <nav className="2xl:hidden fixed bottom-0 left-0 right-0 bg-[var(--background)] border-t-2 border-[var(--foreground)] p-4 z-20 mobile-nav">
+        <div className="flex justify-center">
+          <Link 
+            href={`/projects/${semester}`}
+            className="nav-link font-sub px-4 py-2"
+            style={{ '--nav-hover-color': 'var(--purple)' } as React.CSSProperties}
+          >
+            Back to {semester.replace("-", " ")}
+          </Link>
+        </div>
       </nav>
-      <div className="absolute white-line right-[330px] top-0 bottom-0" />
-    {/* Footer */}
-    <Footer />
     </main>
   );
 }

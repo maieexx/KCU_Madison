@@ -2,8 +2,10 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import '../globals.css';
-import Footer from '../components/footer/page';
 
+const NAVIGATION_LINKS = [
+  { href: '/', label: '⏎', mobileLabel: 'Home' }
+];
 
 type SemesterLike = string | { name: string };
 
@@ -44,61 +46,103 @@ export default function ProjectsPage() {
     })();
   }, []);
 
-
-
   return (
-    <main className="min-h-screen relative">
+    <main className="min-h-screen relative overflow-x-hidden">
       {/* Title Section */}
-      <h1 className="font-title absolute top-[70px] left-[100px]" style={{ color: '#8F4EFF' }}>
-          Projects
+      <h1 
+        className="font-title absolute top-4 left-4 md:top-[70px] md:left-[100px] text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-[100px] z-10" 
+        style={{ color: '#8F4EFF' }}
+      >
+        Projects
       </h1>
 
-      {/* Main Semester Section */}
-      <p
-        style={{ color: '#C2C2C2', fontSize: '50px', letterSpacing: '5px' }}
-        className="font-decor absolute left-[500px] top-[250px]"
-      >
-        Select a semester to explore!
-      </p>
+      {/* Main Content Container */}
+      <div className="px-4 sm:px-8 md:px-12 pt-[200px] sm:pt-[250px] md:pt-[300px] lg:pt-[350px] xl:pt-[400px] pb-[420px] md:pb-[450px]">
+        
+        {/* Subtitle */}
+        <p
+          className="font-decor text-center md:text-left md:absolute md:left-[200px] md:top-[250px] lg:left-[300px] xl:left-[500px] mb-8 md:mb-0"
+          style={{ 
+            color: '#C2C2C2', 
+            fontSize: 'clamp(20px, 4vw, 50px)', 
+            letterSpacing: 'clamp(1px, 0.3vw, 5px)' 
+          }}
+        >
+          Select a semester to explore!
+        </p>
 
-      <div
-        style={{fontSize: '60px'}}
-        className="font-decor absolute top-[400px] left-[270px] flex flex-wrap gap-20"
-      >
-        {loading && <span style={{ fontSize: 50, color: '#C2C2C2' }}>Loading…</span>}
-        {!loading && semesters.length === 0 && (
-          <span style={{ fontSize: 28, color: '#C2C2C2' }}>No semesters found.</span>
-        )}
-        {!loading &&
-          semesters.map((name) => {
-            const slug = toSlug(name);
-            return (
-              <Link
-                key={slug}
-                href={`/projects/${slug}`}
-                className="star-link relative hover:text-[var(--cyan)] inline-block"
-              >
-                <span>{name}</span>
-
-              </Link>
-            );
-          })}
+        {/* Semesters Grid */}
+        <div
+          className="font-decor grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 2xl:gap-20 justify-items-center md:absolute md:top-[400px] md:left-[270px] lg:left-[320px] xl:left-[400px] md:flex md:flex-wrap md:justify-start"
+          style={{ fontSize: 'clamp(24px, 5vw, 60px)' }}
+        >
+          {loading && (
+            <span 
+              className="col-span-full text-center" 
+              style={{ fontSize: 'clamp(20px, 4vw, 50px)', color: '#C2C2C2' }}
+            >
+              Loading…
+            </span>
+          )}
+          
+          {!loading && semesters.length === 0 && (
+            <span 
+              className="col-span-full text-center" 
+              style={{ fontSize: 'clamp(18px, 3vw, 28px)', color: '#C2C2C2' }}
+            >
+              No semesters found.
+            </span>
+          )}
+          
+          {!loading &&
+            semesters.map((name) => {
+              const slug = toSlug(name);
+              return (
+                <Link
+                  key={slug}
+                  href={`/projects/${slug}`}
+                  className="star-link relative hover:text-[var(--cyan)] inline-block text-center md:text-left transition-colors duration-200 p-2 hover:scale-105 transform"
+                >
+                  <span className="whitespace-nowrap">{name}</span>
+                </Link>
+              );
+            })}
+        </div>
       </div>
 
-      {/* Right Navigation Section */}
-      <nav className="absolute right-[50px] top-[30px]">
-        <ul className="font-decor text-right" style={{ fontSize: 35 }}>
+      {/* Desktop Navigation Section */}
+      <div className="page-navigation">
+        <nav className="nav-purple">
+          <ul>
             <li>
-              <Link href="/" className="hover:text-[#8F4EFF] page-nav block">
+              <Link
+                href="/"
+                className="page-nav block"
+                style={{ '--nav-hover-color': 'var(--purple)' } as React.CSSProperties}
+              >
                 ⏎
               </Link>
             </li>
+          </ul>
+        </nav>
+      </div>
+
+      {/* Mobile Navigation */}
+      <nav className="2xl:hidden fixed bottom-0 left-0 right-0 bg-[var(--background)] border-t-2 border-[var(--foreground)] p-4 z-20">
+        <ul className="flex justify-around items-center font-decor text-sm md:text-base">
+          {NAVIGATION_LINKS.map(({ href, label, mobileLabel }) => (
+            <li key={href}>
+              <Link 
+                href={href} 
+                className="nav-link transition-colors duration-200 px-2 py-1"
+                style={{ '--nav-hover-color': 'var(--purple)' } as React.CSSProperties}
+              >
+                {mobileLabel || label}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
-
-      {/* Footer */}
-      <Footer />
     </main>
-
   );
 }

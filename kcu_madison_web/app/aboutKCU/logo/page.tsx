@@ -2,44 +2,34 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import '../../globals.css';
-import Footer from '../../components/footer/page';
 
 const CORRECT_LOGOS = [
   {
     src: '/assets/logo_original.png',
     alt: 'Original Logo',
-    width: 250,
-    height: 180,
-    className: 'mt-[20px] ml-[20px]',
     label: '☑ original',
-    labelClassName: 'mb-[10px] -ml-[90px]'
   },
   {
     src: '/assets/kcu_white.png',
     alt: 'Dark Mode',
-    width: 250,
-    height: 180,
-    className: 'mt-[35px] ml-[60px]',
     label: '☑ darkmode',
-    labelClassName: 'mb-[10px] -ml-[10px]'
   },
 ];
 
 const INCORRECT_LOGOS = [
-  { src: '/assets/logo_keepcol.png', alt: 'Red Logo', className: '-mt-[20px] ml-[20px]' },
-  { src: '/assets/logo_keepcol2.png', alt: 'Black Logo', className: '-mt-[20px] ml-[20px]' },
-  {
-    src: '/assets/logo_dontfillwhite.png',
-    alt: 'Filled Logo',
-    className: 'mt-[30px] ml-[100px]',
-    hasLabel: true,
-    label: '☒ do not fill the logo',
-    labelClassName: 'mb-[5px] ml-[200px] text-center'
-  },
+  { src: '/assets/logo_keepcol.png', alt: 'Red Logo' },
+  { src: '/assets/logo_keepcol2.png', alt: 'Black Logo' },
+  { src: '/assets/logo_dontfillwhite.png', alt: 'Filled Logo' },
+];
+
+const COLOR_CODES = [
+  { color: '#c5050c', label: '#c5050c' },
+  { color: '#000000', label: '#000000' },
+  { color: '#ffffff', label: '#ffffff' },
 ];
 
 const NAVIGATION_LINKS = [
-  { href: '/', label: '⏎' },
+  { href: '/', label: '⏎', mobileLabel: 'Home' },
   { href: '/aboutKCU', label: 'About KCU' },
   { href: '/aboutKCU/boardMembers', label: 'Board Members' },
   { href: '/aboutKCU/history', label: 'History' },
@@ -48,92 +38,132 @@ const NAVIGATION_LINKS = [
 
 export default function LogoPage() {
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative overflow-x-hidden">
 
       {/* Title Section */}
-      <div className="absolute top-[70px] left-[100px]">
-        <h1 style={{ color: '#F24D00' }} className='font-title'>Logo</h1>
+      <div className="absolute top-4 left-4 md:top-[70px] md:left-[100px] z-10">
+        <h1 
+          style={{ color: '#F24D00' }}
+          className="font-title text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-[100px]"
+        >
+          Logo
+        </h1>
       </div>
 
-      {/* Correct Use of Logo Section */}
-      <div className="green-rectangle absolute left-[120px] top-[230px]" style={{ width: '650px', height: '230px' }}>
-        <div className="flex items-start space-x-10">
-          {CORRECT_LOGOS.map((logo) => (
-            <div key={logo.src} className="flex flex-col items-center">
-              <Image
-                src={logo.src}
-                width={logo.width}
-                height={logo.height}
-                alt={logo.alt}
-                className={logo.className}
-              />
-              <p style={{ fontSize:'25px' }} className={`font-decor text-center text-[var(--neongreen)] ${logo.labelClassName}`}>
-                {logo.label}
-              </p>
+      {/* Main Content Section */}
+      <div className="px-2 sm:px-4 md:px-8 lg:px-[120px] pt-12 sm:pt-16 md:pt-20 lg:pt-[190px] pb-32 md:pb-64 lg:pb-32 flex flex-col justify-start space-y-8 lg:space-y-12">
+        
+        {/* Correct Use Section with Color Code */}
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-start">
+          
+          {/* Correct Use Section */}
+          <div className="w-full lg:w-1/2 border-2 lg:border-3 border-[var(--neongreen)] p-4 md:p-6 lg:p-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-4 items-start">
+              {CORRECT_LOGOS.map((logo) => (
+                <div key={logo.src} className="flex flex-col items-center space-y-2">
+                  <div className="relative w-full max-w-[150px] md:max-w-[200px] lg:max-w-[250px]">
+                    <Image
+                      src={logo.src}
+                      width={250}
+                      height={300}
+                      alt={logo.alt}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                  <p className="font-decor text-[var(--neongreen)] text-center text-lg md:text-xl lg:text-2xl xl:text-[25px]">
+                    {logo.label}
+                  </p>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Color Code Section */}
+          <div className="w-full lg:w-1/3">
+            <h2 className="font-decor text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-[40px] mb-4">
+              color code:
+            </h2>
+            <div className="space-y-3">
+              {COLOR_CODES.map((item) => (
+                <div key={item.label} className="flex items-center space-x-4">
+                  <div 
+                    className="w-6 h-6 md:w-8 md:h-8 border-2 border-white"
+                    style={{ backgroundColor: item.color }}
+                  />
+                  <span className="font-decor text-sm md:text-base lg:text-lg xl:text-xl">
+                    {item.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Incorrect Use Section */}
+        <div className="w-full max-w-5xl border-2 lg:border-3 border-[#D10000] p-4 md:p-6 lg:p-8">
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 lg:gap-6 items-center mb-6">
+            {INCORRECT_LOGOS.map((logo) => (
+              <div key={logo.src} className="flex flex-col items-center">
+                <div className="relative w-full max-w-[150px] md:max-w-[200px] lg:max-w-[250px]">
+                  <Image
+                    src={logo.src}
+                    width={300}
+                    height={250}
+                    alt={logo.alt}
+                    className="w-full h-auto"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Warning Messages at Same Level */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-start">
+            <p className="font-decor text-[#D10000] text-center ml-[30px] text-lg md:text-xl lg:text-2xl xl:text-[25px]">
+              ☒ do not change the color of the border
+            </p>
+            <p className="font-decor text-[#D10000] text-center ml-[270px] text-lg md:text-xl lg:text-2xl xl:text-[25px]">
+              ☒ do not fill the logo
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Incorrect Use of Logo Section */}
-      <div className="absolute left-[120px] top-[480px] border-[3px] flex items-center" style={{ borderColor: '#D10000', width: '930px', height: '230px' }}>
-        {INCORRECT_LOGOS.map((logo) => (
-          <div key={logo.src} className="flex flex-col items-center">
-            <Image
-              src={logo.src}
-              width={250}
-              height={180}
-              alt={logo.alt}
-              className={logo.className}
-            />
-            {logo.hasLabel && (
-              <p style={{ fontSize:'25px' }} className={`font-decor text-[#D10000] ml-[60px] ${logo.labelClassName}`}>
-                {logo.label}
-              </p>
-            )}
-          </div>
-        ))}
-        {/* Label */}
-        <p className="font-decor -mb-[170px] -ml-[850px]" style={{ fontSize: '25px', color: '#D10000'}}>
-          ☒ do not change the color of the border
-        </p>
+      {/* Desktop Navigation */}
+      <div className="page-navigation">
+        <div className="white-line" />
+        <nav className="nav-orange">
+          <ul>
+            {NAVIGATION_LINKS.map(({ href, label }) => (
+              <li key={href}>
+                <Link 
+                  href={href} 
+                  className="page-nav block transition-colors duration-200"
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
 
-      {/* Color Code Info */}
-      <div style={{ fontSize: '40px' }} className="absolute right-[560px] top-[220px] font-decor flex items-start">
-        <h2 className="mr-[10px] min-w-[80px]">color code:</h2>
-        <div className="flex flex-col space-y-2">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-[#c5050c] border-[3px] border-white"></div>
-            <span>#c5050c</span>
-          </div>
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-black border-[3px] border-white"></div>
-            <span>#000000</span>
-          </div>
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-white border-[3px] border-white"></div>
-            <span>#ffffff</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Right Navigation Section */}
-      <div className='white-line absolute right-[330px] top-0 bottom-0'/>
-      <nav className="absolute right-[50px] top-[30px]">
-        <ul style={{ fontSize: '35px' }} className="font-decor text-right">
-          {NAVIGATION_LINKS.map(({ href, label }, idx) => (
-            <li key={href} className={idx === 0 ? '' : 'mt-[20px]'}>
-              <Link href={href} className="hover:text-[var(--hover-orange)] page-nav block">
-                {label}
+      {/* Mobile Navigation */}
+      <nav className="2xl:hidden fixed bottom-0 left-0 right-0 bg-[var(--background)] border-t-2 border-[var(--foreground)] p-4 z-20">
+        <ul className="flex justify-around items-center font-decor text-sm md:text-base">
+          {NAVIGATION_LINKS.map(({ href, label, mobileLabel }) => (
+            <li key={href}>
+              <Link 
+                href={href} 
+                className="hover:text-[var(--hover-orange)] transition-colors duration-200 px-2 py-1"
+              >
+                {mobileLabel || label}
               </Link>
             </li>
           ))}
         </ul>
       </nav>
-
-    {/* Footer */}
-    <Footer />
     </div>
   );
 }

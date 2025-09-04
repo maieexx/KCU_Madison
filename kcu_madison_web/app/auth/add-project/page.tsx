@@ -248,7 +248,7 @@ export default function AdminAddProject() {
               name="title"
               value={formData.title}
               onChange={handleInputChange}
-              className="w-full h-[50px] px-4 py-2 bg-transparent border-2 border-[var(--foreground)] focus:border-[var(--neongreen)] focus:outline-none font-body"
+              className="w-full h-[50px] px-3 py-1 bg-transparent border-2 border-[var(--foreground)] focus:border-[var(--neongreen)] focus:outline-none font-body"
               style={{ fontSize: '15px', color: 'var(--text)' }}
               required
             />
@@ -262,7 +262,7 @@ export default function AdminAddProject() {
               name="teamName"
               value={formData.teamName}
               onChange={handleInputChange}
-              className="w-[400px] h-[50px] px-4 py-2 bg-transparent border-2 border-[var(--foreground)] focus:border-[var(--neongreen)] focus:outline-none font-body"
+              className="w-[400px] h-[50px] px-3 py-1 bg-transparent border-2 border-[var(--foreground)] focus:border-[var(--neongreen)] focus:outline-none font-body"
               style={{ fontSize: '15px', color: 'var(--text)' }}
               required
             />
@@ -276,7 +276,7 @@ export default function AdminAddProject() {
               value={formData.semester}
               onChange={handleInputChange}
               style={{ fontSize: '15px', color: 'var(--text)' }}
-              className="w-[300px] h-[50px] px-4 py-2 bg-transparent border-2 border-[var(--foreground)] focus:border-[var(--neongreen)] focus:outline-none font-body"
+              className="w-[300px] h-[50px] px-3 py-1 bg-transparent border-2 border-[var(--foreground)] focus:border-[var(--neongreen)] focus:outline-none font-body"
               required
             >
               <option value="">Select Semester</option>
@@ -305,7 +305,7 @@ export default function AdminAddProject() {
                 value={teamMemberInput}
                 onChange={(e) => setTeamMemberInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTeamMember())}
-                className="px-2 py-1 bg-transparent border-2 border-[var(--foreground)] focus:border-[var(--neongreen)] focus:outline-none font-body"
+                className="px-3 py-1 bg-transparent border-2 border-[var(--foreground)] focus:border-[var(--neongreen)] focus:outline-none font-body"
                 style={{ fontSize: '15px', width: '300px', height: '50px', color: 'var(--text)' }}
                 placeholder="single name at a time"
                 />

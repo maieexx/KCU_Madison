@@ -1,9 +1,7 @@
 'use client';
 import Link from 'next/link';
 import '../globals.css';
-import Footer from '../components/footer/page';
 
-{/* About KCU Text */}
 const ABOUT_TEXT = `The Korean Undergraduate Computer Science Union
 (KCU) at UW–Madison supports students primarily in
 Computer Science and Data Science by fostering
@@ -22,57 +20,93 @@ Our seminars and competitions foster an inclusive
 community where students share resources, collaborate on
 projects, and prepare for internships and research opportunities.`;
 
-{/* Right Navigation List */}
 const NAVIGATION_LINKS = [
-  { href: '/', label: '⏎' },
+  { href: '/', label: '⏎', mobileLabel: 'Home' },
   { href: '/aboutKCU/boardMembers', label: 'Board Members' },
   { href: '/aboutKCU/logo', label: 'Logo' },
   { href: '/aboutKCU/history', label: 'History' },
   { href: '/aboutKCU/contactUs', label: 'Contact Us' },
 ];
 
-
 export default function AboutKCU() {
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative overflow-x-hidden">
       
       {/* Title Section */}
-      <div className="absolute top-[70px] left-[100px]">
-        <h1 style={{ color: '#F24D00' }} className='font-title' >About KCU</h1>
-      </div>
-
-      {/* Main Section */}
-      <div className='green-rectangle left-[120px] top-[200px] absolute px-2'>
-          <p style={{ fontSize: '19px', lineHeight:'33px', whiteSpace: 'pre-line' }} className="font-body mt-[10px] ml-[10px]">
-            {ABOUT_TEXT}
-          </p>
-
-          <video
-            className="w-[350px] h-auto ml-[730px] mt-[-450px]"
-            autoPlay
-            loop
-            muted
+      <div className="absolute top-4 left-4 md:top-[70px] md:left-[100px] z-10">
+        <h1 
+          style={{ color: '#F24D00' }} 
+          className="font-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-8xl 2xl:text-[100px]"
         >
-          <source src="/assets/logo_rotating.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+          About KCU
+        </h1>
       </div>
 
-        {/* Right Navigation Section */}
-        <div className='white-line absolute right-[330px]'/>
-        <nav className="absolute right-[50px] top-[30px]">
-            <ul style={{ fontSize: '35px' }} className="font-decor text-right">
-                {NAVIGATION_LINKS.map(({ href, label }, idx) => (
-                    <li key={href} className={idx === 0 ? '' : 'mt-[20px]'}>
-                        <Link href={href} className="hover:text-[var(--hover-orange)] page-nav block">
-                            {label}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-          </nav>
-        {/* Footer */}
-        <Footer />
+      {/* Main Content Section */}
+      <div className="px-2 pb-[50px] sm:px-4 md:px-8 lg:px-[120px] pt-12 sm:pt-16 md:pt-20 lg:pt-[120px] lg:pb-[80px] xl:pb-[118px] flex justify-start">        
+        {/* Text Content with Video Inside */}
+        <div className="green-rectangle p-2 sm:p-3 mt-20 md:p-4 lg:p-6 xl:p-8 relative">
+          
+          {/* Text Content */}
+          <div className="pr-0 sm:pr-4 md:pr-8 lg:pr-0 xl:pr-96 -mt-2 sm:-mt-1 md:-mt-2 lg:-mt-4">
+            <p 
+              className="font-body text-xs sm:text-sm md:text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[19px] leading-relaxed sm:leading-[1.6] md:leading-[1.8] lg:leading-[1.9] xl:leading-[33px] whitespace-pre-line"
+              style={{ color: 'var(--foreground)' }}
+            >
+              {ABOUT_TEXT}
+            </p>
+          </div>
+
+          {/* Video Positioned Inside Rectangle */}
+          <div className="mt-4 sm:mt-6 md:mt-8 lg:absolute lg:top-24 lg:right-12 xl:top-36 xl:right-20 flex justify-center">
+            <video
+              className="w-32 sm:w-36 md:w-40 lg:w-64 xl:w-[400px] h-auto"
+              autoPlay
+              loop
+              muted
+              playsInline
+            >
+              <source src="/assets/logo_rotating.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Navigation */}
+      <div className="page-navigation">
+        <div className="white-line" />
+        <nav className="nav-orange">
+          <ul>
+            {NAVIGATION_LINKS.map(({ href, label }) => (
+              <li key={href}>
+                <Link 
+                  href={href} 
+                  className="page-nav block transition-colors duration-200"
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+
+      {/* Mobile Navigation */}
+      <nav className="2xl:hidden fixed bottom-0 left-0 right-0 bg-[var(--background)] border-t-2 border-[var(--foreground)] p-4 z-20">
+        <ul className="flex justify-around items-center font-decor text-sm md:text-base">
+          {NAVIGATION_LINKS.map(({ href, label, mobileLabel }) => (
+            <li key={href}>
+              <Link 
+                href={href} 
+                className="hover:text-[var(--hover-orange)] transition-colors duration-200 px-2 py-1"
+              >
+                {mobileLabel || label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 // app/layout.tsx
 import "./globals.css";
 import type { Metadata } from "next";
+import Footer from "./components/footer/page";
 
 export const metadata: Metadata = {
   title: "Your App",
@@ -29,6 +30,10 @@ export default function RootLayout({
         ></div>
 
         {children}
+        {/* Footer pinned to bottom */}
+        <footer className="mt-auto">
+          <Footer />
+        </footer>
       </body>
     </html>
   );
