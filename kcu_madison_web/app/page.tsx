@@ -32,12 +32,14 @@ export default function Home() {
             marginBottom: 'clamp(24px, 4vh, 32px)'
           }}>
             <h1 className="font-main leading-tight" style={{
-              fontSize: 'clamp(50px, 8vw, 190px)'
+              fontSize: 'clamp(50px, 10vw, 135px)',
+              wordSpacing: 'clamp(4px, 2vw, 16px)',
+              lineHeight: 'clamp(1.0, 1.1, 1.5)',
             }}>
               KCU 2025
             </h1>
             <p className="font-sub tracking-wider" style={{
-              fontSize: 'clamp(15px, 2.5vw, 40px)',
+              fontSize: 'clamp(12px, 2.5vw, 40px)',
               marginTop: 'clamp(24px, 4vh, 48px)'
             }}>
               Korean Undergraduate Computer Science Union
@@ -72,16 +74,16 @@ export default function Home() {
           }}>
             <p style={{ 
               color: '#FFFC65',
-              fontSize: 'clamp(24px, 4.5vw, 60px)'
+              fontSize: 'clamp(20px, 4vw, 60px)'
             }} className="font-decor">☆★☆★☆★</p>
           </div>
           <div className="absolute z-10" style={{
-            top: 'clamp(180px, 20vh, 200px)',
-            right: 'clamp(70px, 10vw, 140px)'
+            top: 'clamp(180px, 20vh, 190px)',
+            right: 'clamp(120px, 20vw, 140px)'
           }}>
             <p style={{ 
               color: '#FFFC65',
-              fontSize: 'clamp(24px, 4.5vw, 60px)'
+              fontSize: 'clamp(20px, 4vw, 60px)'
             }} className="font-decor">☆★☆★☆★</p>
           </div>
 
@@ -137,9 +139,9 @@ export default function Home() {
       </nav>
 
       {/* Start Button */}
-      <div className="fixed text-center z-10" style={{
+      <div className="absolute text-center z-10" style={{
         bottom: 'clamp(64px, 16vh, 200px)',
-        left: 'clamp(50%, 45vw, 620px)',
+        left: 'clamp(250px, 45vw, 700px)',
         transform: 'translateX(-50%)'
       }}>
         <p style={{ 
