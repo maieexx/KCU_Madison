@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 interface ProjectFormData {
   title: string;
@@ -484,13 +485,15 @@ const AdminEditProject = () => {
               placeholder="Optional: Direct URL to thumbnail image"
             />
             {formData.presentationThumb && (
-              <div className="mt-2">
-                <img 
-                  src={formData.presentationThumb} 
-                  alt="Presentation thumbnail preview" 
-                  className="w-32 h-24 object-cover rounded border border-gray-300"
+            <div className="mt-2">
+                <Image
+                src={formData.presentationThumb}
+                alt="Presentation thumbnail preview"
+                width={128}   // same as w-32
+                height={96}   // same as h-24
+                className="object-cover rounded border border-gray-300"
                 />
-              </div>
+            </div>
             )}
           </div>
 
@@ -546,15 +549,17 @@ const AdminEditProject = () => {
               {formData.presentation && <p><strong>Presentation:</strong> {formData.presentation}</p>}
               {formData.presentationThumb && (
                 <div className="mt-2">
-                  <strong>Thumbnail Preview:</strong>
-                  <br />
-                  <img 
-                    src={formData.presentationThumb} 
-                    alt="Thumbnail" 
-                    className="w-48 h-32 object-cover rounded mt-1"
-                  />
+                    <strong>Thumbnail Preview:</strong>
+                    <br />
+                    <Image
+                    src={formData.presentationThumb}
+                    alt="Thumbnail"
+                    width={192}   // same as w-48
+                    height={128}  // same as h-32
+                    className="object-cover rounded mt-1"
+                    />
                 </div>
-              )}
+            )}
             </div>
           </div>
         )}
