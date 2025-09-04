@@ -15,14 +15,6 @@ const COLORS = {
   white: '#FFFFFF'
 } as const;
 
-const BREAKPOINTS = {
-  mobile: 'sm:',
-  tablet: 'md:',
-  desktop: 'lg:',
-  large: 'xl:',
-  xlarge: '2xl:'
-} as const;
-
 export default async function SemesterPage({ params }: Props) {
   const resolvedParams = await params;
   const semester = resolvedParams.semester;
