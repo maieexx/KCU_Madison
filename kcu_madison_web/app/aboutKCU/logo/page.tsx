@@ -58,15 +58,23 @@ export default function LogoPage() {
         className="flex flex-col justify-start"
         style={{
           padding: 'clamp(20px, 5vh, 50px) clamp(16px, 5vw, 120px)',
+          paddingRight: 'clamp(16px, 25vw, 400px)', // Increased right padding to avoid navigation
+          paddingBottom: 'clamp(60px, 15vh, 200px)', // Increased bottom padding
           gap: 'clamp(24px, 5vw, 48px)',
-          marginTop: 'clamp(60px, 30vh, 180px)', // base spacing
+          marginTop: 'clamp(60px, 30vh, 180px)',
         }}
       >        
         {/* Correct Use Section with Color Code */}
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-start">
           
           {/* Correct Use Section */}
-          <div className="w-full lg:w-1/2 border-2 lg:border-3 border-[var(--neongreen)] p-4 md:p-6 lg:p-8">
+          <div 
+            className="border-2 lg:border-3 border-[var(--neongreen)] p-4 md:p-6 lg:p-8"
+            style={{
+              width: 'clamp(100%, 45vw, 600px)',
+              maxWidth: '100%'
+            }}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-4 items-start">
               {CORRECT_LOGOS.map((logo) => (
                 <div key={logo.src} className="flex flex-col items-center space-y-2">
@@ -88,7 +96,12 @@ export default function LogoPage() {
           </div>
 
           {/* Color Code Section */}
-          <div className="w-full lg:w-1/3">
+          <div 
+            className="flex-shrink-0"
+            style={{
+              width: 'clamp(250px, 25vw, 350px)'
+            }}
+          >
             <h2 className="font-decor text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-[40px] mb-4">
               color code:
             </h2>
@@ -109,7 +122,13 @@ export default function LogoPage() {
         </div>
 
         {/* Incorrect Use Section */}
-        <div className="w-full max-w-5xl border-2 lg:border-3 border-[#D10000] p-4 md:p-6 lg:p-8">
+        <div 
+          className="border-2 lg:border-3 border-[#D10000] p-4 md:p-6 lg:p-8"
+          style={{
+            width: 'clamp(100%, 70vw, 900px)',
+            maxWidth: '100%'
+          }}
+        >
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 lg:gap-6 items-center mb-6">
             {INCORRECT_LOGOS.map((logo) => (
@@ -127,12 +146,24 @@ export default function LogoPage() {
             ))}
           </div>
 
-          {/* Warning Messages at Same Level */}
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-start">
-            <p className="font-decor text-[#D10000] text-center ml-[30px] text-lg md:text-xl lg:text-2xl xl:text-[25px]">
+          {/* Warning Messages - Responsive Layout */}
+          <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 justify-start">
+            <p 
+              className="font-decor text-[#D10000] text-center lg:text-left"
+              style={{
+                fontSize: 'clamp(14px, 2vw, 25px)',
+                marginLeft: 'clamp(0px, 5vw, 80px)'
+              }}
+            >
               ☒ do not change the color of the border
             </p>
-            <p className="font-decor text-[#D10000] text-center ml-[270px] text-lg md:text-xl lg:text-2xl xl:text-[25px]">
+            <p 
+              className="font-decor text-[#D10000] text-center lg:text-left"
+              style={{
+                fontSize: 'clamp(14px, 2vw, 25px)',
+                marginLeft: 'clamp(0px, 20vw, 400px)'
+              }}
+            >
               ☒ do not fill the logo
             </p>
           </div>

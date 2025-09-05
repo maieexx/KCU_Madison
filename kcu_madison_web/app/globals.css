@@ -324,7 +324,7 @@ body {
 
 @media (min-width: 1280px) {
   .green-rectangle {
-    max-width: clamp(850px, 60vw, 950px);
+    max-width: clamp(850px, 65vw, 1000px);
     height: clamp(650px, 55vh, 750px);
     min-height: clamp(500px, 55vh, 600px);
   }
