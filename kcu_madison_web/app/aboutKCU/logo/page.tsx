@@ -141,7 +141,7 @@ export default function LogoPage() {
 
       {/* Desktop Navigation */}
       <div className="page-navigation">
-        <div className="white-line" />
+        <div className='white-line absolute' style={{ right: 'clamp(100px, 20vw, 330px)' }}/>
         <nav className="nav-orange">
           <ul>
             {NAVIGATION_LINKS.map(({ href, label }) => (

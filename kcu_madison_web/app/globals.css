@@ -26,7 +26,7 @@ img, video {
   }
 
   .input {
-    @apply w-full rounded-xl border border-gray-300 bg-background px-3 md:px-4 py-2 md:py-3 text-foreground placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[var(--hover-blue)];
+    @apply w-full rounded-xl border border-gray-300 bg-[var(--background)] px-3 md:px-4 py-2 md:py-3 text-[var(--foreground)] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[var(--hover-blue)];
   }
 
   .side-nav {
@@ -52,7 +52,7 @@ img, video {
 
   /* Global Page Navigation Component */
   .page-navigation {
-    @apply hidden 2xl:block; /* Only show on 2xl screens (1536px+) */
+    @apply hidden lg:block;
   }
 
   .page-navigation .white-line {
@@ -75,26 +75,26 @@ img, video {
 
   /* Responsive navigation positioning */
   @media (min-width: 640px) {
-    .page-navigation .white-line { right: 20%; }
+    .page-navigation .white-line { right: 15%; }
     .page-navigation nav { right: 3%; }
   }
 
   @media (min-width: 768px) {
-    .page-navigation .white-line { right: 22%; }
+    .page-navigation .white-line { right: 18%; }
     .page-navigation nav { right: 3.3%; }
   }
 
   @media (min-width: 1024px) {
-    .page-navigation .white-line { right: 25%; }
+    .page-navigation .white-line { right: 19%; }
     .page-navigation nav { right: 3.75%; } 
   }
 
-  @media (min-width: 1200px) {
-    .page-navigation .white-line { right: 20%; }
+  @media (min-width: 1280px) {
+    .page-navigation .white-line { right: 19%; }
     .page-navigation nav { right: 3%; }
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: 1536px) {
     .page-navigation .white-line { right: 20%; }
     .page-navigation nav { right: 3%; }
   }
@@ -297,39 +297,47 @@ body {
 
 .green-rectangle {
   @apply w-full border-2 border-[var(--neongreen)];
-  max-width: 100%;
-  min-height: 300px;
+  max-width: clamp(100%, 85vw, 900px);
+  min-height: clamp(300px, 40vh, 750px);
 }
 
 @media (min-width: 640px) {
   .green-rectangle {
-    max-width: 90%;
-    min-height: 350px;
+    max-width: clamp(90%, 80vw, 900px);
+    min-height: clamp(350px, 45vh, 750px);
   }
 }
 
 @media (min-width: 768px) {
   .green-rectangle {
-    max-width: 85%;
-    min-height: 600px;
+    max-width: 700px;
+    min-height: 500px;
   }
 }
 
 @media (min-width: 1024px) {
   .green-rectangle {
-    max-width: 1100px;
-    min-height: 600px;
-    border-width: 3px;
+    max-width: clamp(85%, 75vw, 700px);
+    min-height: clamp(450px, 50vh, 750px);
   }
 }
 
 @media (min-width: 1280px) {
   .green-rectangle {
-    max-width: 1150px;
-    height: 600px;
-    min-height: 600px;
+    max-width: clamp(850px, 60vw, 950px);
+    height: clamp(650px, 55vh, 750px);
+    min-height: clamp(500px, 55vh, 600px);
   }
 }
+
+@media (min-width: 1536px) {
+  .green-rectangle {
+    max-width: clamp(1100px, 65vw, 1200px);
+    height: clamp(600px, 60vh, 700px);
+    min-height: clamp(600px, 60vh, 700px);
+  }
+}
+
 
 .green-square {
   @apply w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-[130px] xl:h-[130px];
@@ -481,6 +489,7 @@ nav:not([class*="nav-"]) .nav-link {
 
 .auth-link:hover::after {
   @apply text-3xl md:text-4xl lg:text-5xl xl:text-[50px];
+  opacity: 1;
 }
 
 .star-link {

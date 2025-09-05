@@ -38,38 +38,65 @@ export default function History() {
     <div className="min-h-screen relative overflow-x-hidden">
 
       {/* Title Section */}
-      <div className="absolute top-4 left-4 md:top-[70px] md:left-[100px] z-10">
+      <div className="absolute z-10" style={{
+        top: 'clamp(16px, 4vh, 70px)',
+        left: 'clamp(16px, 7vw, 100px)'
+      }}>
         <h1 
-          style={{ color: '#F24D00' }}
-          className="font-title text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-[100px]"
+          style={{ 
+            color: '#F24D00',
+            fontSize: 'clamp(32px, 8vw, 100px)'
+          }}
+          className="font-title"
         >
           History
         </h1>
       </div>
 
       {/* Main Content Section */}
-      <div className="px-[30px] sm:px-[50px] md:px-[120px] lg:px-[280px] pt-[100px] sm:pt-[100px] md:pt-[200px] lg:pt-[450px] pb-24 md:pb-64 lg:pb-[400px] xl:pb-[450px] flex justify-center">
+      <div className="flex justify-center" style={{
+        paddingLeft: 'clamp(30px, 20vw, 280px)',
+        paddingRight: 'clamp(30px, 20vw, 280px)',
+        paddingTop: 'clamp(100px, 45vh, 450px)',
+        paddingBottom: 'clamp(96px, 45vh, 450px)'
+      }}>
         
         {/* Timeline Container */}
         <div className="w-full max-w-5xl">
           
           {/* Mobile Timeline */}
-          <div className="lg:hidden space-y-8">
+          <div className="lg:hidden" style={{ gap: 'clamp(10px, 4vh, 15px)' }}>
             {HISTORY_EVENTS.map((event, idx) => (
-              <div key={event.year} className="flex items-start space-x-4">
+              <div key={event.year} className="flex items-start" style={{ gap: 'clamp(12px, 2vw, 16px)', marginBottom: 'clamp(24px, 4vh, 32px)' }}>
                 <div className="flex flex-col items-center">
-                  <div className="w-4 h-4 bg-[var(--neongreen)] rounded-full"></div>
+                  <div style={{
+                    width: 'clamp(12px, 2vw, 16px)',
+                    height: 'clamp(12px, 2vw, 16px)',
+                    backgroundColor: 'var(--neongreen)',
+                    borderRadius: '50%'
+                  }}></div>
                   {idx < HISTORY_EVENTS.length - 1 && (
-                    <div className="w-0.5 h-16 bg-[var(--neongreen)] mt-2"></div>
+                    <div style={{
+                      width: '2px',
+                      height: 'clamp(48px, 8vh, 64px)',
+                      backgroundColor: 'var(--neongreen)',
+                      marginTop: '8px'
+                    }}></div>
                   )}
                 </div>
                 <div className="flex-1">
-                  <div className="font-decor text-2xl md:text-3xl text-[var(--neongreen)] mb-2">
+                  <div className="font-decor text-[var(--neongreen)]" style={{
+                    fontSize: 'clamp(20px, 4vw, 24px)',
+                    marginBottom: '8px'
+                  }}>
                     {event.year}
                   </div>
                   <div 
-                    className="font-body text-sm md:text-base text-[var(--foreground)] leading-tight whitespace-pre-line"
-                    style={{ fontSize: '14px', lineHeight: '18px' }}
+                    className="font-body text-[var(--foreground)] leading-tight whitespace-pre-line"
+                    style={{ 
+                      fontSize: 'clamp(12px, 2.5vw, 16px)',
+                      lineHeight: 'clamp(16px, 3vw, 20px)'
+                    }}
                   >
                     {event.title}
                   </div>
@@ -80,82 +107,152 @@ export default function History() {
 
           {/* Desktop Timeline */}
           <div className="hidden lg:block relative">
-            
-            {/* Start Symbol */}
-            <div className="absolute left-0 top-1/2 transform  -translate-x-[65px] -translate-y-1/2 text-[var(--neongreen)] font-decor" style={{ fontSize: 'clamp(36px, calc(36px + (80 - 36) * ((100vw - 1024px) / (1280 - 1024))), 60px)' }}>
-              ǁ
-            </div>
 
-            {/* Main Timeline Line */}
-            <div className="relative mx-4 -translate-x-[70px] translate-y-2">
-              <div 
-                className="h-2 border-t-8 border-dashed border-[var(--neongreen)]"
-                style={{ 
-                  marginTop: '1rem',
-                  width: 'clamp(510px, calc(510px + (880 - 510) * ((100vw - 1024px) / (1280 - 1024))), 880px)'
+            {/* Main Timeline Container */}
+            <div 
+              className="relative" 
+              style={{ 
+                transform: 'translateX(-70px) translateY(10px)'
                 }}
-              >
-              </div>
+            >
+              {/* Main Timeline Line */}
+              <div 
+                className="border-t-8 border-dashed border-[var(--neongreen)] translate-y-[40px] translate-x-[10px]"
+                style={{width: 'clamp(510px, 60vw, 880px)' }}
+              ></div>
 
               {/* Timeline Events */}
               <div className="absolute inset-0 flex justify-between items-center">
-                
-                {/* Event 1 - 22 FA */}
-                <div className="absolute transform -translate-y-[40px]" style={{ left: 'calc(5% - 130px)' }}>
-                  <div className="text-center mb-16">
+
+                {/* Start Symbol + First Event */}
+                <div 
+                  className="absolute left-0 top-1/2 -translate-y-1/2 text-center"
+                  style={{ transform: 'translateX(-65px) translateY(-50%)' }}
+                >
+                  <div className="-mb-[5px]">
                     <div 
                       className="font-body font-semibold text-[var(--foreground)] whitespace-pre-line mb-2"
                       style={{ fontSize: '16px', lineHeight: '20px' }}
                     >
                       Established KCU
                     </div>
-                    <div className="font-decor text-[var(--neongreen)]" style={{ fontSize: 'clamp(40px, calc(40px + (48 - 40) * ((100vw - 1024px) / (1280 - 1024))), 40px)' }}>22 FA</div>
+                    <div 
+                      className="font-decor text-[var(--neongreen)]"
+                      style={{ fontSize: 'clamp(32px, 3.5vw, 40px)' }}
+                    >
+                      22 FA
+                    </div>
+                  </div>
+                  <div 
+                    className="text-[var(--neongreen)] font-decor"
+                    style={{ fontSize: 'clamp(36px, 4vw, 60px)' }}
+                  >
+                    ǁ
                   </div>
                 </div>
 
                 {/* Event 2 - 24 FA */}
-                <div className="absolute transform -translate-x-1/2 -translate-y-[75px]" style={{ left: '50%' }}>
+                <div 
+                  className="absolute" 
+                  style={{
+                    left: 'calc(clamp(510px, 60vw, 880px) * 0.5)',
+                    top: '-120px',
+                    transform: 'translateX(-50%)'
+                  }}
+                >
                   <div className="text-center mt-12">
                     <div 
                       className="font-body font-semibold text-[var(--foreground)] whitespace-pre-line"
-                      style={{ fontSize: '16px', lineHeight: '20px' }}
+                      style={{ fontSize: 'clamp(14px, 1.2vw, 16px)', lineHeight: '20px' }}
                     >
                       {`Registered as an official
-UW-Madison CS club`}
+              UW-Madison CS club`}
                     </div>
-                    <div className="font-decor text-[var(--neongreen)] translate-y-[10px]" style={{ fontSize: 'clamp(40px, calc(40px + (48 - 40) * ((100vw - 1024px) / (1280 - 1024))), 40px)' }}>24 FA</div>
-                    <div className="text-[var(--neongreen)] font-decor" style={{ fontSize: 'clamp(36px, calc(36px + (96 - 36) * ((100vw - 1024px) / (1280 - 1024))), 60px)' }}>◆</div>
+                    <div className="font-decor text-[var(--neongreen)] translate-y-[10px]" style={{ fontSize: 'clamp(32px, 3.5vw, 40px)' }}>
+                      24 FA
+                    </div>
+                    <div className="text-[var(--neongreen)] font-decor" style={{ fontSize: 'clamp(24px, 4.5vw, 60px)' }}>
+                      ◆
+                    </div>
                   </div>
                 </div>
 
                 {/* Event 3 - 25 SP */}
-                <div className="absolute transform -translate-x-1/2 -translate-y-[35px]" style={{ left: '70%' }}>
-                  <div className="text-center mb-16">
-                    <div 
-                      className="font-body font-semibold text-[var(--foreground)] whitespace-pre-line translate-y-[180px]"
-                      style={{ fontSize: '16px', lineHeight: '20px' }}
-                    >
-                      {`Created KCU
-official website`}
-                    </div>
-                    <div className="font-decor translate-y-[80px] text-[var(--neongreen)]" style={{ fontSize: 'clamp(40px, calc(40px + (48 - 40) * ((100vw - 1024px) / (1280 - 1024))), 40px)' }}>25 SP</div>
+                <div
+                  className="absolute"
+                  style={{
+                    left: 'calc(clamp(510px, 60vw, 880px) * 0.75)',
+                    top: '5px',        // 부모 컨테이너 top 고정
+                    transform: 'translateX(-50%)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center', // 가로 중앙 정렬
+                  }}
+                >
+                  {/* ◆ Symbol on top */}
+                  <div 
+                    className="text-[var(--neongreen)] font-decor mb-2"
+                    style={{ fontSize: 'clamp(24px, 4.5vw, 60px)' }}
+                  >
+                    ◆
                   </div>
-                  <div className="absolute top-16 left-1/2 transform -translate-x-1/2 text-[var(--neongreen)] font-decor" style={{ fontSize: 'clamp(36px, calc(36px + (96 - 36) * ((100vw - 1024px) / (1280 - 1024))), 60px)' }}>◆</div>
+
+                  {/* 25 SP */}
+                  <div 
+                    className="font-decor text-[var(--neongreen)] mt-[-5px]"
+                    style={{ fontSize: 'clamp(24px, 4vw, 40px)' }}
+                  >
+                    25 SP
+                  </div>
+
+                  {/* Description */}
+                  <div 
+                    className="font-body font-semibold text-[var(--foreground)] whitespace-pre-line text-center mt-3"
+                    style={{ fontSize: 'clamp(14px, 1.2vw, 16px)', lineHeight: '20px' }}
+                  >
+                    {`Created KCU
+                official website`}
+                  </div>
                 </div>
 
                 {/* Event 4 - 25 FA */}
-                <div className="absolute transform -translate-x-1 -translate-y-[55px]" style={{ left: '85%' }}>
-                  <div className="text-center mt-12">
-                    <div className="font-decor text-[var(--neongreen)] translate-y-[10px]" style={{ fontSize: 'clamp(40px, calc(40px + (48 - 40) * ((100vw - 1024px) / (1280 - 1024))), 40px)' }}>25 FA</div>
-                    <div className="text-[var(--neongreen)] font-decor" style={{ fontSize: 'clamp(18px, calc(18px + (96 - 18) * ((100vw - 1024px) / (1280 - 1024))), 60px)' }}>◆</div>
+                <div
+                  className="absolute"
+                  style={{
+                    left: 'calc(clamp(510px, 60vw, 880px) * 1)',
+                    top: '-35px',              // 라인 기준 고정
+                    transform: 'translateX(-50%)',
+                    height: '100px',           // 충분히 높이 확보
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'flex-start', 
+                    alignItems: 'center',
+                  }}
+                >
+                  {/* 25 FA on one line */}
+                  <div 
+                    className="font-decor text-[var(--neongreen)]"
+                    style={{ fontSize: 'clamp(24px, 4vw, 40px)', whiteSpace: 'nowrap' }}
+                  >
+                    25 FA
+                  </div>
+                  {/* ◆ symbol */}
+                  <div 
+                    className="text-[var(--neongreen)] font-decor mb-1"
+                    style={{ fontSize: 'clamp(24px, 4.5vw, 60px)' }}
+                  >
+                    ◆
                   </div>
                 </div>
-              </div>
-            </div>
 
-            {/* End Arrow */}
-            <div className="absolute right-0 top-2/3 transform -translate-x-[160px] -translate-y-1/2 text-[var(--neongreen)] font-decor" style={{ left: 'calc(100% - 30px)', fontSize: 'clamp(30px, 4vw, 60px)' }}>
-              →
+                {/* End Arrow */}
+                <div 
+                  className="absolute translate-y-[-2px] text-[var(--neongreen)] font-decor"
+                  style={{ left: 'calc(clamp(510px, 60vw, 880px) * 1.0)', top: '8px', fontSize: 'clamp(60px, 4vw, 60px)' }}
+                >
+                  →
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -181,23 +278,20 @@ official website`}
       </div>
 
       {/* Mobile Navigation */}
-      <nav 
-        className="lg:hidden fixed bottom-0 left-0 right-0 bg-[var(--background)] border-t-2 border-[var(--foreground)] z-20"
-        style={{
-          padding: 'clamp(12px, 2vh, 16px)'
-        }}
-      >
-        <ul 
-          className="flex justify-around items-center font-decor"
-          style={{
-            fontSize: 'clamp(20px, 4vw, 30px)'
-          }}
-        >
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-[var(--background)] border-t-2 border-[var(--foreground)] z-20" style={{
+        padding: 'clamp(12px, 2vh, 16px)'
+      }}>
+        <ul className="flex justify-around items-center font-decor" style={{
+          fontSize: 'clamp(12px, 3vw, 16px)'
+        }}>
           {NAVIGATION_LINKS.map(({ href, label, mobileLabel }) => (
             <li key={href}>
               <Link 
                 href={href} 
-                className="hover:text-[var(--hover-orange)] transition-colors duration-200 px-2 py-1"
+                className="hover:text-[var(--hover-orange)] transition-colors duration-200"
+                style={{
+                  padding: 'clamp(4px, 1vw, 8px)'
+                }}
               >
                 {mobileLabel || label}
               </Link>

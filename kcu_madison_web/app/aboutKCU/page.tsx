@@ -53,13 +53,13 @@ export default function AboutKCU() {
         <div className="green-rectangle relative p-2 sm:p-3 mt-20 md:p-4 lg:p-6 xl:p-8">
           
           {/* Text Content */}
-          <div className="pr-0 sm:pr-4 md:pr-8 lg:pr-0 xl:pr-96 -mt-2 sm:-mt-1 md:-mt-2 lg:-mt-4">
+          <div className="pr-0 sm:pr-4 md:pr-32 lg:pr-32 xl:pr-40 2xl:pr-80 -mt-2 sm:-mt-1 md:-mt-1 lg:-mt-4">
             <p 
               className="font-body whitespace-pre-line"
               style={{ 
                 color: 'var(--foreground)',
-                fontSize: 'clamp(12px, 1.5vw, 19px)',   // 12px → 19px
-                lineHeight: 'clamp(1.4, 2vw, 1.9)'      // smooth line-height
+                fontSize: 'clamp(12px, 1.4vw, 18px)',   // 12px → 19px
+                lineHeight: 'clamp(1.4, 1.5vw, 1.9)'      // smooth line-height
               }}
             >
               {ABOUT_TEXT}
@@ -67,10 +67,10 @@ export default function AboutKCU() {
           </div>
 
           {/* Video Positioned Inside Rectangle */}
-          <div className="mt-4 sm:mt-6 md:mt-8 lg:absolute lg:top-24 lg:right-12 xl:top-36 xl:right-20 flex justify-center">
+          <div className="mt-4 sm:mt-6 md:mt-8 lg:absolute lg:top-1/2 lg:right-8 lg:-translate-y-1/2 xl:top-1/2 xl:right-12 xl:-translate-y-1/2 2xl:top-1/2 2xl:right-16 2xl:-translate-y-1/2 flex justify-center">
             <video
               className="h-auto"
-              style={{ width: 'clamp(8rem, 20vw, 25rem)' }} // 128px → 400px
+              style={{ width: 'clamp(6rem, 15vw, 20rem)' }}
               autoPlay
               loop
               muted

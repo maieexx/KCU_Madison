@@ -50,7 +50,7 @@ export default function ContactUs() {
       </section>
 
       {/* Desktop Navigation Section */}
-      <div className='hidden 2xl:block'>
+      <div className='page-navigation'>
         <div className='white-line absolute' style={{ right: 'clamp(100px, 20vw, 330px)' }}/>
         <nav className="absolute" style={{ right: 'clamp(20px, 5vw, 50px)', top: 'clamp(20px, 3vh, 30px)' }}>
           <ul className="font-decor text-right" style={{ fontSize: 'clamp(20px, 2vw, 35px)', rowGap: 'clamp(10px, 2vh, 20px)' }}>

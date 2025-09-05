@@ -160,7 +160,7 @@ export default async function SemesterPage({ params }: Props) {
                 className={`transition-colors duration-200 px-2 py-1 whitespace-nowrap ${
                   toSlug(sem) === toSlug(semester) 
                     ? 'text-[var(--accent)]' 
-                    : 'hover:text-[var(--hover-purple)]'
+                    : 'hover:text-[var(--purple)]'
                 }`}
                 style={{ 
                   '--hover-purple': COLORS.primary,

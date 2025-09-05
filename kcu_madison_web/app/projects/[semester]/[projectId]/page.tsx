@@ -203,18 +203,6 @@ export default async function ProjectPage({ params }: Props) {
         </div>
       </div>
     </div>
-
-      {/* Mobile Navigation */}
-      <nav className="2xl:hidden fixed bottom-0 left-0 right-0 bg-[var(--background)] border-t-2 border-[var(--foreground)] p-4 z-20 mobile-nav">
-        <div className="flex justify-center">
-          <Link 
-            href={`/projects/${semester}`}
-            className="nav-link font-sub px-4 py-2"
-          >
-            Back to {semester.replace("-", " ")}
-          </Link>
-        </div>
-      </nav>
     </main>
   );
 }
