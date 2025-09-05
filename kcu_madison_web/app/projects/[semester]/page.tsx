@@ -132,34 +132,48 @@ export default async function SemesterPage({ params }: Props) {
       </nav>
 
       {/* Mobile Navigation */}
-      <nav className="xl:hidden fixed bottom-0 left-0 right-0 bg-[var(--background)] border-t-2 border-[var(--foreground)] p-4 z-20">
-        <div className="flex overflow-x-auto space-x-4 pb-2">
-          <Link 
-            href="/" 
-            className="flex-shrink-0 hover:text-[var(--hover-purple)] transition-colors duration-200 px-3 py-2 font-decor"
-            style={{ '--hover-purple': COLORS.primary } as React.CSSProperties}
-          >
-            Home
-          </Link>
-          {semesters.map((sem) => (
+      <nav 
+        className="lg:hidden fixed bottom-0 left-0 right-0 bg-[var(--background)] border-t-2 border-[var(--foreground)] z-20"
+        style={{
+          padding: 'clamp(12px, 2vh, 16px)'
+        }}
+      >
+        <ul 
+          className="flex justify-around items-center font-decor"
+          style={{
+            fontSize: 'clamp(20px, 4vw, 30px)'
+          }}
+        >
+          <li>
             <Link 
-              key={sem}
-              href={`/projects/${toSlug(sem)}`} 
-              className={`flex-shrink-0 transition-colors duration-200 px-3 py-2 font-decor whitespace-nowrap ${
-                toSlug(sem) === toSlug(semester) 
-                  ? 'text-[var(--accent)]' 
-                  : 'hover:text-[var(--hover-purple)]'
-              }`}
-              style={{ 
-                '--hover-purple': COLORS.primary,
-                '--accent': COLORS.accent
-              } as React.CSSProperties}
+              href="/" 
+              className="hover:text-[var(--hover-purple)] transition-colors duration-200 px-2 py-1"
+              style={{ '--hover-purple': COLORS.primary } as React.CSSProperties}
             >
-              {sem}
+              Home
             </Link>
+          </li>
+          {semesters.map((sem) => (
+            <li key={sem}>
+              <Link 
+                href={`/projects/${toSlug(sem)}`} 
+                className={`transition-colors duration-200 px-2 py-1 whitespace-nowrap ${
+                  toSlug(sem) === toSlug(semester) 
+                    ? 'text-[var(--accent)]' 
+                    : 'hover:text-[var(--hover-purple)]'
+                }`}
+                style={{ 
+                  '--hover-purple': COLORS.primary,
+                  '--accent': COLORS.accent
+                } as React.CSSProperties}
+              >
+                {sem}
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </nav>
+
     </main>
   );
 }

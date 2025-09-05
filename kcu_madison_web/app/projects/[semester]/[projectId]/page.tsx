@@ -254,16 +254,27 @@ function renderNotFound(semester: string) {
       </div>
 
       {/* Mobile Navigation */}
-      <nav className="2xl:hidden fixed bottom-0 left-0 right-0 bg-[var(--background)] border-t-2 border-[var(--foreground)] p-4 z-20 mobile-nav">
-        <div className="flex justify-center">
-          <Link 
-            href={`/projects/${semester}`}
-            className="nav-link font-sub px-4 py-2"
-            style={{ '--nav-hover-color': 'var(--purple)' } as React.CSSProperties}
-          >
-            Back to {semester.replace("-", " ")}
-          </Link>
-        </div>
+      <nav 
+        className="lg:hidden fixed bottom-0 left-0 right-0 bg-[var(--background)] border-t-2 border-[var(--foreground)] z-20"
+        style={{
+          padding: 'clamp(12px, 2vh, 16px)'
+        }}
+      >
+        <ul 
+          className="flex justify-center items-center font-decor"
+          style={{
+            fontSize: 'clamp(20px, 4vw, 30px)'
+          }}
+        >
+          <li>
+            <Link 
+              href={`/projects/${semester}`} 
+              className="hover:text-[var(--purple)] transition-colors duration-200 px-2 py-1"
+            >
+              Back to {semester.replace("-", " ")}
+            </Link>
+          </li>
+        </ul>
       </nav>
     </main>
   );
