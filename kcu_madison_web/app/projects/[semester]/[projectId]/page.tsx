@@ -17,8 +17,6 @@ export default async function ProjectPage({ params }: Props) {
 
   await connectMongo();
 
-  const allProjects = (await Project.find<IProject>().select("_id semester title").lean()) as unknown as IProject[];
-
   if (!mongoose.Types.ObjectId.isValid(projectId)) {
     return renderNotFound(semester);
   }
