@@ -54,11 +54,9 @@ export default function History() {
       </div>
 
       {/* Main Content Section */}
-      <div className="flex justify-center" style={{
+      <div className="flex justify-center pt-[200px] sm:pt-2[250px] md:pt-[250px] lg:pt-[450px] xl:pt-[450px] pb-14 sm:pb-16 md:pb-20 lg:pb-[450px] xl:pb-[450px]" style={{
         paddingLeft: 'clamp(30px, 20vw, 280px)',
         paddingRight: 'clamp(30px, 20vw, 280px)',
-        paddingTop: 'clamp(100px, 45vh, 450px)',
-        paddingBottom: 'clamp(96px, 45vh, 450px)'
       }}>
         
         {/* Timeline Container */}
@@ -260,7 +258,7 @@ export default function History() {
 
       {/* Desktop Navigation */}
       <div className="page-navigation">
-        <div className="white-line" />
+        <div className="white-line absolute" />
         <nav className="nav-orange">
           <ul>
             {NAVIGATION_LINKS.map(({ href, label }) => (
@@ -278,20 +276,23 @@ export default function History() {
       </div>
 
       {/* Mobile Navigation */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-[var(--background)] border-t-2 border-[var(--foreground)] z-20" style={{
-        padding: 'clamp(12px, 2vh, 16px)'
-      }}>
-        <ul className="flex justify-around items-center font-decor" style={{
-          fontSize: 'clamp(12px, 3vw, 16px)'
-        }}>
+      <nav 
+        className="lg:hidden fixed bottom-0 left-0 right-0 bg-[var(--background)] border-t-2 border-[var(--foreground)] z-20"
+        style={{
+          padding: 'clamp(12px, 2vh, 16px)'
+        }}
+      >
+        <ul 
+          className="flex justify-around items-center font-decor"
+          style={{
+            fontSize: 'clamp(20px, 4vw, 30px)'
+          }}
+        >
           {NAVIGATION_LINKS.map(({ href, label, mobileLabel }) => (
             <li key={href}>
               <Link 
                 href={href} 
-                className="hover:text-[var(--hover-orange)] transition-colors duration-200"
-                style={{
-                  padding: 'clamp(4px, 1vw, 8px)'
-                }}
+                className="hover:text-[var(--hover-orange)] transition-colors duration-200 px-2 py-1"
               >
                 {mobileLabel || label}
               </Link>

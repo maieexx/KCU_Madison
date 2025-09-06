@@ -32,7 +32,7 @@ export default function Home() {
             marginBottom: 'clamp(24px, 4vh, 32px)'
           }}>
             <h1 className="font-main leading-tight" style={{
-              fontSize: 'clamp(50px, 10vw, 135px)',
+              fontSize: 'clamp(50px, 7.7vw, 140px)',
               wordSpacing: 'clamp(4px, 2vw, 16px)',
               lineHeight: 'clamp(1.0, 1.1, 1.5)',
             }}>
@@ -70,20 +70,20 @@ export default function Home() {
           {/* Star Pattern */}
           <div className="absolute z-10" style={{
             top: 'clamp(140px, 18vh, 140px)',
-            right: 'clamp(60px, 6vw, 100px)'
+            right: 'clamp(70px, 10vw, 140px)'
           }}>
             <p style={{ 
               color: '#FFFC65',
-              fontSize: 'clamp(20px, 4vw, 60px)'
+              fontSize: 'clamp(20px, 3.2vw, 80px)'
             }} className="font-decor">☆★☆★☆★</p>
           </div>
           <div className="absolute z-10" style={{
-            top: 'clamp(190px, 20vh, 190px)',
-            right: 'clamp(50px, 22vw, 140px)'
+            top: 'clamp(190px, 22vh, 200px)',
+            right: 'clamp(110px, 10vw, 180px)'
           }}>
             <p style={{ 
               color: '#FFFC65',
-              fontSize: 'clamp(20px, 4vw, 60px)'
+              fontSize: 'clamp(20px, 3.2vw, 80px)'
             }} className="font-decor">☆★☆★☆★</p>
           </div>
 

@@ -30,18 +30,20 @@ export default function signUpPage() {
             >
                 [ KCU WIN ]
             </p>
-            
+        <div 
+            className="flex justify-start px-2 pb-[50px] sm:px-4 md:px-[100px] lg:px-[120px] pt-12 sm:pt-16 md:pt-[210px] lg:pt-[230px] lg:pb-[80px] xl:pb-[118px]"
+        > 
+            {/* Pink Rectangle with responsive positioning and sizing */}
             <div 
-                className="pink-rectangle absolute top-36 left-2 sm:top-44 sm:left-4 md:top-52 md:left-8 lg:top-56 lg:left-16 xl:left-[120px] xl:top-[300px] px-1 sm:px-2 z-10"
-                style={{
-                    width: 'clamp(350px, 95vw, 1180px)',
-                    height: 'clamp(300px, 50vh, 450px)',
-                    maxWidth: 'calc(100vw - 16px)'
-                }}
+                className="pink-rectangle relative p-2 sm:p-3 mt-20 md:p-4 lg:p-6 xl:p-8"
             >
                 <div 
-                    className="font-decor mt-4 sm:mt-6 md:mt-8 lg:mt-[20px] xl:mt-[30px] ml-2 sm:ml-4 md:ml-8 lg:ml-12 xl:ml-[80px] text-left text-white"
-                    style={{ fontSize: 'clamp(16px, 3.5vw, 55px)' }}
+                    className="font-decor text-white leading-tight"
+                    style={{ 
+                    fontSize: 'clamp(16px, 4vw, 58px)',
+                    marginTop: 'clamp(8px, 2vh, 20px)',
+                    marginLeft: 'clamp(12px, 4vw, 80px)'
+                    }}
                 >
                     <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-[30px] items-start sm:items-baseline">
                         <span>Follow the link and . .</span>
@@ -49,15 +51,18 @@ export default function signUpPage() {
                         <span 
                             style={{ 
                                 color: 'var(--yellow)', 
-                                fontSize: 'clamp(20px, 5vw, 85px)' 
+                                fontSize: 'clamp(20px, 5vw, 58px)' 
                             }}
                         >
                             ☆ WIN ☆
                         </span>
                     </div>
                     <div 
-                        className="flex mt-2 sm:mt-3 md:mt-4 lg:mt-[6px] xl:mt-[10px] justify-end pr-4 sm:pr-8 md:pr-16 lg:pr-20 xl:ml-[800px]"
-                        style={{ fontSize: 'clamp(20px, 4vw, 55px)' }}
+                        className="flex justify-end pr-4 sm:pr-8 md:pr-16 lg:pr-20"
+                        style={{ 
+                            fontSize: 'clamp(20px, 4vw, 55px)',
+                            marginTop: 'clamp(8px, 2vh, 10px)'
+                        }}
                     >
                         <span>⇙</span>
                     </div>
@@ -67,25 +72,30 @@ export default function signUpPage() {
                     href="https://win.wisc.edu/organization/kcu"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-decor block mt-4 sm:mt-6 md:mt-12 lg:mt-16 xl:mt-[80px] ml-2 sm:ml-4 md:ml-8 lg:ml-16 xl:ml-[200px] text-center underline hover:text-[var(--yellow)] break-all"
-                    style={{ fontSize: 'clamp(12px, 3vw, 50px)' }}
+                    className="font-decor block text-center underline hover:text-[var(--yellow)] break-all"
+                    style={{ 
+                        fontSize: 'clamp(12px, 3vw, 50px)',
+                        marginTop: 'clamp(16px, 8vh, 80px)',
+                        marginLeft: 'clamp(8px, 15vw, 200px)'
+                    }}
                 >
                     https://win.wisc.edu/organization/kcu
                 </a>
             </div>
+        </div>
 
-            {/* Desktop Navigation using existing page-navigation component */}
+            {/* Desktop Navigation */}
             <div className="page-navigation">
-                <div className="white-line" />
-                <nav>
+                <div className="white-line absolute" />
+                <nav className="nav-yellow">
                     <ul>
-                        {NAVIGATION_LINKS.map(({ href, label }, idx) => (
-                            <li key={href} className={idx === 0 ? '' : 'mt-[20px]'}>
+                        {NAVIGATION_LINKS.map(({ href, label }) => (
+                            <li key={href}>
                                 <Link 
                                     href={href} 
                                     className="page-nav block"
                                     style={{ '--nav-hover-color': 'var(--yellow)' } as React.CSSProperties}
-                                >
+                                                    >
                                     {label}
                                 </Link>
                             </li>
@@ -97,25 +107,25 @@ export default function signUpPage() {
             <nav 
                 className="lg:hidden fixed bottom-0 left-0 right-0 bg-[var(--background)] border-t-2 border-[var(--foreground)] z-20"
                 style={{
-                padding: 'clamp(12px, 2vh, 16px)'
+                    padding: 'clamp(12px, 2vh, 16px)'
                 }}
             >
                 <ul 
-                className="flex justify-around items-center font-decor"
-                style={{
-                    fontSize: 'clamp(20px, 4vw, 30px)'
-                }}
+                    className="flex justify-around items-center font-decor"
+                    style={{
+                        fontSize: 'clamp(20px, 4vw, 30px)'
+                    }}
                 >
-                {NAVIGATION_LINKS.map(({ href, label, mobileLabel }) => (
-                    <li key={href}>
-                    <Link 
-                        href={href} 
-                        className="hover:text-[var(--yellow)] transition-colors duration-200 px-2 py-1"
-                    >
-                        {mobileLabel || label}
-                    </Link>
-                    </li>
-                ))}
+                    {NAVIGATION_LINKS.map(({ href, label, mobileLabel }) => (
+                        <li key={href}>
+                            <Link 
+                                href={href} 
+                                className="hover:text-[var(--yellow)] transition-colors duration-200 px-2 py-1"
+                            >
+                                {mobileLabel || label}
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
             </nav>
         </main>

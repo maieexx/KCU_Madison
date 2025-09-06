@@ -35,58 +35,74 @@ export default function signUpPage() {
       >
         [ Sign-Up Form ]
       </p>
-      
-      {/* Pink Rectangle with responsive positioning and sizing */}
+
       <div 
-        className="pink-rectangle absolute top-28 left-2 sm:top-32 sm:left-4 md:left-[60px] md:top-[280px] lg:left-[120px] lg:top-[300px] px-1 sm:px-2 z-10"
-        style={{
-          width: 'clamp(360px, 92vw, 1180px)',
-          height: 'clamp(320px, 55vh, 450px)',
-          maxWidth: 'calc(100vw - 24px)'
-        }}
-      >
-        <p 
-          className="font-decor mt-3 sm:mt-4 md:mt-[12px] lg:mt-[10px] ml-3 sm:ml-4 md:ml-[24px] lg:ml-[80px] text-white leading-tight"
-          style={{ fontSize: 'clamp(18px, 4vw, 85px)' }}
+        className="flex justify-start px-2 pb-[50px] sm:px-4 md:px-[100px] lg:px-[120px] pt-12 sm:pt-16 md:pt-[210px] lg:pt-[230px] lg:pb-[80px] xl:pb-[118px]"
+      > 
+      {/* Pink Rectangle with responsive positioning and sizing */}
+        <div 
+            className="pink-rectangle relative p-2 sm:p-3 mt-20 md:p-4 lg:p-6 xl:p-8"
         >
-          Sorry!!<br />
-          We are not accepting<br />
-          new members at this time.
-        </p>
+          <p 
+            className="font-decor text-white leading-tight"
+            style={{ 
+              fontSize: 'clamp(16px, 4vw, 85px)',
+              marginTop: 'clamp(8px, 2vh, 20px)',
+              marginLeft: 'clamp(12px, 4vw, 80px)'
+            }}
+          >
+            Sorry!!<br />
+            We are not accepting<br />
+            new members at this time.
+          </p>
 
-        {/*
-          Sign-Up Page: Not Ready 섹션 주석 처리 하시고
-          Sign-Up Page: When the Sign-Up Form is ready 아래 내용 주석 해제하시고
-          내부 google doc 링크만 복붙하시면 됩니다!!
-        */}
+          {/*
+            Sign-Up Page: Not Ready 섹션 주석 처리 하시고
+            Sign-Up Page: When the Sign-Up Form is ready 아래 내용 주석 해제하시고
+            내부 google doc 링크만 복붙하시면 됩니다!!
+          */}
 
-        {/* Sign-Up Page: When the Sign-Up Form is ready */}
-        {/* <div className="font-decor mt-[10px] text-center" style={{ fontSize: 'clamp(20px, 6vw, 80px)', color: 'white' }}>
-          <p>Click here to join the KCU!!</p>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 'clamp(50px, 15vw, 200px)' }}>
-            <span>⇩</span>
-            <span>⇩</span>
-          </div>
-        </div> */}
+          {/* Sign-Up Page: When the Sign-Up Form is ready */}
+          {/* <div className="font-decor text-center" style={{ 
+            fontSize: 'clamp(18px, 5vw, 80px)', 
+            color: 'white',
+            marginTop: 'clamp(8px, 2vh, 20px)'
+          }}>
+            <p>Click here to join the KCU!!</p>
+            <div style={{ 
+              display: 'flex', 
+              justifyContent: 'center', 
+              gap: 'clamp(30px, 10vw, 200px)',
+              marginTop: 'clamp(8px, 2vh, 16px)'
+            }}>
+              <span>⇩</span>
+              <span>⇩</span>
+            </div>
+          </div> */}
 
-        {/* <a
-          href="https://docs.google.com/forms/d/1qsmoWASdvBehrFeqIYWHMvF7brHCSpX6apoWsVoPcx8/edit"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-decor ml-[340px] mt-[80px] text-center underline hover:text-[var(--yellow)] blink-yellow"
-          style={{ fontSize: 'clamp(20px, 6vw, 80px)'}}
-        >
-        ☆ Sign-Up Link ☆
-        </a> */}
+          {/* <a
+            href="https://docs.google.com/forms/d/1qsmoWASdvBehrFeqIYWHMvF7brHCSpX6apoWsVoPcx8/edit"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-decor text-center underline hover:text-[var(--yellow)] blink-yellow block"
+            style={{ 
+              fontSize: 'clamp(18px, 5vw, 80px)',
+              marginTop: 'clamp(16px, 4vh, 80px)',
+              marginLeft: 'clamp(100px, 25vw, 340px)'
+            }}
+          >
+          ☆ Sign-Up Link ☆
+          </a> */}
+        </div>
       </div>
 
-      {/* Desktop Navigation using existing page-navigation component */}
+      {/* Desktop Navigation */}
       <div className="page-navigation">
-        <div className="white-line" />
-        <nav>
+        <div className="white-line absolute" />
+        <nav className="nav-yellow">
           <ul>
-            {NAVIGATION_LINKS.map(({ href, label }, idx) => (
-              <li key={href} className={idx === 0 ? '' : 'mt-[20px]'}>
+            {NAVIGATION_LINKS.map(({ href, label }) => (
+              <li key={href}>
                 <Link 
                   href={href} 
                   className="page-nav block"

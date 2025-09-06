@@ -284,14 +284,45 @@ body {
 }
 
 .pink-rectangle {
-  @apply w-full max-w-4xl lg:max-w-5xl xl:w-[1180px];
-  @apply h-64 md:h-80 lg:h-96 xl:h-[450px];
-  border: 2px solid var(--pink);
+  @apply w-full border-2 border-[var(--pink)];
+  max-width: clamp(320px, 80vw, 600px);
+  min-height: clamp(300px, 40vh, 450px);
+}
+
+@media (min-width: 640px) {
+  .pink-rectangle {
+    max-width: clamp(90%, 80vw, 900px);
+    min-height: clamp(350px, 45vh, 450px);
+  }
+}
+
+@media (min-width: 768px) {
+  .pink-rectangle {
+    max-width: 1100px;
+    min-height: 400px;
+  }
 }
 
 @media (min-width: 1024px) {
   .pink-rectangle {
-    border-width: 3px;
+    max-width: clamp(600px, 60vw, 800px);
+    min-height: clamp(400px, 45vh, 450px);
+  }
+}
+
+@media (min-width: 1280px) {
+  .pink-rectangle {
+    max-width: clamp(850px, 65vw, 1000px);
+    height: clamp(450px, 50vh, 500px);
+    min-height: clamp(450px, 50vh, 500px);
+  }
+}
+
+@media (min-width: 1536px) {
+  .pink-rectangle {
+    max-width: clamp(1000px, 65vw, 1300px);
+    height: clamp(450px, 55vh, 500px);
+    min-height: clamp(450px, 55vh, 500px);
   }
 }
 
@@ -324,7 +355,7 @@ body {
 
 @media (min-width: 1280px) {
   .green-rectangle {
-    max-width: clamp(850px, 65vw, 1000px);
+    max-width: clamp(850px, 65vw, px);
     height: clamp(650px, 55vh, 750px);
     min-height: clamp(500px, 55vh, 600px);
   }
@@ -558,13 +589,6 @@ nav {
 @media (min-width: 1024px) {
   .font-body {
     line-height: 1.8;
-  }
-  
-  /* Override responsive rectangles with fixed desktop sizes if needed */
-  .pink-rectangle {
-    max-width: none;
-    width: 1180px;
-    height: 450px;
   }
   
   .white-rectangle {
