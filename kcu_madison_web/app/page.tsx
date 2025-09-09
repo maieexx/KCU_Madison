@@ -32,14 +32,13 @@ export default function Home() {
             marginBottom: 'clamp(24px, 4vh, 32px)'
           }}>
             <h1 className="font-main leading-tight" style={{
-              fontSize: 'clamp(40px, 7.5vw, 160px)',
-              wordSpacing: 'clamp(4px, 2vw, 16px)',
+              fontSize: 'min(170px, 7.3vw)',
               lineHeight: 'clamp(1.0, 1.1, 1.5)',
             }}>
               KCU 2025
             </h1>
             <p className="font-sub tracking-wider" style={{
-              fontSize: 'clamp(12px, 2.5vw, 40px)',
+              fontSize: 'clamp(11px, 2.3vw, 40px)',
               marginTop: 'clamp(24px, 4vh, 48px)'
             }}>
               Korean Undergraduate Computer Science Union
@@ -67,29 +66,57 @@ export default function Home() {
 
         {/* Right Side Content */}
         <div className="relative w-full h-screen">
-          {/* Star Container */}
-          <div className="absolute z-10"
+          {/* Star Container - Desktop/Tablet */}
+          <div className="absolute z-10 hidden md:block"
               style={{ 
-                top: '15vh',
-                right: '4vw'
+                top: '18vh',
+                right: '100px'
               }}
           >
             <p style={{
               color: '#FFFC65',
-              fontSize: 'clamp(20px, 3.8vw, 80px)'
+              fontSize: 'clamp(10px, 3.5vw, 80px)'
             }} className="font-decor">
               ☆★☆★☆★
             </p>
           </div>
 
-          <div className="absolute z-10"
+          <div className="absolute z-10 hidden md:block"
           style={{
-            top: '20vh',
-            right: '6vw'
+            top: '23vh',
+            right: '140px'
           }}>
             <p style={{ 
               color: '#FFFC65',
-              fontSize: 'clamp(20px, 3.8vw, 80px)'
+              fontSize: 'clamp(10px, 3.5vw, 80px)'
+            }} className="font-decor">
+              ☆★☆★☆★
+            </p>
+          </div>
+
+          {/* Star Container - Mobile */}
+          <div className="absolute z-10 block md:hidden"
+              style={{ 
+                top: 'clamp(100px, 15vh, 140px)',
+                right: 'clamp(16px, 10vw, 100px)'
+              }}
+          >
+            <p style={{
+              color: '#FFFC65',
+              fontSize: 'clamp(16px, 4vw, 30px)'
+            }} className="font-decor">
+              ☆★☆★☆★
+            </p>
+          </div>
+
+          <div className="absolute z-10 block md:hidden"
+          style={{
+            top: 'clamp(130px, 18vh, 170px)',
+            right: 'clamp(24px, 12vw, 120px)'
+          }}>
+            <p style={{ 
+              color: '#FFFC65',
+              fontSize: 'clamp(16px, 4vw, 30px)'
             }} className="font-decor">
               ☆★☆★☆★
             </p>
@@ -148,13 +175,13 @@ export default function Home() {
 
       {/* Start Button */}
       <div className="absolute text-center z-10" style={{
-        bottom: '10vh',
+        top: '85vh',
         left: '50%',
         transform: 'translateX(-50%)'
       }}>
         <p style={{ 
           color: '#F56CCE',
-          fontSize: 'clamp(16px, 3.2vw, 45px)'
+          fontSize: 'clamp(16px, 3.2vw, 45px)',
         }} className="font-decor blink">
           ⓅⓇⒺⓈⓈ ⓉⓄ ⓈⓉⒶⓇⓉ ▶ ▶
         </p>
@@ -162,7 +189,7 @@ export default function Home() {
 
       {/* Power Symbol */}
       <div className="absolute z-10" style={{
-        bottom: 'clamp(12px, 3vh, 40px)',
+        top: '90vh',
         right: 'clamp(12px, 6vw, 80px)'
       }}>
         <Link href="/auth" className="auth-link">

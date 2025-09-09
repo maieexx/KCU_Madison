@@ -61,7 +61,7 @@ export default function LogoPage() {
           paddingRight: 'clamp(16px, 25vw, 400px)', // Increased right padding to avoid navigation
           paddingBottom: 'clamp(60px, 15vh, 200px)', // Increased bottom padding
           gap: 'clamp(24px, 5vw, 48px)',
-          marginTop: 'clamp(60px, 30vh, 180px)',
+          marginTop: 'clamp(10px, 18vh, 180px)',
         }}
       >        
         {/* Correct Use Section with Color Code */}
@@ -161,7 +161,7 @@ export default function LogoPage() {
               className="font-decor text-[#D10000] text-center lg:text-left"
               style={{
                 fontSize: 'clamp(14px, 2vw, 25px)',
-                marginLeft: 'clamp(0px, 20vw, 400px)'
+                marginLeft: 'clamp(0px, 23vw, 400px)'
               }}
             >
               ☒ do not fill the logo

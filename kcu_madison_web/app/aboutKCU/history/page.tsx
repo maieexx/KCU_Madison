@@ -54,7 +54,7 @@ export default function History() {
       </div>
 
       {/* Main Content Section */}
-      <div className="flex justify-center pt-[200px] sm:pt-2[250px] md:pt-[250px] lg:pt-[450px] xl:pt-[450px] pb-14 sm:pb-16 md:pb-20 lg:pb-[450px] xl:pb-[450px]" style={{
+      <div className="flex justify-center pt-[200px] sm:pt-2[200px] md:pt-[250px] lg:pt-[450px] xl:pt-[450px] pb-14 sm:pb-16 md:pb-20 lg:pb-[450px] xl:pb-[450px]" style={{
         paddingLeft: 'clamp(30px, 20vw, 280px)',
         paddingRight: 'clamp(30px, 20vw, 280px)',
       }}>
