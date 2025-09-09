@@ -32,7 +32,7 @@ export default function Home() {
             marginBottom: 'clamp(24px, 4vh, 32px)'
           }}>
             <h1 className="font-main leading-tight" style={{
-              fontSize: 'clamp(50px, 7.7vw, 140px)',
+              fontSize: 'clamp(40px, 7.5vw, 160px)',
               wordSpacing: 'clamp(4px, 2vw, 16px)',
               lineHeight: 'clamp(1.0, 1.1, 1.5)',
             }}>
@@ -66,29 +66,38 @@ export default function Home() {
         </div>
 
         {/* Right Side Content */}
-        <div className="block">
-          {/* Star Pattern */}
-          <div className="absolute z-10" style={{
-            top: 'clamp(140px, 18vh, 140px)',
-            right: 'clamp(70px, 10vw, 140px)'
-          }}>
-            <p style={{ 
+        <div className="relative w-full h-screen">
+          {/* Star Container */}
+          <div className="absolute z-10"
+              style={{ 
+                top: '15vh',
+                right: '4vw'
+              }}
+          >
+            <p style={{
               color: '#FFFC65',
-              fontSize: 'clamp(20px, 3.2vw, 80px)'
-            }} className="font-decor">☆★☆★☆★</p>
-          </div>
-          <div className="absolute z-10" style={{
-            top: 'clamp(190px, 22vh, 200px)',
-            right: 'clamp(110px, 10vw, 180px)'
-          }}>
-            <p style={{ 
-              color: '#FFFC65',
-              fontSize: 'clamp(20px, 3.2vw, 80px)'
-            }} className="font-decor">☆★☆★☆★</p>
+              fontSize: 'clamp(20px, 3.8vw, 80px)'
+            }} className="font-decor">
+              ☆★☆★☆★
+            </p>
           </div>
 
+          <div className="absolute z-10"
+          style={{
+            top: '20vh',
+            right: '6vw'
+          }}>
+            <p style={{ 
+              color: '#FFFC65',
+              fontSize: 'clamp(20px, 3.8vw, 80px)'
+            }} className="font-decor">
+              ☆★☆★☆★
+            </p>
+          </div>
+        </div>
+
           {/* Navigation Links */}
-          <div className="absolute transform -translate-y-1/2 z-10 hidden lg:block" style={{
+          <div className="block absolute transform -translate-y-1/2 z-10 hidden lg:block" style={{
             top: 'clamp(460px, 58vh, 580px)',
             right: 'clamp(60px, 14vw, 100px)'
           }}>
@@ -120,7 +129,6 @@ export default function Home() {
                 </li>
               </ul>
             </nav>
-          </div>
         </div>
       </div>
 
@@ -140,8 +148,8 @@ export default function Home() {
 
       {/* Start Button */}
       <div className="absolute text-center z-10" style={{
-        bottom: 'clamp(50px, 16vh, 200px)',
-        left: 'clamp(170px, 45vw, 700px)',
+        bottom: '10vh',
+        left: '50%',
         transform: 'translateX(-50%)'
       }}>
         <p style={{ 
